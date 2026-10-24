@@ -85,6 +85,8 @@ def load_installer():
 
 def test_installer_json_toml_roundtrip(tmp_path):
     inst = load_installer()
+    inst.SERVERS.update(inst.own_servers(ROOT))
+    assert list(inst.SERVERS) == ["social-forge"]  # shared servers (playwright) are not installed
     j = tmp_path / "mcp.json"
     j.write_text(json.dumps({"mcpServers": {"other": {"command": "x"}}}), encoding="utf-8")
     assert inst.edit_json(j, "mcpServers", remove=False) == "installed"

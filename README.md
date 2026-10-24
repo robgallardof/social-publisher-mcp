@@ -46,6 +46,7 @@ schedules everything for **05:00**, adds subtitles when they're needed and tells
 python scripts/install-mcp.py --list         # which clients are installed
 python scripts/install-mcp.py --with-skills  # register for your user everywhere (backs up each file as .bak)
 python scripts/install-mcp.py --remove       # undo
+python scripts/install-mcp.py --workspace ../davinci-agents  # any other workspace with config/mcp.servers.json
 ```
 
 ## 🚀 Quick start

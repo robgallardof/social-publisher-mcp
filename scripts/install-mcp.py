@@ -5,6 +5,10 @@ any folder (not only inside this workspace). Skills and roles travel inside the 
   python scripts/install-mcp.py                 # all detected clients
   python scripts/install-mcp.py --clients claude-code,codex,antigravity
   python scripts/install-mcp.py --dry-run | --remove | --list
+  python scripts/install-mcp.py --workspace ../davinci-agents   # any workspace with config/mcp.servers.json
+
+Only the workspace's own servers are installed (those launched from inside it); shared ones such as
+@playwright/mcp are left to you so they are never duplicated.
 
 Every file it edits is backed up first as <file>.bak. Idempotent.
 """
@@ -21,15 +25,27 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-NAME = "social-forge"
+NAME = "social-forge"  # current server name; main() sets it per server
 HOME = Path.home()
 APPDATA = Path(os.environ.get("APPDATA", HOME / "AppData" / "Roaming"))
 
 
+SERVERS: dict[str, dict] = {}
+
+
+def own_servers(root: Path) -> dict[str, dict]:
+    """Servers from <root>/config/mcp.servers.json whose launch points inside the workspace."""
+    raw = (root / "config" / "mcp.servers.json").read_text(encoding="utf-8").replace("{ROOT}", root.as_posix())
+    out = {}
+    for name, spec in json.loads(raw)["servers"].items():
+        if f"{root.as_posix()}/mcp/" in " ".join(spec.get("args", [])):
+            env = {"PYTHONIOENCODING": "utf-8", **spec.get("env", {})}
+            out[name] = {"command": spec["command"], "args": spec["args"], "env": env}
+    return out
+
+
 def server() -> dict:
-    return {"command": "uv",
-            "args": ["run", "--quiet", "--no-sync", "--directory", (ROOT / "mcp" / NAME).as_posix(), "social-forge-mcp"],
-            "env": {"SOCIAL_FORGE_ROOT": ROOT.as_posix(), "PYTHONIOENCODING": "utf-8"}}
+    return SERVERS[NAME]
 
 
 # client -> (config file, style). style: json (mcpServers), vscode (servers + type), toml (codex)
@@ -107,11 +123,13 @@ def claude_code(remove: bool, dry: bool) -> str:
     return "installed" if r.returncode == 0 else f"failed: {r.stderr.strip()[:200]}"
 
 
-def link_claude_skills(remove: bool) -> list[str]:
+def link_claude_skills(remove: bool, root: Path) -> list[str]:
     """Junction/symlink every skill and role into ~/.claude so Claude Code loads them from any folder."""
     out = []
     for kind in ("skills", "agents"):
-        for src in sorted((ROOT / ".agents" / kind).iterdir()):
+        if not (root / ".agents" / kind).exists():
+            continue
+        for src in sorted((root / ".agents" / kind).iterdir()):
             dst = HOME / ".claude" / kind / src.name
             if remove:
                 if dst.is_symlink() or (dst.exists() and os.path.realpath(dst) == os.path.realpath(src)):
@@ -138,13 +156,28 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--list", action="store_true")
     ap.add_argument("--with-skills", action="store_true", help="also link skills/roles into ~/.claude")
+    ap.add_argument("--workspace", default=str(ROOT), help="workspace folder (default: this one)")
     a = ap.parse_args()
+    global NAME
+    root = Path(a.workspace).resolve()
+    SERVERS.update(own_servers(root))
     names = ["claude-code", *CLIENTS]
     if a.list:
         for n in names:
             print(f"{n:15} {'detected' if detected(n) else '-':9} {CLIENTS[n][0] if n in CLIENTS else 'claude mcp --scope user'}")
         return 0
     chosen = a.clients.split(",") if a.clients else [n for n in names if detected(n)]
+    for NAME in SERVERS:
+        print(f"== {NAME}")
+        install_all(chosen, a)
+    if a.with_skills and not a.dry_run:
+        for line in link_claude_skills(a.remove, root):
+            print(line)
+    print("Restart each client so it picks up the new servers.")
+    return 0
+
+
+def install_all(chosen: list[str], a) -> None:
     for n in chosen:
         if n == "claude-code":
             result = claude_code(a.remove, a.dry_run)
@@ -161,11 +194,6 @@ def main() -> int:
             else:
                 result = edit_json(path, "mcpServers", a.remove)
         print(f"{n:15} {result}")
-    if a.with_skills and not a.dry_run:
-        for line in link_claude_skills(a.remove):
-            print(line)
-    print("Restart each client. Check with the tool `backends_status` or `uv run social-forge doctor`.")
-    return 0
 
 
 if __name__ == "__main__":

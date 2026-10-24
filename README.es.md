@@ -46,6 +46,7 @@ programa todo para las **05:00**, agrega subtítulos cuando hacen falta y te dic
 python scripts/install-mcp.py --list         # qué clientes tienes
 python scripts/install-mcp.py --with-skills  # lo registra para tu usuario en todos (respaldo .bak de cada archivo)
 python scripts/install-mcp.py --remove       # deshacer
+python scripts/install-mcp.py --workspace ../davinci-agents  # cualquier otro workspace con config/mcp.servers.json
 ```
 
 ## 🚀 Inicio rápido
