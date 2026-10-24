@@ -1,0 +1,63 @@
+# Browser upload flows (backend `browser`). Data, not code: when a site changes, fix the selector here.
+# Steps: goto(url) | upload(selector) | wait(seconds) | wait_for(selector, state?) | click(selector)
+#        fill(selector, text, clear?) | press(key). Any step: timeout (s), optional (true = skip on failure).
+# Text placeholders: {caption} {title}. Selectors are Playwright selectors (css, text=, role=...[name=/regex/i]).
+# Status: written against the 2026 web UIs; verify each one with a dry run on a test video before trusting it.
+# On failure a full-page screenshot lands in content/handoff/screenshots/.
+
+tiktok:
+  login_url: https://www.tiktok.com/login
+  steps:
+    - {do: goto, url: "https://www.tiktok.com/tiktokstudio/upload?from=upload"}
+    - {do: upload, selector: "input[type=file]", timeout: 60}
+    - {do: wait_for, selector: "div[contenteditable='true']", timeout: 180}
+    - {do: wait, seconds: 3}
+    - {do: fill, selector: "div[contenteditable='true']", text: "{caption}"}
+    - {do: press, key: Escape}                          # close hashtag/mention suggestions
+    - {do: wait_for, selector: "text=/Uploaded|Subido|Cargado/i", timeout: 600, optional: true}
+    - {do: click, selector: "button[data-e2e='post_video_button']", timeout: 60}
+    - {do: click, selector: "role=button[name=/Post now|Publicar ahora/i]", timeout: 10, optional: true}
+    - {do: wait_for, selector: "text=/posted|publicado|Manage your posts|Administra tus publicaciones/i", timeout: 120}
+
+instagram:
+  login_url: https://www.instagram.com/accounts/login/
+  steps:
+    - {do: goto, url: "https://www.instagram.com/"}
+    - {do: click, selector: "svg[aria-label='New post'], svg[aria-label='Nueva publicación']"}
+    - {do: click, selector: "text=/^Post$|^Publicación$/", timeout: 5, optional: true}
+    - {do: upload, selector: "input[type=file]", timeout: 30}
+    - {do: click, selector: "role=button[name=/^OK$|^Aceptar$/i]", timeout: 10, optional: true}   # "video posts are now reels"
+    - {do: click, selector: "role=button[name=/^Next$|^Siguiente$/i]", timeout: 120}
+    - {do: click, selector: "role=button[name=/^Next$|^Siguiente$/i]", timeout: 60}
+    - {do: fill, selector: "div[aria-label='Write a caption...'], div[aria-label='Escribe un pie de foto o video...'], div[contenteditable='true']", text: "{caption}"}
+    - {do: click, selector: "role=button[name=/^Share$|^Compartir$/i]", timeout: 60}
+    - {do: wait_for, selector: "text=/Your reel has been shared|Se compartió tu reel|has been shared|se compartió/i", timeout: 600}
+
+facebook:
+  login_url: https://www.facebook.com/login
+  steps:
+    - {do: goto, url: "https://www.facebook.com/reels/create"}
+    - {do: upload, selector: "input[type=file]", timeout: 60}
+    - {do: click, selector: "role=button[name=/^Next$|^Siguiente$/i]", timeout: 180}
+    - {do: click, selector: "role=button[name=/^Next$|^Siguiente$/i]", timeout: 60, optional: true}
+    - {do: fill, selector: "div[contenteditable='true'][role='textbox']", text: "{caption}"}
+    - {do: click, selector: "role=button[name=/^Publish$|^Publicar$|^Share$|^Compartir$/i]", timeout: 120}
+    - {do: wait, seconds: 20}
+
+youtube:
+  login_url: https://studio.youtube.com/
+  steps:
+    - {do: goto, url: "https://studio.youtube.com/"}
+    - {do: click, selector: "#upload-icon, ytcp-button#create-icon", timeout: 30}
+    - {do: click, selector: "tp-yt-paper-item#text-item-0", timeout: 10, optional: true}
+    - {do: upload, selector: "input[type=file]", timeout: 30}
+    - {do: fill, selector: "#title-textarea #textbox", text: "{title}", timeout: 120}
+    - {do: fill, selector: "#description-textarea #textbox", text: "{caption}"}
+    - {do: click, selector: "tp-yt-paper-radio-button[name='VIDEO_MADE_FOR_KIDS_NOT_MFK']"}
+    - {do: click, selector: "#next-button"}
+    - {do: click, selector: "#next-button"}
+    - {do: click, selector: "#next-button"}
+    - {do: click, selector: "tp-yt-paper-radio-button[name='PUBLIC']"}
+    - {do: wait_for, selector: "text=/Checks complete|Comprobaciones completadas|No issues found|No se encontraron problemas/i", timeout: 900, optional: true}
+    - {do: click, selector: "#done-button", timeout: 60}
+    - {do: wait_for, selector: "text=/Video published|Video publicado|Short published|Short publicado/i", timeout: 120}

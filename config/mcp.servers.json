@@ -1,0 +1,17 @@
+{
+  "$comment": "Single source of truth for MCP servers. Run python scripts/sync.py to generate every client's config.",
+  "servers": {
+    "social-forge": {
+      "description": "Own tools: dated video queue, per-platform copy, 05:00 publishing (APIs, Postiz, browser, handoff), metrics",
+      "command": "uv",
+      "args": ["run", "--quiet", "--no-sync", "--directory", "{ROOT}/mcp/social-forge", "social-forge-mcp"],
+      "env": {"SOCIAL_FORGE_ROOT": "{ROOT}", "PYTHONIOENCODING": "utf-8"}
+    },
+    "playwright": {
+      "description": "Microsoft Playwright MCP: lets the agent drive a browser for handoff uploads, insights and research",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--user-data-dir", "{ROOT}/.profiles/agent"],
+      "env": {}
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<!doctype html><meta charset="utf-8"><title>cm-relay</title><pre id="log">relay</pre>
+<script>
+const log = m => document.getElementById('log').textContent += '\n' + m;
+const path = new URLSearchParams(location.search).get('f');
+(async () => {
+  try {
+    const blob = await fetch('/' + path).then(r => { if (!r.ok) throw new Error(r.status); return r.blob(); });
+    const name = path.split('/').pop();
+    const file = new File([blob], name, {type: 'video/quicktime'});
+    log('loaded ' + name + ' ' + blob.size);
+    if (!window.opener) { log('NO OPENER'); return; }
+    let acked = false;
+    addEventListener('message', e => { if (e.data === 'cm-ack') { acked = true; log('ack'); setTimeout(() => window.close(), 300); } });
+    for (let i = 0; i < 40 && !acked; i++) { window.opener.postMessage({cmFile: file}, '*'); await new Promise(r => setTimeout(r, 500)); }
+  } catch (e) { log('ERR ' + e); }
+})();
+</script>

@@ -1,0 +1,64 @@
+# Copy to config/social.yaml (git-ignored) and adjust. Credentials go in secrets/, never here.
+
+timezone: America/Mexico_City
+post_time: "05:00"          # every video of a day goes out at this time (3 videos = 3 posts at 05:00)
+stagger_minutes: 0          # >0 spaces videos of the same day (05:00, 05:10, 05:20...)
+
+# at_time: the 05:00 task publishes; the PC must be on (or wake it: scripts/install-schedule.ps1 does).
+# ahead:   uploads up to `ahead_days` early with the platform's own scheduler where it exists
+#          (YouTube, Facebook, Postiz); Instagram/TikTok direct still go out at 05:00.
+mode: at_time
+ahead_days: 2
+catch_up: true              # if the PC was off, publish overdue videos on the next run
+max_attempts: 3
+
+default_platforms: [tiktok, instagram, facebook, youtube]
+
+# How each platform is published: youtube_api | meta_api | tiktok_api | postiz | browser | handoff
+#   youtube_api  official API (public needs the Google API audit; until then videos stay private)
+#   meta_api     official Graph API for Instagram Reels + Facebook Page Reels
+#   tiktok_api   official API (private-only until TikTok audits your app)
+#   postiz       self-hosted/cloud Postiz: schedules every network, PC can be off at 05:00
+#   browser      Playwright with your logged-in profile (no approvals, public posts)
+#   handoff      writes a task for an agent (computer use / Chrome) or for you
+backends:
+  youtube: youtube_api
+  instagram: meta_api
+  facebook: meta_api
+  tiktok: browser
+
+# Spreading a week folder (content/queue/2026-W44/*.mp4) over its days
+weekly:
+  per_day: null             # null = spread evenly; 1, 2, 3... = at most N per day
+  skip_weekdays: []         # 0=Mon ... 6=Sun
+
+# Cross-promotion added at the end of every caption (each platform lists the OTHER networks).
+# The agent must ask the user for these (and @mentions, links, fixed hashtags) before writing copy.
+brand:
+  name: ""
+  footer_label: "📲 Síguenos también:"
+  handles:            # instagram/tiktok/youtube: without @ ; facebook: page name
+    instagram: ""
+    tiktok: ""
+    facebook: ""
+    youtube: ""
+
+accounts:
+  youtube:
+    category_id: 22         # 22 People & Blogs, 24 Entertainment, 17 Sports, 26 Howto
+    language: es
+    made_for_kids: false
+  meta:
+    graph_version: v24.0
+    ig_user_id: ""          # Instagram Business account id
+    page_id: ""             # Facebook Page id
+    share_to_feed: true
+  tiktok:
+    privacy_level: PUBLIC_TO_EVERYONE
+  postiz:
+    url: https://api.postiz.com/public/v1   # self-hosted: https://<your-host>/api/public/v1
+    integrations: {}        # tiktok: <id>, instagram: <id>, ... (social-forge doctor lists them)
+  browser:
+    channel: chrome         # chrome | msedge | chromium
+    locale: es-MX
+    headless: false

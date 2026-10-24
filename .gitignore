@@ -1,0 +1,38 @@
+# credentials, browser sessions, local settings
+secrets/
+.profiles/
+config/social.yaml
+# videos and their state (personal content, large)
+content/inbox/**
+!content/inbox/README.md
+content/library/**
+content/queue/**
+!content/queue/README.md
+content/published/**
+!content/published/.gitkeep
+content/handoff/**
+!content/handoff/.gitkeep
+analytics/metrics.csv
+logs/
+# generated per machine by scripts/sync.py (absolute paths)
+.mcp.json
+.cursor/mcp.json
+.vscode/mcp.json
+.gemini/settings.json
+.codex/config.toml
+.agents/mcp_config.json
+# links to .agents/
+.claude/skills
+.claude/agents
+# python
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+# per-video analysis (frames, transcripts of personal videos)
+analytics/videos/
+analytics/audience.md
+analytics/reports/*.md
+analytics/research/*.md
+# backups written by install-mcp
+*.bak
