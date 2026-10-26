@@ -81,3 +81,13 @@ python scripts/test_docker.py --extras youtube,analysis
 
 Builds the image, checks it contains no personal data, speaks MCP over stdio, runs the CLI service and the HTTP
 service with a token on a free port, and calls a real tool. It uses a temporary workspace, never your content.
+
+### Verification — 2026-10-26
+
+Executed on Windows with Docker Desktop Linux containers: default `EXTRAS=youtube`
+image build, personal-data exclusion check, real stdio tool call, Compose CLI status,
+and authenticated HTTP with 15 tools on a custom port. All passed. Native suite:
+`uv run pytest -q` — 53 passed. No live publishing or user credentials were used.
+The optional `analysis` image and real platform API publishing were NOT EXECUTED
+in this verification. README quickstart now generates a real token rather than
+using shell redirection placeholders.

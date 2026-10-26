@@ -83,7 +83,9 @@ macOS / Linux: `sh scripts/bootstrap.sh` y la línea de cron que imprime al fina
 ```bash
 docker build -t social-forge:local .
 docker run --rm -i -v "C:/ruta/a/social-publisher-mcp:/workspace" social-forge:local      # stdio, para clientes MCP
-SOCIAL_FORGE_MCP_TOKEN=<32+ caracteres> docker compose up -d --build --wait social-forge  # HTTP con token
+export SOCIAL_FORGE_MCP_TOKEN="$(python -c 'import secrets; print(secrets.token_hex(32))')"
+export SOCIAL_FORGE_PORT=8766
+docker compose up -d --build --wait social-forge   # HTTP con token
 ```
 
 Puertos, extras (`analysis`), el servicio de CLI y cómo programar `run-due` desde tu PC: [docs/DOCKER.md](docs/DOCKER.md) (en inglés).
