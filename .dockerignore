@@ -1,0 +1,8 @@
+# Allowlist: only the MCP code enters the build context. Never videos, secrets/,
+# config/social.yaml, browser profiles or analytics.
+**
+!mcp/social-forge/pyproject.toml
+!mcp/social-forge/uv.lock
+!mcp/social-forge/src/
+!mcp/social-forge/src/**
+mcp/social-forge/src/**/__pycache__

@@ -73,4 +73,6 @@ every role as a prompt, so a client that only speaks MCP still gets the playbook
 - Platform limits live only in `domain/platforms.py`; `platform-copywriting/references/platforms.md` is generated.
 - Tests: `cd mcp/social-forge && uv run pytest` (no network: HTTP shapes via httpx.MockTransport, real ffmpeg probe).
 - After editing `config/` or `.agents/`, run `python scripts/sync.py`.
+- Docker (optional): `Dockerfile` + `compose.yaml` (stdio, or HTTP with `SOCIAL_FORGE_MCP_TOKEN`; `cli` service for
+  `run-due`). The image never contains personal data (`.dockerignore` allowlist). Real test: `python scripts/test_docker.py`.
 - Commits: run `git config core.hooksPath .githooks` once per clone; the `commit-msg` hook strips AI co-author trailers.

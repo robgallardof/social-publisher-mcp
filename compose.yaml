@@ -1,0 +1,45 @@
+# social-forge over Streamable HTTP with a bearer token. stdio needs no compose (see docs/DOCKER.md).
+#   SOCIAL_FORGE_MCP_TOKEN=<token> docker compose up -d --build --wait
+# Scheduled publishing (05:00): run `docker compose run --rm cli run-due` from the host scheduler.
+services:
+  social-forge:
+    build:
+      context: .
+      args:
+        EXTRAS: ${SOCIAL_FORGE_EXTRAS:-youtube}
+    image: social-forge:local
+    user: ${SOCIAL_FORGE_USER:-10001:10001}
+    init: true
+    command: ["--http", "--listen", "0.0.0.0:8080"]
+    environment:
+      SOCIAL_FORGE_MCP_TOKEN: ${SOCIAL_FORGE_MCP_TOKEN:?Set SOCIAL_FORGE_MCP_TOKEN to a random token of at least 32 characters}
+    ports:
+      - "${SOCIAL_FORGE_BIND_ADDRESS:-127.0.0.1}:${SOCIAL_FORGE_PORT:-8080}:8080"
+    volumes: &workspace
+      - type: bind
+        source: ${SOCIAL_FORGE_WORKSPACE:-.}
+        target: /workspace
+    read_only: true
+    tmpfs: &tmp
+      - /tmp:rw,noexec,nosuid,size=512m
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+  # One-shot CLI (not started by `up`): docker compose run --rm cli status | doctor | run-due [--dry-run]
+  cli:
+    image: social-forge:local
+    profiles: [cli]
+    user: ${SOCIAL_FORGE_USER:-10001:10001}
+    entrypoint: ["social-forge"]
+    volumes: *workspace
+    read_only: true
+    tmpfs: *tmp
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]

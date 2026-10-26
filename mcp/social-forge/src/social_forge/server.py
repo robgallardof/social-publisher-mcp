@@ -1,4 +1,7 @@
-"""social-forge MCP server: thin wrappers over app.py. Run: uv run social-forge-mcp"""
+"""social-forge MCP server: thin wrappers over app.py.
+
+Run: uv run social-forge-mcp (stdio) or social-forge-mcp --http --listen 127.0.0.1:8080 (token in SOCIAL_FORGE_MCP_TOKEN).
+"""
 
 from __future__ import annotations
 
@@ -141,8 +144,25 @@ def _register_agent_files() -> None:
 _register_agent_files()
 
 
-def main() -> None:
-    mcp.run()
+TOKEN_ENV = "SOCIAL_FORGE_MCP_TOKEN"
+
+
+def main(argv: list[str] | None = None) -> None:
+    import argparse
+    import sys
+
+    from . import http_transport
+
+    parser = argparse.ArgumentParser(prog="social-forge-mcp", description="social-forge MCP server")
+    http_transport.add_arguments(parser)
+    args = parser.parse_args(argv)
+    if not args.http:
+        mcp.run()
+        return
+    try:
+        http_transport.serve(mcp, args.listen, args.allow_host, TOKEN_ENV)
+    except http_transport.HttpConfigError as error:
+        sys.exit(f"social-forge-mcp: {error}")
 
 
 if __name__ == "__main__":

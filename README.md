@@ -9,7 +9,8 @@
 
 [![tests](https://github.com/robgallardof/social-publisher-mcp/actions/workflows/tests.yml/badge.svg)](https://github.com/robgallardof/social-publisher-mcp/actions/workflows/tests.yml)
 ![python](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)
-![MCP](https://img.shields.io/badge/MCP-stdio-8A2BE2)
+![MCP](https://img.shields.io/badge/MCP-stdio%20%C2%B7%20HTTP-8A2BE2)
+![Docker](https://img.shields.io/badge/Docker-optional-2496ED?logo=docker&logoColor=white)
 ![platforms](https://img.shields.io/badge/TikTok%20·%20Reels%20·%20Facebook%20·%20Shorts-ff3b5c)
 ![OS](https://img.shields.io/badge/Windows%20·%20macOS%20·%20Linux-555)
 
@@ -76,6 +77,16 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-schedule.ps1
 ```
 
 macOS / Linux: `sh scripts/bootstrap.sh` and the cron line printed at the end. Requires [uv](https://docs.astral.sh/uv/).
+
+**Prefer Docker?** Optional: the image holds only the MCP code and your folder is mounted at run time.
+
+```bash
+docker build -t social-forge:local .
+docker run --rm -i -v "C:/path/to/social-publisher-mcp:/workspace" social-forge:local     # stdio, for MCP clients
+SOCIAL_FORGE_MCP_TOKEN=<32+ chars> docker compose up -d --build --wait social-forge       # HTTP with a token
+```
+
+Ports, extras (`analysis`), the CLI service and scheduling `run-due` from the host are in [docs/DOCKER.md](docs/DOCKER.md).
 
 Then talk to your agent:
 
@@ -149,6 +160,7 @@ content/queue/        YYYY-MM-DD/ (or YYYY-Www/) + <video>.post.yaml
 content/published/    archive with receipts      content/library/  raw takes, rendered versions
 brand/                voice, audience, hashtags  config/           social.yaml, browser flows, MCP servers
 mcp/social-forge/     the MCP + CLI (domain → services → app → server/cli)
+Dockerfile, compose.yaml   optional image (stdio or HTTP with a token)
 .agents/              portable skills and roles  scripts/          bootstrap, install-mcp, schedule, sync
 ```
 
@@ -156,7 +168,8 @@ mcp/social-forge/     the MCP + CLI (domain → services → app → server/cli)
 <p align="center"><img src="assets/readme/sections/en-09.svg" alt="09 · Development" width="100%" /></p>
 
 ```bash
-cd mcp/social-forge && uv run pytest     # 46 tests, no network (HTTP shapes mocked, real ffmpeg)
+cd mcp/social-forge && uv run pytest     # 53 tests: no network, real ffmpeg, real MCP over HTTP
+python scripts/test_docker.py            # real image: stdio, CLI, HTTP with token, no personal data
 python scripts/sync.py                   # after editing .agents/ or config/
 git config core.hooksPath .githooks      # strips AI co-author trailers from commit messages
 ```
