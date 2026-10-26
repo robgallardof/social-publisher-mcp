@@ -1,10 +1,11 @@
 <div align="center">
 
-# 📲 social-publisher-mcp
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/banner-en-dark.svg">
+  <img src="assets/readme/banner-en-light.svg" alt="social-publisher-mcp — An AI community manager for short-form video" width="100%">
+</picture>
 
-**An AI community manager for short-form video, packaged as an MCP server.**<br>
-Drop your finished videos in a folder. It watches them, writes the copy for every network,<br>
-schedules everything for **05:00**, adds subtitles when they're needed and tells you what worked.
+<br/>
 
 [![tests](https://github.com/robgallardof/social-publisher-mcp/actions/workflows/tests.yml/badge.svg)](https://github.com/robgallardof/social-publisher-mcp/actions/workflows/tests.yml)
 ![python](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)
@@ -16,9 +17,23 @@ schedules everything for **05:00**, adds subtitles when they're needed and tells
 
 </div>
 
----
+<p align="center">
+<a href="#-what-it-does"><img src="https://img.shields.io/badge/What%20it%20does-6D28D9?style=for-the-badge" alt="What it does" /></a>
+<a href="#-works-with-every-agent"><img src="https://img.shields.io/badge/Works%20with%20every%20agent-5B21B6?style=for-the-badge" alt="Works with every agent" /></a>
+<a href="#-quick-start"><img src="https://img.shields.io/badge/Quick%20start-4F46E5?style=for-the-badge" alt="Quick start" /></a>
+<a href="#-how-a-video-flows"><img src="https://img.shields.io/badge/How%20a%20video%20flows-4338CA?style=for-the-badge" alt="How a video flows" /></a>
+<a href="#️-mcp-tools-15"><img src="https://img.shields.io/badge/MCP%20tools%20%2815%29-2563EB?style=for-the-badge" alt="MCP tools (15)" /></a>
+<a href="#-roles-and-skills"><img src="https://img.shields.io/badge/Roles%20and%20skills-0284C7?style=for-the-badge" alt="Roles and skills" /></a>
+<a href="#-publishing-backends"><img src="https://img.shields.io/badge/Publishing%20backends-0EA5E9?style=for-the-badge" alt="Publishing backends" /></a>
+<a href="#-layout"><img src="https://img.shields.io/badge/Layout-0891B2?style=for-the-badge" alt="Layout" /></a>
+<a href="#-development"><img src="https://img.shields.io/badge/Development-0E7490?style=for-the-badge" alt="Development" /></a>
+<a href="#️-good-to-know"><img src="https://img.shields.io/badge/Good%20to%20know-155E75?style=for-the-badge" alt="Good to know" /></a>
+</p>
 
-## ✨ What it does
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="80%" /></p>
+
+<a id="-what-it-does"></a>
+<p align="center"><img src="assets/readme/sections/en-01.svg" alt="01 · What it does" width="100%" /></p>
 
 | | |
 |---|---|
@@ -31,7 +46,8 @@ schedules everything for **05:00**, adds subtitles when they're needed and tells
 | ⏰ **05:00 every day** | A Windows scheduled task (cron on macOS/Linux) runs the idempotent publisher with retries, wakes the PC and catches up if it was off. |
 | 📈 **Learns** | Pulls metrics, finds the best weekdays and top/bottom videos, and writes a weekly report with at most three actions. |
 
-## 🧩 Works with every agent
+<a id="-works-with-every-agent"></a>
+<p align="center"><img src="assets/readme/sections/en-02.svg" alt="02 · Works with every agent" width="100%" /></p>
 
 `social-forge` is a standard **stdio MCP server**. Besides its tools it exposes every **skill as an MCP resource** (`skill://<name>`) and every **role as an MCP prompt**, so any MCP client gets the full playbook — not just the ones that read `.agents/`.
 
@@ -49,7 +65,8 @@ python scripts/install-mcp.py --remove       # undo
 python scripts/install-mcp.py --workspace ../davinci-agents  # any other workspace with config/mcp.servers.json
 ```
 
-## 🚀 Quick start
+<a id="-quick-start"></a>
+<p align="center"><img src="assets/readme/sections/en-03.svg" alt="03 · Quick start" width="100%" /></p>
 
 ```powershell
 git clone https://github.com/robgallardof/social-publisher-mcp.git
@@ -64,7 +81,8 @@ Then talk to your agent:
 
 > *"Process the inbox"* · *"Prepare tomorrow"* · *"Spread week 44, two per day"* · *"Add subtitles to the storytime"* · *"What worked this week?"* · *"Find squirrel trends in Mexico"*
 
-## 🔄 How a video flows
+<a id="-how-a-video-flows"></a>
+<p align="center"><img src="assets/readme/sections/en-04.svg" alt="04 · How a video flows" width="100%" /></p>
 
 ```mermaid
 flowchart LR
@@ -81,7 +99,8 @@ flowchart LR
     K -->|pull_metrics| L[analytics · weekly report]
 ```
 
-## 🛠️ MCP tools (15)
+<a id="️-mcp-tools-15"></a>
+<p align="center"><img src="assets/readme/sections/en-05.svg" alt="05 · MCP tools (15)" width="100%" /></p>
 
 | Tool | |
 |---|---|
@@ -98,7 +117,8 @@ flowchart LR
 | `platform_rules` | Limits per platform |
 | `pull_metrics` · `insights_report` | Metrics snapshot and summary |
 
-## 👥 Roles and skills
+<a id="-roles-and-skills"></a>
+<p align="center"><img src="assets/readme/sections/en-06.svg" alt="06 · Roles and skills" width="100%" /></p>
 
 **Roles** (`.agents/agents/`): `community-manager` (lead) · `video-analyst` · `content-strategist` · `copywriter` · `publisher` · `audience-analyst` · `trend-researcher`
 
@@ -106,7 +126,8 @@ flowchart LR
 
 The lead role **asks before writing** for your handles on every network, @mentions, links, fixed hashtags and subtitle preference.
 
-## 🔌 Publishing backends
+<a id="-publishing-backends"></a>
+<p align="center"><img src="assets/readme/sections/en-07.svg" alt="07 · Publishing backends" width="100%" /></p>
 
 | Backend | Platforms | Public right away? | Schedules by itself? |
 |---|---|---|---|
@@ -119,7 +140,8 @@ The lead role **asks before writing** for your handles on every network, @mentio
 
 Credentials: [`docs/accounts.md`](docs/accounts.md). They live in `secrets/` (git-ignored).
 
-## 📁 Layout
+<a id="-layout"></a>
+<p align="center"><img src="assets/readme/sections/en-08.svg" alt="08 · Layout" width="100%" /></p>
 
 ```
 content/inbox/        drop new videos here
@@ -130,7 +152,8 @@ mcp/social-forge/     the MCP + CLI (domain → services → app → server/cli)
 .agents/              portable skills and roles  scripts/          bootstrap, install-mcp, schedule, sync
 ```
 
-## 🧪 Development
+<a id="-development"></a>
+<p align="center"><img src="assets/readme/sections/en-09.svg" alt="09 · Development" width="100%" /></p>
 
 ```bash
 cd mcp/social-forge && uv run pytest     # 46 tests, no network (HTTP shapes mocked, real ffmpeg)
@@ -140,7 +163,8 @@ git config core.hooksPath .githooks      # strips AI co-author trailers from com
 
 Architecture rules and how to add a backend: [`AGENTS.md`](AGENTS.md).
 
-## ⚠️ Good to know
+<a id="️-good-to-know"></a>
+<p align="center"><img src="assets/readme/sections/en-10.svg" alt="10 · Good to know" width="100%" /></p>
 
 - TikTok and YouTube **API** uploads stay private until each platform audits your app — use `browser` or `postiz` meanwhile.
 - Instagram's API has no publish time: it posts at 05:00 itself, so the PC must be on (or use Postiz).
@@ -148,3 +172,7 @@ Architecture rules and how to add a backend: [`AGENTS.md`](AGENTS.md).
 - Currently configured for **Chomi la ardilla** 🐿️ — a new brand only needs `brand/` and `config/social.yaml`.
 
 <div align="center"><sub>Made with care for creators who'd rather film than fiddle with schedulers.</sub></div>
+
+<br/>
+
+<img src="assets/readme/footer-en.svg" alt="social-publisher-mcp" width="100%" />

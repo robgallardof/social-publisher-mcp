@@ -1,10 +1,11 @@
 <div align="center">
 
-# 📲 social-publisher-mcp
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/banner-es-dark.svg">
+  <img src="assets/readme/banner-es-light.svg" alt="social-publisher-mcp — Un community manager con IA para video corto" width="100%">
+</picture>
 
-**Un community manager con IA para video corto, empaquetado como servidor MCP.**<br>
-Deja tus videos terminados en una carpeta: los ve, escribe el texto para cada red,<br>
-programa todo para las **05:00**, agrega subtítulos cuando hacen falta y te dice qué funcionó.
+<br/>
 
 [![tests](https://github.com/robgallardof/social-publisher-mcp/actions/workflows/tests.yml/badge.svg)](https://github.com/robgallardof/social-publisher-mcp/actions/workflows/tests.yml)
 ![python](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)
@@ -16,9 +17,23 @@ programa todo para las **05:00**, agrega subtítulos cuando hacen falta y te dic
 
 </div>
 
----
+<p align="center">
+<a href="#-qué-hace"><img src="https://img.shields.io/badge/Qu%C3%A9%20hace-6D28D9?style=for-the-badge" alt="Qué hace" /></a>
+<a href="#-funciona-con-cualquier-agente"><img src="https://img.shields.io/badge/Funciona%20con%20cualquier%20agente-5B21B6?style=for-the-badge" alt="Funciona con cualquier agente" /></a>
+<a href="#-inicio-rápido"><img src="https://img.shields.io/badge/Inicio%20r%C3%A1pido-4F46E5?style=for-the-badge" alt="Inicio rápido" /></a>
+<a href="#-el-camino-de-un-video"><img src="https://img.shields.io/badge/El%20camino%20de%20un%20video-4338CA?style=for-the-badge" alt="El camino de un video" /></a>
+<a href="#️-herramientas-mcp-15"><img src="https://img.shields.io/badge/Herramientas%20MCP%20%2815%29-2563EB?style=for-the-badge" alt="Herramientas MCP (15)" /></a>
+<a href="#-roles-y-skills"><img src="https://img.shields.io/badge/Roles%20y%20skills-0284C7?style=for-the-badge" alt="Roles y skills" /></a>
+<a href="#-formas-de-publicar"><img src="https://img.shields.io/badge/Formas%20de%20publicar-0EA5E9?style=for-the-badge" alt="Formas de publicar" /></a>
+<a href="#-estructura"><img src="https://img.shields.io/badge/Estructura-0891B2?style=for-the-badge" alt="Estructura" /></a>
+<a href="#-desarrollo"><img src="https://img.shields.io/badge/Desarrollo-0E7490?style=for-the-badge" alt="Desarrollo" /></a>
+<a href="#️-bueno-saber"><img src="https://img.shields.io/badge/Bueno%20saber-155E75?style=for-the-badge" alt="Bueno saber" /></a>
+</p>
 
-## ✨ Qué hace
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="80%" /></p>
+
+<a id="-qué-hace"></a>
+<p align="center"><img src="assets/readme/sections/es-01.svg" alt="01 · Qué hace" width="100%" /></p>
 
 | | |
 |---|---|
@@ -31,7 +46,8 @@ programa todo para las **05:00**, agrega subtítulos cuando hacen falta y te dic
 | ⏰ **05:00 todos los días** | Tarea programada de Windows (cron en macOS/Linux): publicador idempotente con reintentos; despierta la PC y se pone al día si estuvo apagada. |
 | 📈 **Aprende** | Saca métricas, mejores días, videos top y bottom, y un reporte semanal con máximo tres acciones. |
 
-## 🧩 Funciona con cualquier agente
+<a id="-funciona-con-cualquier-agente"></a>
+<p align="center"><img src="assets/readme/sections/es-02.svg" alt="02 · Funciona con cualquier agente" width="100%" /></p>
 
 `social-forge` es un **servidor MCP stdio** estándar. Además de sus herramientas expone cada **skill como recurso MCP** (`skill://<nombre>`) y cada **rol como prompt MCP**, así cualquier cliente MCP recibe el manual completo, no solo los que leen `.agents/`.
 
@@ -49,7 +65,8 @@ python scripts/install-mcp.py --remove       # deshacer
 python scripts/install-mcp.py --workspace ../davinci-agents  # cualquier otro workspace con config/mcp.servers.json
 ```
 
-## 🚀 Inicio rápido
+<a id="-inicio-rápido"></a>
+<p align="center"><img src="assets/readme/sections/es-03.svg" alt="03 · Inicio rápido" width="100%" /></p>
 
 ```powershell
 git clone https://github.com/robgallardof/social-publisher-mcp.git
@@ -64,7 +81,8 @@ Luego háblale a tu agente:
 
 > *"Procesa el inbox"* · *"Prepara lo de mañana"* · *"Reparte la semana 44, dos por día"* · *"Ponle subtítulos al storytime"* · *"¿Qué funcionó esta semana?"* · *"Investiga tendencias de ardillas en México"*
 
-## 🔄 El camino de un video
+<a id="-el-camino-de-un-video"></a>
+<p align="center"><img src="assets/readme/sections/es-04.svg" alt="04 · El camino de un video" width="100%" /></p>
 
 ```mermaid
 flowchart LR
@@ -81,7 +99,8 @@ flowchart LR
     K -->|pull_metrics| L[analítica · reporte semanal]
 ```
 
-## 🛠️ Herramientas MCP (15)
+<a id="️-herramientas-mcp-15"></a>
+<p align="center"><img src="assets/readme/sections/es-05.svg" alt="05 · Herramientas MCP (15)" width="100%" /></p>
 
 | Herramienta | |
 |---|---|
@@ -98,7 +117,8 @@ flowchart LR
 | `platform_rules` | Límites por plataforma |
 | `pull_metrics` · `insights_report` | Métricas y resumen |
 
-## 👥 Roles y skills
+<a id="-roles-y-skills"></a>
+<p align="center"><img src="assets/readme/sections/es-06.svg" alt="06 · Roles y skills" width="100%" /></p>
 
 **Roles** (`.agents/agents/`): `community-manager` (líder) · `video-analyst` · `content-strategist` · `copywriter` · `publisher` · `audience-analyst` · `trend-researcher`
 
@@ -106,7 +126,8 @@ flowchart LR
 
 El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @menciones, links, hashtags fijos y preferencia de subtítulos.
 
-## 🔌 Formas de publicar
+<a id="-formas-de-publicar"></a>
+<p align="center"><img src="assets/readme/sections/es-07.svg" alt="07 · Formas de publicar" width="100%" /></p>
 
 | Backend | Redes | ¿Público de inmediato? | ¿Programa solo? |
 |---|---|---|---|
@@ -119,7 +140,8 @@ El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @mencion
 
 Credenciales: [`docs/accounts.md`](docs/accounts.md). Viven en `secrets/` (ignorado por git).
 
-## 📁 Estructura
+<a id="-estructura"></a>
+<p align="center"><img src="assets/readme/sections/es-08.svg" alt="08 · Estructura" width="100%" /></p>
 
 ```
 content/inbox/        suelta aquí los videos nuevos
@@ -130,7 +152,8 @@ mcp/social-forge/     el MCP + CLI (domain → services → app → server/cli)
 .agents/              skills y roles portables     scripts/          bootstrap, install-mcp, schedule, sync
 ```
 
-## 🧪 Desarrollo
+<a id="-desarrollo"></a>
+<p align="center"><img src="assets/readme/sections/es-09.svg" alt="09 · Desarrollo" width="100%" /></p>
 
 ```bash
 cd mcp/social-forge && uv run pytest     # 46 pruebas, sin red (HTTP simulado, ffmpeg real)
@@ -140,7 +163,8 @@ git config core.hooksPath .githooks      # quita los coautores de IA de los mens
 
 Reglas de arquitectura y cómo agregar un backend: [`AGENTS.md`](AGENTS.md).
 
-## ⚠️ Bueno saber
+<a id="️-bueno-saber"></a>
+<p align="center"><img src="assets/readme/sections/es-10.svg" alt="10 · Bueno saber" width="100%" /></p>
 
 - Por **API**, TikTok y YouTube publican en privado hasta que auditen tu app: mientras, usa `browser` o `postiz`.
 - La API de Instagram no tiene hora de publicación: se publica a las 05:00 en el momento, así que la PC debe estar encendida (o usa Postiz).
@@ -148,3 +172,7 @@ Reglas de arquitectura y cómo agregar un backend: [`AGENTS.md`](AGENTS.md).
 - Configurado ahora para **Chomi la ardilla** 🐿️; una marca nueva solo necesita `brand/` y `config/social.yaml`.
 
 <div align="center"><sub>Hecho para creadores que prefieren grabar que pelearse con programadores de publicaciones.</sub></div>
+
+<br/>
+
+<img src="assets/readme/footer-es.svg" alt="social-publisher-mcp" width="100%" />
