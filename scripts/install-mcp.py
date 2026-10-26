@@ -1,4 +1,4 @@
-"""Install the social-forge MCP for your user in every agent client found on this machine, so it works from
+"""Install this workspace's own MCP servers for your user in every agent client found on this machine, so they work from
 any folder (not only inside this workspace). Skills and roles travel inside the server as MCP resources
 (skill://<name>) and prompts (<role>); --with-skills also links them into Claude Code's user folders.
 
