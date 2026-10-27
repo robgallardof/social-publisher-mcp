@@ -36,3 +36,7 @@ analytics/reports/*.md
 analytics/research/*.md
 # backups written by install-mcp
 *.bak
+
+# Local opt-in agent connections
+/opencode.json
+/.dsh/
