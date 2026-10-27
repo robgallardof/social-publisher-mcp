@@ -33,10 +33,8 @@
 <a href="#-good-to-know"><img src="https://img.shields.io/badge/Good%20to%20know-155E75?style=for-the-badge" alt="Good to know" /></a>
 </p>
 
-<p align="center"><img src="assets/readme/divider.svg" alt="" width="80%" /></p>
-
 <a id="-what-it-does"></a>
-<h2 align="center"><img src="assets/readme/sections/en-01.svg" alt="01 · What it does" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> What it does
 
 | | |
 |---|---|
@@ -50,7 +48,7 @@
 | <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Learns** | Pulls metrics, finds the best weekdays and top/bottom videos, and writes a weekly report with at most three actions. |
 
 <a id="-quick-start"></a>
-<h2 align="center"><img src="assets/readme/sections/en-03.svg" alt="02 · Quick start" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/rocket.svg" width="24" height="24" alt="" /> Quick start
 
 ```powershell
 git clone https://github.com/robgallardof/social-publisher-mcp.git
@@ -101,7 +99,7 @@ Then talk to your agent:
 > *"Process the inbox"* · *"Prepare tomorrow"* · *"Spread week 44, two per day"* · *"Add subtitles to the storytime"* · *"What worked this week?"* · *"Find squirrel trends in Mexico"*
 
 <a id="-works-with-every-agent"></a>
-<h2 align="center"><img src="assets/readme/sections/en-02.svg" alt="03 · Works with every agent" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Works with every agent
 
 `social-forge` is a standard **stdio MCP server**. Besides its tools it exposes every **skill as an MCP resource** (`skill://<name>`) and every **role as an MCP prompt**, so any MCP client gets the full playbook — not just the ones that read `.agents/`.
 
@@ -120,10 +118,9 @@ python scripts/install-mcp.py --workspace ../davinci-agents  # any other workspa
 ```
 
 <a id="-how-a-video-flows"></a>
-<h2 align="center"><img src="assets/readme/sections/en-04.svg" alt="04 · How a video flows" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> How a video flows
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/diagrams/publishing-en-dark.svg" /><img src="assets/readme/diagrams/publishing-en-light.svg" alt="A practical usage path, generated with Archify" width="100%" /></picture></p>
-
 
 
 <details>
@@ -147,7 +144,7 @@ flowchart LR
 </details>
 
 <a id="-roles-and-skills"></a>
-<h2 align="center"><img src="assets/readme/sections/en-06.svg" alt="05 · Roles and skills" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Roles and skills
 
 **Roles** (`.agents/agents/`): `community-manager` (lead) · `video-analyst` · `content-strategist` · `copywriter` · `publisher` · `audience-analyst` · `trend-researcher`
 
@@ -156,7 +153,7 @@ flowchart LR
 The lead role **asks before writing** for your handles on every network, @mentions, links, fixed hashtags and subtitle preference.
 
 <a id="-mcp-tools-15"></a>
-<h2 align="center"><img src="assets/readme/sections/en-05.svg" alt="06 · MCP tools (15)" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> MCP tools (15)
 
 | Tool | |
 |---|---|
@@ -174,7 +171,7 @@ The lead role **asks before writing** for your handles on every network, @mentio
 | `pull_metrics` · `insights_report` | Metrics snapshot and summary |
 
 <a id="-publishing-backends"></a>
-<h2 align="center"><img src="assets/readme/sections/en-07.svg" alt="07 · Publishing backends" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Publishing backends
 
 | Backend | Platforms | Public right away? | Schedules by itself? |
 |---|---|---|---|
@@ -188,7 +185,7 @@ The lead role **asks before writing** for your handles on every network, @mentio
 Credentials: [`docs/accounts.md`](docs/accounts.md). They live in `secrets/` (git-ignored).
 
 <a id="-layout"></a>
-<h2 align="center"><img src="assets/readme/sections/en-08.svg" alt="08 · Layout" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Layout
 
 ```
 content/inbox/        drop new videos here
@@ -201,7 +198,7 @@ Dockerfile, compose.yaml   optional image (stdio or HTTP with a token)
 ```
 
 <a id="-good-to-know"></a>
-<h2 align="center"><img src="assets/readme/sections/en-10.svg" alt="09 · Good to know" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Good to know
 
 - TikTok and YouTube **API** uploads stay private until each platform audits your app — use `browser` or `postiz` meanwhile.
 - Instagram's API has no publish time: it posts at 05:00 itself, so the PC must be on (or use Postiz).
@@ -213,7 +210,7 @@ Dockerfile, compose.yaml   optional image (stdio or HTTP with a token)
 <br/>
 
 <a id="-development"></a>
-<h2 align="center"><img src="assets/readme/sections/en-09.svg" alt="10 · Development" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/code.svg" width="24" height="24" alt="" /> Development
 
 ```bash
 cd mcp/social-forge && uv run pytest     # 53 tests: no network, real ffmpeg, real MCP over HTTP
@@ -227,5 +224,5 @@ Architecture rules and how to add a backend: [`AGENTS.md`](AGENTS.md).
 <p align="center"><a href="#top">Back to top</a></p>
 
 <!-- readme-builder:signature:start -->
-<p align="center"><a href="https://github.com/robgallardof"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/brand/signature-en-dark.svg" /><img src="assets/readme/brand/signature-en-light.svg" alt="Social Forge / Roberto Gallardo" width="100%" /></picture></a></p>
+<p align="center"><a href="https://github.com/robgallardof"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/brand/signature-en-dark.svg" /><img src="assets/readme/brand/signature-en-light.svg" alt="Social Forge / Roberto Gallardo" width="360" /></picture></a></p>
 <!-- readme-builder:signature:end -->

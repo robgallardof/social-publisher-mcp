@@ -33,10 +33,8 @@
 <a href="#-bueno-saber"><img src="https://img.shields.io/badge/Bueno%20saber-155E75?style=for-the-badge" alt="Bueno saber" /></a>
 </p>
 
-<p align="center"><img src="assets/readme/divider.svg" alt="" width="80%" /></p>
-
 <a id="-qué-hace"></a>
-<h2 align="center"><img src="assets/readme/sections/es-01.svg" alt="01 · Qué hace" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Qué hace
 
 | | |
 |---|---|
@@ -50,10 +48,9 @@
 | <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Aprende** | Saca métricas, mejores días, videos top y bottom, y un reporte semanal con máximo tres acciones. |
 
 <a id="-inicio-rápido"></a>
-<h2 align="center"><img src="assets/readme/sections/es-03.svg" alt="02 · Inicio rápido" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/rocket.svg" width="24" height="24" alt="" /> Inicio rápido
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/diagrams/publishing-es-dark.svg" /><img src="assets/readme/diagrams/publishing-es-light.svg" alt="Recorrido de uso, generado con Archify" width="100%" /></picture></p>
-
 
 
 ```powershell
@@ -105,7 +102,7 @@ dsh web --patch .dsh/mcp.cordis.yml
 [Configuración, retirada y versiones comprobadas](scripts/CLIENTS.md).
 
 <a id="-funciona-con-cualquier-agente"></a>
-<h2 align="center"><img src="assets/readme/sections/es-02.svg" alt="03 · Funciona con cualquier agente" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Funciona con cualquier agente
 
 `social-forge` es un **servidor MCP stdio** estándar. Además de sus herramientas expone cada **skill como recurso MCP** (`skill://<nombre>`) y cada **rol como prompt MCP**, así cualquier cliente MCP recibe el manual completo, no solo los que leen `.agents/`.
 
@@ -124,7 +121,7 @@ python scripts/install-mcp.py --workspace ../davinci-agents  # cualquier otro wo
 ```
 
 <a id="-el-camino-de-un-video"></a>
-<h2 align="center"><img src="assets/readme/sections/es-04.svg" alt="04 · El camino de un video" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> El camino de un video
 
 <details>
 <summary>Diagrama técnico</summary>
@@ -147,7 +144,7 @@ flowchart LR
 </details>
 
 <a id="-roles-y-skills"></a>
-<h2 align="center"><img src="assets/readme/sections/es-06.svg" alt="05 · Roles y skills" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Roles y skills
 
 **Roles** (`.agents/agents/`): `community-manager` (líder) · `video-analyst` · `content-strategist` · `copywriter` · `publisher` · `audience-analyst` · `trend-researcher`
 
@@ -156,7 +153,7 @@ flowchart LR
 El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @menciones, links, hashtags fijos y preferencia de subtítulos.
 
 <a id="-herramientas-mcp-15"></a>
-<h2 align="center"><img src="assets/readme/sections/es-05.svg" alt="06 · Herramientas MCP (15)" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Herramientas MCP (15)
 
 | Herramienta | |
 |---|---|
@@ -174,7 +171,7 @@ El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @mencion
 | `pull_metrics` · `insights_report` | Métricas y resumen |
 
 <a id="-formas-de-publicar"></a>
-<h2 align="center"><img src="assets/readme/sections/es-07.svg" alt="07 · Formas de publicar" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Formas de publicar
 
 | Backend | Redes | ¿Público de inmediato? | ¿Programa solo? |
 |---|---|---|---|
@@ -188,7 +185,7 @@ El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @mencion
 Credenciales: [`docs/accounts.md`](docs/accounts.md). Viven en `secrets/` (ignorado por git).
 
 <a id="-estructura"></a>
-<h2 align="center"><img src="assets/readme/sections/es-08.svg" alt="08 · Estructura" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Estructura
 
 ```
 content/inbox/        suelta aquí los videos nuevos
@@ -201,7 +198,7 @@ Dockerfile, compose.yaml   imagen opcional (stdio o HTTP con token)
 ```
 
 <a id="-bueno-saber"></a>
-<h2 align="center"><img src="assets/readme/sections/es-10.svg" alt="09 · Bueno saber" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Bueno saber
 
 - Por **API**, TikTok y YouTube publican en privado hasta que auditen tu app: mientras, usa `browser` o `postiz`.
 - La API de Instagram no tiene hora de publicación: se publica a las 05:00 en el momento, así que la PC debe estar encendida (o usa Postiz).
@@ -213,7 +210,7 @@ Dockerfile, compose.yaml   imagen opcional (stdio o HTTP con token)
 <br/>
 
 <a id="-desarrollo"></a>
-<h2 align="center"><img src="assets/readme/sections/es-09.svg" alt="10 · Desarrollo" width="100%" /></h2>
+## <img src="assets/readme-builder/icons/code.svg" width="24" height="24" alt="" /> Desarrollo
 
 ```bash
 cd mcp/social-forge && uv run pytest     # 53 pruebas: sin red, ffmpeg real, MCP real por HTTP
@@ -227,5 +224,5 @@ Reglas de arquitectura y cómo agregar un backend: [`AGENTS.md`](AGENTS.md).
 <p align="center"><a href="#top">Volver al inicio</a></p>
 
 <!-- readme-builder:signature:start -->
-<p align="center"><a href="https://github.com/robgallardof"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/brand/signature-es-dark.svg" /><img src="assets/readme/brand/signature-es-light.svg" alt="Social Forge / Roberto Gallardo" width="100%" /></picture></a></p>
+<p align="center"><a href="https://github.com/robgallardof"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/brand/signature-es-dark.svg" /><img src="assets/readme/brand/signature-es-light.svg" alt="Social Forge / Roberto Gallardo" width="360" /></picture></a></p>
 <!-- readme-builder:signature:end -->
