@@ -36,16 +36,9 @@
 <a id="-qué-hace"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Qué hace
 
-| | |
-|---|---|
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Cola por fecha** | `content/queue/2026-10-27/*.mp4` sale el 27 de octubre. Tres videos en la carpeta = tres publicaciones a las 05:00. Las carpetas de semana (`2026-W44/`) se reparten solas entre los días. |
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Ve cada video** | Hoja de 8 fotogramas + transcripción (faster-whisper) → sabe qué pasa, si hay voz y si ya trae subtítulos. |
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Texto por red** | Gancho, cuerpo, llamada a la acción, hashtags y palabras clave para TikTok, Instagram Reels, Facebook Reels y YouTube Shorts, validados contra los límites reales de cada una. |
-| <img src="assets/readme-builder/icons/repeat.svg" width="20" height="20" alt="" /> **Pie de redes** | Cada descripción termina con `📲 Síguenos también:` y tus usuarios en las *otras* redes, automático. |
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Subtítulos** | Decide: ninguno / automáticos de la plataforma / `.srt` / quemados en el video, y los renderiza con estilo para vertical. |
-| <img src="assets/readme-builder/icons/rocket.svg" width="20" height="20" alt="" /> **Publica como sea** | APIs oficiales (Meta, YouTube, TikTok) → Postiz → perfil de navegador con Playwright → el propio agente (Claude in Chrome, Playwright MCP, computer use). |
-| ⏰ **05:00 todos los días** | Tarea programada de Windows (cron en macOS/Linux): publicador idempotente con reintentos; despierta la PC y se pone al día si estuvo apagada. |
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Aprende** | Saca métricas, mejores días, videos top y bottom, y un reporte semanal con máximo tres acciones. |
+<!-- kit:features -->
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/features-es-dark.svg" /><img src="assets/readme-builder/kit/features-es-light.svg" alt="Cola por fecha: Una carpeta de día sale ese día: tres videos, tres publicaciones a las 05:00. Las semanas se reparten solas. · Ve cada video: 8 fotogramas y transcripción: qué pasa, si hay voz, si trae texto. · Texto por red: Gancho, cuerpo, CTA y hashtags validados con los límites reales de cada red. · Pie de redes: Cada descripción termina con tus usuarios en las otras redes. · Subtítulos: Ninguno, automáticos, .srt o quemados, con estilo para vertical. · Como sea: APIs oficiales, Postiz, un perfil de navegador o el propio agente. · Todos los días: Tarea programada con reintentos; se pone al día si la PC estuvo apagada. · Aprende: Mejores días, videos top y bottom, y un reporte semanal con máximo tres acciones." width="100%" /></picture></p>
+<!-- /kit:features -->
 
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
@@ -105,24 +98,42 @@ dsh web --patch .dsh/mcp.cordis.yml
 
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
+<a id="-instalación-retirada-y-compatibilidad"></a>
 <a id="-funciona-con-cualquier-agente"></a>
-## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Funciona con cualquier agente
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Instalación, retirada y compatibilidad
 
 `social-forge` es un **servidor MCP stdio** estándar. Además de sus herramientas expone cada **skill como recurso MCP** (`skill://<nombre>`) y cada **rol como prompt MCP**, así cualquier cliente MCP recibe el manual completo, no solo los que leen `.agents/`.
 
-| Cliente | Cómo |
-|---|---|
-| Claude Code | `.mcp.json` en la carpeta, o para tu usuario con el instalador (+ skills/agentes enlazados en `~/.claude`) |
-| Codex | `.codex/config.toml` / `~/.codex/config.toml` |
-| Antigravity | `.agents/mcp_config.json` / `~/.gemini/antigravity/mcp_config.json` |
-| Cursor · VS Code · Gemini CLI · Windsurf · Claude Desktop | configs generadas, o el instalador |
+Un solo instalador lo registra, muestra el cambio antes y lo vuelve a quitar. Respalda cada archivo que toca como `.bak` y respeta los demás servidores del archivo.
+
+| Cliente | `--clients` | Archivo que edita | Alcance | Probado |
+|---|---|---|---|---|
+| Claude Code | `claude-code` | `claude mcp --scope user` (+ skills y roles en `~/.claude` con `--with-skills`) | usuario | Pruebas del instalador con archivos temporales |
+| Codex | `codex` | `~/.codex/config.toml` | usuario | Pruebas del instalador con archivos temporales |
+| OpenCode 1.x | `opencode` | `opencode.json` | proyecto | Prueba con el host real 1.19.4 (CI en Linux) |
+| DeepSeek Harness | `deepseek` | `.dsh/mcp.cordis.yml` | proyecto | Prueba con el runtime real 0.2.1-rc.2 (CI en Linux) |
+| Gemini CLI | `gemini-cli` | `~/.gemini/settings.json` | usuario | Pruebas del instalador con archivos temporales |
+| Antigravity | `antigravity` | `~/.gemini/antigravity/mcp_config.json` | usuario | Pruebas del instalador con archivos temporales |
+| Cursor | `cursor` | `~/.cursor/mcp.json` | usuario | Pruebas del instalador con archivos temporales |
+| VS Code | `vscode` | `Code/User/mcp.json` | usuario | Pruebas del instalador con archivos temporales |
+| Windsurf | `windsurf` | `~/.codeium/windsurf/mcp_config.json` | usuario | Pruebas del instalador con archivos temporales |
+| Claude Desktop | `claude-desktop` | `Claude/claude_desktop_config.json` | usuario | Pruebas del instalador con archivos temporales |
 
 ```powershell
-python scripts/install-mcp.py --list         # qué clientes tienes
-python scripts/install-mcp.py --with-skills  # lo registra para tu usuario en todos (respaldo .bak de cada archivo)
-python scripts/install-mcp.py --remove       # deshacer
-python scripts/install-mcp.py --workspace ../davinci-agents  # cualquier otro workspace con config/mcp.servers.json
+python scripts/install-mcp.py --list                              # qué clientes tienes
+python scripts/install-mcp.py --dry-run                           # muestra cada cambio, no escribe nada
+python scripts/install-mcp.py --with-skills                       # lo registra para tu usuario en todos
+python scripts/install-mcp.py --clients codex,cursor              # solo algunos clientes
+python scripts/install-mcp.py --remove                            # deshacer (o --clients … --remove)
+python scripts/install-mcp.py --workspace ../davinci-agents       # cualquier otro workspace con config/mcp.servers.json
 ```
+
+La inferencia del modelo dentro de cada host necesita su propio login y no forma parte de estas pruebas.
+
+<!-- kit:agent-links -->
+<p align="center"><a href="scripts/CLIENTS.md"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/agent-links-es-01-dark.svg" /><img src="assets/readme-builder/kit/agent-links-es-01-light.svg" alt="Instalación, retirada y versiones probadas" height="44" /></picture></a>&nbsp;
+<a href="docs/DOCKER.md"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/agent-links-es-02-dark.svg" /><img src="assets/readme-builder/kit/agent-links-es-02-light.svg" alt="Docker" height="34" /></picture></a></p>
+<!-- /kit:agent-links -->
 
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 

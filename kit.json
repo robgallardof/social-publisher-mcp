@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "theme": "ember",
+  "assets": "assets/readme-builder/kit",
+  "documents": {"README.md": "en", "README.es.md": "es"},
+  "blocks": [
+    {"id": "features", "type": "bento", "columns": 3, "cells": [
+      {"span": 2, "icon": "clock", "kicker": {"en": "Queue", "es": "Cola"}, "title": {"en": "Dated queue", "es": "Cola por fecha"},
+       "text": {"en": "A day folder goes out that day: three videos, three posts at 05:00. Week folders spread on their own.", "es": "Una carpeta de día sale ese día: tres videos, tres publicaciones a las 05:00. Las semanas se reparten solas."}},
+      {"icon": "search", "kicker": {"en": "Analysis", "es": "Análisis"}, "title": {"en": "Watches every video", "es": "Ve cada video"},
+       "text": {"en": "8 frames and a transcript: what happens, speech, burned-in text.", "es": "8 fotogramas y transcripción: qué pasa, si hay voz, si trae texto."}},
+      {"icon": "file", "kicker": {"en": "Copy", "es": "Texto"}, "title": {"en": "Per-platform copy", "es": "Texto por red"},
+       "text": {"en": "Hook, body, CTA and hashtags checked against each platform's real limits.", "es": "Gancho, cuerpo, CTA y hashtags validados con los límites reales de cada red."}},
+      {"icon": "repeat", "kicker": {"en": "Footer", "es": "Pie"}, "title": {"en": "Cross-promotion", "es": "Pie de redes"},
+       "text": {"en": "Every caption ends with your handles on the other networks.", "es": "Cada descripción termina con tus usuarios en las otras redes."}},
+      {"icon": "play", "kicker": {"en": "Captions", "es": "Subtítulos"}, "title": {"en": "Subtitles", "es": "Subtítulos"},
+       "text": {"en": "None, platform auto, .srt or burned in, styled for vertical video.", "es": "Ninguno, automáticos, .srt o quemados, con estilo para vertical."}},
+      {"icon": "rocket", "kicker": {"en": "Publish", "es": "Publica"}, "title": {"en": "Any way it can", "es": "Como sea"},
+       "text": {"en": "Official APIs, Postiz, a browser profile, or the agent itself.", "es": "APIs oficiales, Postiz, un perfil de navegador o el propio agente."}},
+      {"icon": "clock", "kicker": "05:00", "title": {"en": "Every day", "es": "Todos los días"},
+       "text": {"en": "A scheduled task with retries; it catches up if the PC was off.", "es": "Tarea programada con reintentos; se pone al día si la PC estuvo apagada."}},
+      {"icon": "chart", "kicker": {"en": "Metrics", "es": "Métricas"}, "title": {"en": "Learns", "es": "Aprende"},
+       "text": {"en": "Best days, top and bottom videos, a weekly report with three actions at most.", "es": "Mejores días, videos top y bottom, y un reporte semanal con máximo tres acciones."}}
+    ]},
+    {"id": "agent-links", "type": "buttons", "items": [
+      {"label": {"en": "Setup, removal and tested versions", "es": "Instalación, retirada y versiones probadas"}, "href": "scripts/CLIENTS.md", "icon": "check", "variant": "primary", "trailing": true},
+      {"label": "Docker", "href": "docs/DOCKER.md", "icon": "box", "small": true}
+    ]}
+  ]
+}

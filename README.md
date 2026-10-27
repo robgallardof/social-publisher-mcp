@@ -36,16 +36,9 @@
 <a id="-what-it-does"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> What it does
 
-| | |
-|---|---|
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Dated queue** | `content/queue/2026-10-27/*.mp4` goes out on Oct 27. Three videos in the folder = three posts at 05:00. Week folders (`2026-W44/`) are spread over the days for you. |
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Watches every video** | 8-frame contact sheet + Spanish/any-language transcript (faster-whisper) → it knows what happens, whether there is speech and whether subtitles are already burned in. |
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Per-platform copy** | Hook, body, CTA, hashtags and keywords tuned for TikTok, Instagram Reels, Facebook Reels and YouTube Shorts, validated against each platform's real limits. |
-| <img src="assets/readme-builder/icons/repeat.svg" width="20" height="20" alt="" /> **Cross-promotion footer** | Every caption ends with `📲 Follow us too:` and your handles on the *other* networks — automatically. |
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Subtitles** | Decides none / platform auto-captions / `.srt` / burned-in, and renders burned subtitles styled for vertical video. |
-| <img src="assets/readme-builder/icons/rocket.svg" width="20" height="20" alt="" /> **Publishes any way it can** | Official APIs (Meta, YouTube, TikTok) → Postiz → a Playwright browser profile → handing the task to the agent itself (Claude in Chrome, Playwright MCP, computer use). |
-| ⏰ **05:00 every day** | A Windows scheduled task (cron on macOS/Linux) runs the idempotent publisher with retries, wakes the PC and catches up if it was off. |
-| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Learns** | Pulls metrics, finds the best weekdays and top/bottom videos, and writes a weekly report with at most three actions. |
+<!-- kit:features -->
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/features-en-dark.svg" /><img src="assets/readme-builder/kit/features-en-light.svg" alt="Dated queue: A day folder goes out that day: three videos, three posts at 05:00. Week folders spread on their own. · Watches every video: 8 frames and a transcript: what happens, speech, burned-in text. · Per-platform copy: Hook, body, CTA and hashtags checked against each platform&#x27;s real limits. · Cross-promotion: Every caption ends with your handles on the other networks. · Subtitles: None, platform auto, .srt or burned in, styled for vertical video. · Any way it can: Official APIs, Postiz, a browser profile, or the agent itself. · Every day: A scheduled task with retries; it catches up if the PC was off. · Learns: Best days, top and bottom videos, a weekly report with three actions at most." width="100%" /></picture></p>
+<!-- /kit:features -->
 
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
@@ -102,24 +95,42 @@ Then talk to your agent:
 
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
+<a id="-agent-setup-removal-and-compatibility"></a>
 <a id="-works-with-every-agent"></a>
-## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Works with every agent
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Agent setup, removal and compatibility
 
 `social-forge` is a standard **stdio MCP server**. Besides its tools it exposes every **skill as an MCP resource** (`skill://<name>`) and every **role as an MCP prompt**, so any MCP client gets the full playbook — not just the ones that read `.agents/`.
 
-| Client | How |
-|---|---|
-| Claude Code | `.mcp.json` in the folder, or user-wide via the installer (+ skills/agents linked into `~/.claude`) |
-| Codex | `.codex/config.toml` / `~/.codex/config.toml` |
-| Antigravity | `.agents/mcp_config.json` / `~/.gemini/antigravity/mcp_config.json` |
-| Cursor · VS Code · Gemini CLI · Windsurf · Claude Desktop | generated config files, or the installer |
+One installer registers it, shows the change first and removes it again. Each file it edits is backed up as `.bak`, and other servers in the file are kept.
+
+| Client | `--clients` | File it edits | Scope | Tested |
+|---|---|---|---|---|
+| Claude Code | `claude-code` | `claude mcp --scope user` (+ skills and roles in `~/.claude` with `--with-skills`) | user | Installer tests with temp files |
+| Codex | `codex` | `~/.codex/config.toml` | user | Installer tests with temp files |
+| OpenCode 1.x | `opencode` | `opencode.json` | project | Real host probe on 1.19.4 (CI on Linux) |
+| DeepSeek Harness | `deepseek` | `.dsh/mcp.cordis.yml` | project | Real runtime probe on 0.2.1-rc.2 (CI on Linux) |
+| Gemini CLI | `gemini-cli` | `~/.gemini/settings.json` | user | Installer tests with temp files |
+| Antigravity | `antigravity` | `~/.gemini/antigravity/mcp_config.json` | user | Installer tests with temp files |
+| Cursor | `cursor` | `~/.cursor/mcp.json` | user | Installer tests with temp files |
+| VS Code | `vscode` | `Code/User/mcp.json` | user | Installer tests with temp files |
+| Windsurf | `windsurf` | `~/.codeium/windsurf/mcp_config.json` | user | Installer tests with temp files |
+| Claude Desktop | `claude-desktop` | `Claude/claude_desktop_config.json` | user | Installer tests with temp files |
 
 ```powershell
-python scripts/install-mcp.py --list         # which clients are installed
-python scripts/install-mcp.py --with-skills  # register for your user everywhere (backs up each file as .bak)
-python scripts/install-mcp.py --remove       # undo
-python scripts/install-mcp.py --workspace ../davinci-agents  # any other workspace with config/mcp.servers.json
+python scripts/install-mcp.py --list                              # which clients are installed
+python scripts/install-mcp.py --dry-run                           # show every change, write nothing
+python scripts/install-mcp.py --with-skills                       # register for your user everywhere
+python scripts/install-mcp.py --clients codex,cursor              # only some clients
+python scripts/install-mcp.py --remove                            # undo (or --clients … --remove)
+python scripts/install-mcp.py --workspace ../davinci-agents       # any other workspace with config/mcp.servers.json
 ```
+
+Model inference inside each host needs its own login and is not part of these tests.
+
+<!-- kit:agent-links -->
+<p align="center"><a href="scripts/CLIENTS.md"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/agent-links-en-01-dark.svg" /><img src="assets/readme-builder/kit/agent-links-en-01-light.svg" alt="Setup, removal and tested versions" height="44" /></picture></a>&nbsp;
+<a href="docs/DOCKER.md"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/agent-links-en-02-dark.svg" /><img src="assets/readme-builder/kit/agent-links-en-02-light.svg" alt="Docker" height="34" /></picture></a></p>
+<!-- /kit:agent-links -->
 
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
