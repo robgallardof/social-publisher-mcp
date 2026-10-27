@@ -76,3 +76,10 @@ every role as a prompt, so a client that only speaks MCP still gets the playbook
 - Docker (optional): `Dockerfile` + `compose.yaml` (stdio, or HTTP with `SOCIAL_FORGE_MCP_TOKEN`; `cli` service for
   `run-due`). The image never contains personal data (`.dockerignore` allowlist). Real test: `python scripts/test_docker.py`.
 - Commits: run `git config core.hooksPath .githooks` once per clone; the `commit-msg` hook strips AI co-author trailers.
+
+## Commit language
+
+All new Git commit subjects and bodies must be written in English, including merge
+and squash messages. Keep the repository's existing message conventions.
+This applies to all contributors and coding agents, and only to new commits.
+Do not rewrite existing history to translate commit messages.
