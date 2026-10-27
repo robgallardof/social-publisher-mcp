@@ -12,11 +12,13 @@ never your videos or secrets. Cleans up containers and temp files on exit.
 import argparse
 import json
 import os
+import queue
 import secrets
 import shutil
 import socket
 import subprocess
 import tempfile
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -63,6 +65,67 @@ INIT = {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {
 INITIALIZED = {"jsonrpc": "2.0", "method": "notifications/initialized"}
 
 
+def stdio_exchange(command, tool, *, env=None, timeout=30):
+    """Complete each real MCP request before closing stdin and ending the session."""
+    with tempfile.TemporaryFile(mode="w+", encoding="utf-8") as errors:
+        child = subprocess.Popen(command, env=env, stdin=subprocess.PIPE,
+                                 stdout=subprocess.PIPE, stderr=errors, text=True, encoding="utf-8")
+        messages = queue.Queue()
+
+        def read():
+            try:
+                for line in child.stdout:
+                    messages.put(line)
+            finally:
+                messages.put(None)
+
+        reader = threading.Thread(target=read, daemon=True)
+        reader.start()
+
+        def send(message):
+            child.stdin.write(json.dumps(message) + "\n")
+            child.stdin.flush()
+
+        def response(request_id):
+            deadline = time.monotonic() + timeout
+            while True:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise TimeoutError(f"MCP did not answer request {request_id}")
+                try:
+                    line = messages.get(timeout=remaining)
+                except queue.Empty as error:
+                    raise TimeoutError(f"MCP did not answer request {request_id}") from error
+                if line is None:
+                    errors.seek(0)
+                    raise RuntimeError(f"MCP exited before request {request_id}: {errors.read()[-4000:]}")
+                message = json.loads(line)
+                if message.get("id") == request_id:
+                    if "error" in message:
+                        raise RuntimeError(f"MCP request {request_id} failed: {message['error']}")
+                    return message
+
+        try:
+            send(INIT)
+            initialized = response(1)
+            send(INITIALIZED)
+            send({"jsonrpc": "2.0", "id": 2, "method": "tools/call",
+                  "params": {"name": tool[0], "arguments": tool[1]}})
+            return {1: initialized, 2: response(2)}
+        finally:
+            try:
+                child.stdin.close()
+            except BrokenPipeError:
+                pass
+            try:
+                child.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                child.kill()
+                child.wait(timeout=5)
+            reader.join(timeout=5)
+            child.stdout.close()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--extras", default="youtube")
@@ -89,11 +152,8 @@ def main():
         user = f"{os.getuid()}:{os.getgid()}" if hasattr(os, "getuid") else "10001:10001"
         mount = f"{work}:/workspace"
 
-        lines = "\n".join(json.dumps(m) for m in (INIT, INITIALIZED, {
-            "jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {"name": TOOL[0], "arguments": TOOL[1]}})) + "\n"
-        out = run("docker", "run", "--rm", "-i", "--user", user, "-v", mount, IMAGE, input=lines, timeout=120)
-        replies = {r.get("id"): r for r in map(json.loads, filter(None, out.splitlines()))}
-        assert replies[1]["result"]["serverInfo"]["name"] == SERVER_NAME, out
+        replies = stdio_exchange(["docker", "run", "--rm", "-i", "--user", user, "-v", mount, IMAGE], TOOL)
+        assert replies[1]["result"]["serverInfo"]["name"] == SERVER_NAME, replies[1]
         assert not replies[2]["result"].get("isError"), replies[2]
         print("ok  stdio: initialize + tools/call", TOOL[0])
         if "analysis" in extras:

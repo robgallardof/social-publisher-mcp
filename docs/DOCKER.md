@@ -82,6 +82,19 @@ python scripts/test_docker.py --extras youtube,analysis
 Builds the image, checks it contains no personal data, speaks MCP over stdio, runs the CLI service and the HTTP
 service with a token on a free port, and calls a real tool. It uses a temporary workspace, never your content.
 
+### Stdio regression fix — 2026-10-27
+
+The smoke test now waits for initialization and the tool response before closing
+stdin. Sending every request and EOF together could cancel the in-flight call,
+leaving only the initialization reply and causing `KeyError: 2` in CI.
+Each response has a bounded wait and server shutdown is always collected.
+
+Executed: the native Python suite (56 passed), including a regression probe against
+the real MCP child process, and `python scripts/test_docker.py` with Docker Desktop
+Linux containers. Image build, data exclusion, stdio tool call, Compose CLI and
+authenticated HTTP with 15 tools all passed. The optional analysis extra and live
+publishing were NOT EXECUTED.
+
 ### Verification — 2026-10-26
 
 Executed on Windows with Docker Desktop Linux containers: default `EXTRAS=youtube`
