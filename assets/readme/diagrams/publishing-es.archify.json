@@ -1,0 +1,101 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Del video a una publicacion revisada",
+    "locale": "es",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/robgallardof/social-publisher-mcp.git",
+      "revision": "de370e487ac69afde914fd72c5405f2e18f3dce7"
+    },
+    "output": ".archify/publishing-es-20261026-194000/diagram.html"
+  },
+  "lanes": [
+    {
+      "id": "author",
+      "label": "Tus decisiones"
+    },
+    {
+      "id": "agent",
+      "label": "Ayuda del agente"
+    }
+  ],
+  "mainPath": [
+    "step0",
+    "step1",
+    "step2",
+    "step3"
+  ],
+  "nodes": [
+    {
+      "id": "step0",
+      "lane": "author",
+      "col": 0,
+      "type": "external",
+      "label": "Agregar un video",
+      "sublabel": "content/inbox",
+      "sources": [
+        {
+          "path": "README.es.md"
+        }
+      ]
+    },
+    {
+      "id": "step1",
+      "lane": "agent",
+      "col": 1,
+      "type": "backend",
+      "label": "Preparar la publicacion",
+      "sublabel": "Texto por plataforma",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/server.py"
+        }
+      ]
+    },
+    {
+      "id": "step2",
+      "lane": "author",
+      "col": 2,
+      "type": "security",
+      "label": "Revisar la vista previa",
+      "sublabel": "preview_post / dry run",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/server.py"
+        }
+      ]
+    },
+    {
+      "id": "step3",
+      "lane": "author",
+      "col": 3,
+      "type": "cloud",
+      "label": "Aprobar y publicar",
+      "sublabel": "El usuario decide",
+      "sources": [
+        {
+          "path": "AGENTS.md"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge0",
+      "from": "step0",
+      "to": "step1"
+    },
+    {
+      "id": "edge1",
+      "from": "step1",
+      "to": "step2"
+    },
+    {
+      "id": "edge2",
+      "from": "step2",
+      "to": "step3"
+    }
+  ]
+}

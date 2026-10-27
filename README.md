@@ -1,3 +1,5 @@
+<a id="top"></a>
+
 <div align="center">
 
 <picture>
@@ -23,51 +25,32 @@
 <a href="#-works-with-every-agent"><img src="https://img.shields.io/badge/Works%20with%20every%20agent-5B21B6?style=for-the-badge" alt="Works with every agent" /></a>
 <a href="#-quick-start"><img src="https://img.shields.io/badge/Quick%20start-4F46E5?style=for-the-badge" alt="Quick start" /></a>
 <a href="#-how-a-video-flows"><img src="https://img.shields.io/badge/How%20a%20video%20flows-4338CA?style=for-the-badge" alt="How a video flows" /></a>
-<a href="#️-mcp-tools-15"><img src="https://img.shields.io/badge/MCP%20tools%20%2815%29-2563EB?style=for-the-badge" alt="MCP tools (15)" /></a>
+<a href="#-mcp-tools-15"><img src="https://img.shields.io/badge/MCP%20tools%20%2815%29-2563EB?style=for-the-badge" alt="MCP tools (15)" /></a>
 <a href="#-roles-and-skills"><img src="https://img.shields.io/badge/Roles%20and%20skills-0284C7?style=for-the-badge" alt="Roles and skills" /></a>
 <a href="#-publishing-backends"><img src="https://img.shields.io/badge/Publishing%20backends-0EA5E9?style=for-the-badge" alt="Publishing backends" /></a>
 <a href="#-layout"><img src="https://img.shields.io/badge/Layout-0891B2?style=for-the-badge" alt="Layout" /></a>
 <a href="#-development"><img src="https://img.shields.io/badge/Development-0E7490?style=for-the-badge" alt="Development" /></a>
-<a href="#️-good-to-know"><img src="https://img.shields.io/badge/Good%20to%20know-155E75?style=for-the-badge" alt="Good to know" /></a>
+<a href="#-good-to-know"><img src="https://img.shields.io/badge/Good%20to%20know-155E75?style=for-the-badge" alt="Good to know" /></a>
 </p>
 
 <p align="center"><img src="assets/readme/divider.svg" alt="" width="80%" /></p>
 
 <a id="-what-it-does"></a>
-<p align="center"><img src="assets/readme/sections/en-01.svg" alt="01 · What it does" width="100%" /></p>
+<h2 align="center"><img src="assets/readme/sections/en-01.svg" alt="01 · What it does" width="100%" /></h2>
 
 | | |
 |---|---|
-| 📂 **Dated queue** | `content/queue/2026-10-27/*.mp4` goes out on Oct 27. Three videos in the folder = three posts at 05:00. Week folders (`2026-W44/`) are spread over the days for you. |
-| 👀 **Watches every video** | 8-frame contact sheet + Spanish/any-language transcript (faster-whisper) → it knows what happens, whether there is speech and whether subtitles are already burned in. |
-| ✍️ **Per-platform copy** | Hook, body, CTA, hashtags and keywords tuned for TikTok, Instagram Reels, Facebook Reels and YouTube Shorts, validated against each platform's real limits. |
-| 🔁 **Cross-promotion footer** | Every caption ends with `📲 Follow us too:` and your handles on the *other* networks — automatically. |
-| 💬 **Subtitles** | Decides none / platform auto-captions / `.srt` / burned-in, and renders burned subtitles styled for vertical video. |
-| 🚀 **Publishes any way it can** | Official APIs (Meta, YouTube, TikTok) → Postiz → a Playwright browser profile → handing the task to the agent itself (Claude in Chrome, Playwright MCP, computer use). |
+| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Dated queue** | `content/queue/2026-10-27/*.mp4` goes out on Oct 27. Three videos in the folder = three posts at 05:00. Week folders (`2026-W44/`) are spread over the days for you. |
+| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Watches every video** | 8-frame contact sheet + Spanish/any-language transcript (faster-whisper) → it knows what happens, whether there is speech and whether subtitles are already burned in. |
+| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Per-platform copy** | Hook, body, CTA, hashtags and keywords tuned for TikTok, Instagram Reels, Facebook Reels and YouTube Shorts, validated against each platform's real limits. |
+| <img src="assets/readme-builder/icons/repeat.svg" width="20" height="20" alt="" /> **Cross-promotion footer** | Every caption ends with `📲 Follow us too:` and your handles on the *other* networks — automatically. |
+| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Subtitles** | Decides none / platform auto-captions / `.srt` / burned-in, and renders burned subtitles styled for vertical video. |
+| <img src="assets/readme-builder/icons/rocket.svg" width="20" height="20" alt="" /> **Publishes any way it can** | Official APIs (Meta, YouTube, TikTok) → Postiz → a Playwright browser profile → handing the task to the agent itself (Claude in Chrome, Playwright MCP, computer use). |
 | ⏰ **05:00 every day** | A Windows scheduled task (cron on macOS/Linux) runs the idempotent publisher with retries, wakes the PC and catches up if it was off. |
-| 📈 **Learns** | Pulls metrics, finds the best weekdays and top/bottom videos, and writes a weekly report with at most three actions. |
-
-<a id="-works-with-every-agent"></a>
-<p align="center"><img src="assets/readme/sections/en-02.svg" alt="02 · Works with every agent" width="100%" /></p>
-
-`social-forge` is a standard **stdio MCP server**. Besides its tools it exposes every **skill as an MCP resource** (`skill://<name>`) and every **role as an MCP prompt**, so any MCP client gets the full playbook — not just the ones that read `.agents/`.
-
-| Client | How |
-|---|---|
-| Claude Code | `.mcp.json` in the folder, or user-wide via the installer (+ skills/agents linked into `~/.claude`) |
-| Codex | `.codex/config.toml` / `~/.codex/config.toml` |
-| Antigravity | `.agents/mcp_config.json` / `~/.gemini/antigravity/mcp_config.json` |
-| Cursor · VS Code · Gemini CLI · Windsurf · Claude Desktop | generated config files, or the installer |
-
-```powershell
-python scripts/install-mcp.py --list         # which clients are installed
-python scripts/install-mcp.py --with-skills  # register for your user everywhere (backs up each file as .bak)
-python scripts/install-mcp.py --remove       # undo
-python scripts/install-mcp.py --workspace ../davinci-agents  # any other workspace with config/mcp.servers.json
-```
+| <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Learns** | Pulls metrics, finds the best weekdays and top/bottom videos, and writes a weekly report with at most three actions. |
 
 <a id="-quick-start"></a>
-<p align="center"><img src="assets/readme/sections/en-03.svg" alt="03 · Quick start" width="100%" /></p>
+<h2 align="center"><img src="assets/readme/sections/en-03.svg" alt="02 · Quick start" width="100%" /></h2>
 
 ```powershell
 git clone https://github.com/robgallardof/social-publisher-mcp.git
@@ -77,6 +60,29 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-schedule.ps1
 ```
 
 macOS / Linux: `sh scripts/bootstrap.sh` and the cron line printed at the end. Requires [uv](https://docs.astral.sh/uv/).
+
+### Connect your agent
+
+Use this server from OpenCode or DeepSeek Harness. Preview the configuration first, then apply it.
+
+```sh
+python scripts/install-mcp.py --clients opencode --dry-run
+python scripts/install-mcp.py --clients opencode
+opencode mcp list
+```
+
+<details>
+<summary>Use DeepSeek Harness instead</summary>
+
+```sh
+python scripts/install-mcp.py --clients deepseek --dry-run
+python scripts/install-mcp.py --clients deepseek
+dsh web --patch .dsh/mcp.cordis.yml
+```
+
+</details>
+
+[Configuration, removal and tested versions](scripts/CLIENTS.md).
 
 **Prefer Docker?** Optional: the image holds only the MCP code and your folder is mounted at run time.
 
@@ -94,8 +100,34 @@ Then talk to your agent:
 
 > *"Process the inbox"* · *"Prepare tomorrow"* · *"Spread week 44, two per day"* · *"Add subtitles to the storytime"* · *"What worked this week?"* · *"Find squirrel trends in Mexico"*
 
+<a id="-works-with-every-agent"></a>
+<h2 align="center"><img src="assets/readme/sections/en-02.svg" alt="03 · Works with every agent" width="100%" /></h2>
+
+`social-forge` is a standard **stdio MCP server**. Besides its tools it exposes every **skill as an MCP resource** (`skill://<name>`) and every **role as an MCP prompt**, so any MCP client gets the full playbook — not just the ones that read `.agents/`.
+
+| Client | How |
+|---|---|
+| Claude Code | `.mcp.json` in the folder, or user-wide via the installer (+ skills/agents linked into `~/.claude`) |
+| Codex | `.codex/config.toml` / `~/.codex/config.toml` |
+| Antigravity | `.agents/mcp_config.json` / `~/.gemini/antigravity/mcp_config.json` |
+| Cursor · VS Code · Gemini CLI · Windsurf · Claude Desktop | generated config files, or the installer |
+
+```powershell
+python scripts/install-mcp.py --list         # which clients are installed
+python scripts/install-mcp.py --with-skills  # register for your user everywhere (backs up each file as .bak)
+python scripts/install-mcp.py --remove       # undo
+python scripts/install-mcp.py --workspace ../davinci-agents  # any other workspace with config/mcp.servers.json
+```
+
 <a id="-how-a-video-flows"></a>
-<p align="center"><img src="assets/readme/sections/en-04.svg" alt="04 · How a video flows" width="100%" /></p>
+<h2 align="center"><img src="assets/readme/sections/en-04.svg" alt="04 · How a video flows" width="100%" /></h2>
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/diagrams/publishing-en-dark.svg" /><img src="assets/readme/diagrams/publishing-en-light.svg" alt="A practical usage path, generated with Archify" width="100%" /></picture></p>
+
+
+
+<details>
+<summary>Implementation diagram</summary>
 
 ```mermaid
 flowchart LR
@@ -112,8 +144,19 @@ flowchart LR
     K -->|pull_metrics| L[analytics · weekly report]
 ```
 
-<a id="️-mcp-tools-15"></a>
-<p align="center"><img src="assets/readme/sections/en-05.svg" alt="05 · MCP tools (15)" width="100%" /></p>
+</details>
+
+<a id="-roles-and-skills"></a>
+<h2 align="center"><img src="assets/readme/sections/en-06.svg" alt="05 · Roles and skills" width="100%" /></h2>
+
+**Roles** (`.agents/agents/`): `community-manager` (lead) · `video-analyst` · `content-strategist` · `copywriter` · `publisher` · `audience-analyst` · `trend-researcher`
+
+**Skills** (`.agents/skills/`): `content-queue` · `video-analysis` · `subtitles` · `platform-copywriting` · `social-publishing` (+ per-network playbooks) · `agent-browser-upload` · `content-strategy` · `audience-analytics` · `trend-research` · `community-engagement`
+
+The lead role **asks before writing** for your handles on every network, @mentions, links, fixed hashtags and subtitle preference.
+
+<a id="-mcp-tools-15"></a>
+<h2 align="center"><img src="assets/readme/sections/en-05.svg" alt="06 · MCP tools (15)" width="100%" /></h2>
 
 | Tool | |
 |---|---|
@@ -130,31 +173,22 @@ flowchart LR
 | `platform_rules` | Limits per platform |
 | `pull_metrics` · `insights_report` | Metrics snapshot and summary |
 
-<a id="-roles-and-skills"></a>
-<p align="center"><img src="assets/readme/sections/en-06.svg" alt="06 · Roles and skills" width="100%" /></p>
-
-**Roles** (`.agents/agents/`): `community-manager` (lead) · `video-analyst` · `content-strategist` · `copywriter` · `publisher` · `audience-analyst` · `trend-researcher`
-
-**Skills** (`.agents/skills/`): `content-queue` · `video-analysis` · `subtitles` · `platform-copywriting` · `social-publishing` (+ per-network playbooks) · `agent-browser-upload` · `content-strategy` · `audience-analytics` · `trend-research` · `community-engagement`
-
-The lead role **asks before writing** for your handles on every network, @mentions, links, fixed hashtags and subtitle preference.
-
 <a id="-publishing-backends"></a>
-<p align="center"><img src="assets/readme/sections/en-07.svg" alt="07 · Publishing backends" width="100%" /></p>
+<h2 align="center"><img src="assets/readme/sections/en-07.svg" alt="07 · Publishing backends" width="100%" /></h2>
 
 | Backend | Platforms | Public right away? | Schedules by itself? |
 |---|---|---|---|
-| `meta_api` | Instagram, Facebook | ✅ | Facebook ✅ |
-| `youtube_api` | YouTube | after Google's API audit | ✅ `publishAt` |
+| `meta_api` | Instagram, Facebook | <img src="assets/readme-builder/icons/check.svg" width="20" height="20" alt="" /> | Facebook <img src="assets/readme-builder/icons/check.svg" width="20" height="20" alt="" /> |
+| `youtube_api` | YouTube | after Google's API audit | <img src="assets/readme-builder/icons/check.svg" width="20" height="20" alt="" /> `publishAt` |
 | `tiktok_api` | TikTok | after TikTok's audit | — |
-| `postiz` | all | ✅ | ✅ (PC can be off) |
-| `browser` | all | ✅ | — |
+| `postiz` | all | <img src="assets/readme-builder/icons/check.svg" width="20" height="20" alt="" /> | <img src="assets/readme-builder/icons/check.svg" width="20" height="20" alt="" /> (PC can be off) |
+| `browser` | all | <img src="assets/readme-builder/icons/check.svg" width="20" height="20" alt="" /> | — |
 | `handoff` | all | the agent does it | — |
 
 Credentials: [`docs/accounts.md`](docs/accounts.md). They live in `secrets/` (git-ignored).
 
 <a id="-layout"></a>
-<p align="center"><img src="assets/readme/sections/en-08.svg" alt="08 · Layout" width="100%" /></p>
+<h2 align="center"><img src="assets/readme/sections/en-08.svg" alt="08 · Layout" width="100%" /></h2>
 
 ```
 content/inbox/        drop new videos here
@@ -166,8 +200,20 @@ Dockerfile, compose.yaml   optional image (stdio or HTTP with a token)
 .agents/              portable skills and roles  scripts/          bootstrap, install-mcp, schedule, sync
 ```
 
+<a id="-good-to-know"></a>
+<h2 align="center"><img src="assets/readme/sections/en-10.svg" alt="09 · Good to know" width="100%" /></h2>
+
+- TikTok and YouTube **API** uploads stay private until each platform audits your app — use `browser` or `postiz` meanwhile.
+- Instagram's API has no publish time: it posts at 05:00 itself, so the PC must be on (or use Postiz).
+- Never double-posts: every upload writes a receipt; retries only touch what failed.
+- Currently configured for **Chomi la ardilla** <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> — a new brand only needs `brand/` and `config/social.yaml`.
+
+<div align="center"><sub>Made with care for creators who'd rather film than fiddle with schedulers.</sub></div>
+
+<br/>
+
 <a id="-development"></a>
-<p align="center"><img src="assets/readme/sections/en-09.svg" alt="09 · Development" width="100%" /></p>
+<h2 align="center"><img src="assets/readme/sections/en-09.svg" alt="10 · Development" width="100%" /></h2>
 
 ```bash
 cd mcp/social-forge && uv run pytest     # 53 tests: no network, real ffmpeg, real MCP over HTTP
@@ -178,56 +224,8 @@ git config core.hooksPath .githooks      # strips AI co-author trailers from com
 
 Architecture rules and how to add a backend: [`AGENTS.md`](AGENTS.md).
 
-<a id="️-good-to-know"></a>
-<p align="center"><img src="assets/readme/sections/en-10.svg" alt="10 · Good to know" width="100%" /></p>
+<p align="center"><a href="#top">Back to top</a></p>
 
-- TikTok and YouTube **API** uploads stay private until each platform audits your app — use `browser` or `postiz` meanwhile.
-- Instagram's API has no publish time: it posts at 05:00 itself, so the PC must be on (or use Postiz).
-- Never double-posts: every upload writes a receipt; retries only touch what failed.
-- Currently configured for **Chomi la ardilla** 🐿️ — a new brand only needs `brand/` and `config/social.yaml`.
-
-<div align="center"><sub>Made with care for creators who'd rather film than fiddle with schedulers.</sub></div>
-
-<br/>
-
-<img src="assets/readme/footer-en.svg" alt="social-publisher-mcp" width="100%" />
-
-## OpenCode and DeepSeek
-
-Project-scoped, opt-in setup (run from this checkout):
-
-```sh
-python scripts/install-mcp.py --clients opencode,deepseek --dry-run
-python scripts/install-mcp.py --clients opencode,deepseek
-opencode mcp list
-dsh web --patch .dsh/mcp.cordis.yml
-# Remove only this workspace's servers:
-python scripts/install-mcp.py --clients opencode,deepseek --remove
-```
-
-OpenCode uses its **1.x** `opencode.json` MCP schema; 2.x configuration is rejected instead of rewritten.
-DeepSeek uses the official **Harness** (`@deepseek-ai/dsh`) MCP plugin through an explicit Cordis overlay;
-JSON output is valid YAML. Other entries survive installation and removal; the first original is retained in `.bak`.
-Malformed configuration is refused. No provider credentials are written. The DeepSeek API alone is not an MCP host;
-using a DeepSeek model in OpenCode uses the same OpenCode connection. Set credentials through the host's own login.
-Harness exposes MCP tools/resources but does not support MCP prompt templates: read role files from `.agents/agents/`.
-
-Installer integration tests run real subprocesses with temporary files (`tests/test_agent_clients.py`).
-Model inference requires separate credentials and is **NOT EXECUTED** by these tests.
-Contracts: [OpenCode MCP](https://opencode.ai/docs/en/mcp-servers),
-[DeepSeek Harness MCP](https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/mcp/mcp-client).
-
-Reproduce the real host probe (Node 24.9+; sync/build this server first):
-
-```sh
-npm install --prefix /tmp/agent-hosts --ignore-scripts --no-audit --no-fund opencode-ai@1.19.4 @deepseek-ai/dsh@0.2.1-rc.2
-export AGENT_HOST_MODULES=/tmp/agent-hosts/node_modules
-export OPENCODE_BIN=$AGENT_HOST_MODULES/opencode-linux-x64-baseline/bin/opencode
-python scripts/test_agent_hosts.py
-```
-
-On Windows, use the absolute `opencode-windows-x64/bin/opencode.exe` path and PowerShell environment variables;
-on macOS use `opencode-darwin-arm64/bin/opencode` (or the package matching your CPU).
-The CI job **Agent host integrations** runs the same probe on Linux, with pinned host versions and no API key.
-Local Windows execution: OpenCode **1.19.4**, DeepSeek Harness runtime **0.2.1-rc.2**; discovery and
-read-only MCP execution passed. Paid/live model inference is **NOT EXECUTED**.
+<!-- readme-builder:signature:start -->
+<p align="center"><a href="https://github.com/robgallardof"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/brand/signature-en-dark.svg" /><img src="assets/readme/brand/signature-en-light.svg" alt="Social Forge / Roberto Gallardo" width="100%" /></picture></a></p>
+<!-- readme-builder:signature:end -->
