@@ -21,16 +21,16 @@
 </div>
 
 <p align="center">
-<a href="#-qué-hace"><img src="https://img.shields.io/badge/Qu%C3%A9%20hace-6D28D9?style=for-the-badge" alt="Qué hace" /></a>
-<a href="#-funciona-con-cualquier-agente"><img src="https://img.shields.io/badge/Funciona%20con%20cualquier%20agente-5B21B6?style=for-the-badge" alt="Funciona con cualquier agente" /></a>
-<a href="#-inicio-rápido"><img src="https://img.shields.io/badge/Inicio%20r%C3%A1pido-4F46E5?style=for-the-badge" alt="Inicio rápido" /></a>
-<a href="#-el-camino-de-un-video"><img src="https://img.shields.io/badge/El%20camino%20de%20un%20video-4338CA?style=for-the-badge" alt="El camino de un video" /></a>
-<a href="#-herramientas-mcp-15"><img src="https://img.shields.io/badge/Herramientas%20MCP%20%2815%29-2563EB?style=for-the-badge" alt="Herramientas MCP (15)" /></a>
-<a href="#-roles-y-skills"><img src="https://img.shields.io/badge/Roles%20y%20skills-0284C7?style=for-the-badge" alt="Roles y skills" /></a>
-<a href="#-formas-de-publicar"><img src="https://img.shields.io/badge/Formas%20de%20publicar-0EA5E9?style=for-the-badge" alt="Formas de publicar" /></a>
-<a href="#-estructura"><img src="https://img.shields.io/badge/Estructura-0891B2?style=for-the-badge" alt="Estructura" /></a>
-<a href="#-desarrollo"><img src="https://img.shields.io/badge/Desarrollo-0E7490?style=for-the-badge" alt="Desarrollo" /></a>
-<a href="#-bueno-saber"><img src="https://img.shields.io/badge/Bueno%20saber-155E75?style=for-the-badge" alt="Bueno saber" /></a>
+<a href="#-qué-hace"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-que-hace-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-que-hace-outline-sm-light.svg" alt="Qué hace" height="34" /></picture></a>
+<a href="#-funciona-con-cualquier-agente"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-funciona-con-cualquier-agente-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-funciona-con-cualquier-agente-outline-sm-light.svg" alt="Funciona con cualquier agente" height="34" /></picture></a>
+<a href="#-inicio-rápido"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-inicio-rapido-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-inicio-rapido-outline-sm-light.svg" alt="Inicio rápido" height="34" /></picture></a>
+<a href="#-el-camino-de-un-video"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-el-camino-de-un-video-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-el-camino-de-un-video-outline-sm-light.svg" alt="El camino de un video" height="34" /></picture></a>
+<a href="#-herramientas-mcp-15"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-herramientas-mcp-15-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-herramientas-mcp-15-outline-sm-light.svg" alt="Herramientas MCP (15)" height="34" /></picture></a>
+<a href="#-roles-y-skills"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-roles-y-skills-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-roles-y-skills-outline-sm-light.svg" alt="Roles y skills" height="34" /></picture></a>
+<a href="#-formas-de-publicar"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-formas-de-publicar-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-formas-de-publicar-outline-sm-light.svg" alt="Formas de publicar" height="34" /></picture></a>
+<a href="#-estructura"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-estructura-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-estructura-outline-sm-light.svg" alt="Estructura" height="34" /></picture></a>
+<a href="#-desarrollo"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-desarrollo-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-desarrollo-outline-sm-light.svg" alt="Desarrollo" height="34" /></picture></a>
+<a href="#-bueno-saber"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-bueno-saber-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-bueno-saber-outline-sm-light.svg" alt="Bueno saber" height="34" /></picture></a>
 </p>
 
 <a id="-qué-hace"></a>
@@ -46,6 +46,8 @@
 | <img src="assets/readme-builder/icons/rocket.svg" width="20" height="20" alt="" /> **Publica como sea** | APIs oficiales (Meta, YouTube, TikTok) → Postiz → perfil de navegador con Playwright → el propio agente (Claude in Chrome, Playwright MCP, computer use). |
 | ⏰ **05:00 todos los días** | Tarea programada de Windows (cron en macOS/Linux): publicador idempotente con reintentos; despierta la PC y se pone al día si estuvo apagada. |
 | <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Aprende** | Saca métricas, mejores días, videos top y bottom, y un reporte semanal con máximo tres acciones. |
+
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-inicio-rápido"></a>
 ## <img src="assets/readme-builder/icons/rocket.svg" width="24" height="24" alt="" /> Inicio rápido
@@ -101,6 +103,8 @@ dsh web --patch .dsh/mcp.cordis.yml
 
 [Configuración, retirada y versiones comprobadas](scripts/CLIENTS.md).
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-funciona-con-cualquier-agente"></a>
 ## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Funciona con cualquier agente
 
@@ -119,6 +123,8 @@ python scripts/install-mcp.py --with-skills  # lo registra para tu usuario en to
 python scripts/install-mcp.py --remove       # deshacer
 python scripts/install-mcp.py --workspace ../davinci-agents  # cualquier otro workspace con config/mcp.servers.json
 ```
+
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-el-camino-de-un-video"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> El camino de un video
@@ -143,6 +149,8 @@ flowchart LR
 
 </details>
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-roles-y-skills"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Roles y skills
 
@@ -151,6 +159,8 @@ flowchart LR
 **Skills** (`.agents/skills/`): `content-queue` · `video-analysis` · `subtitles` · `platform-copywriting` · `social-publishing` (+ guía por red) · `agent-browser-upload` · `content-strategy` · `audience-analytics` · `trend-research` · `community-engagement`
 
 El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @menciones, links, hashtags fijos y preferencia de subtítulos.
+
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-herramientas-mcp-15"></a>
 ## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Herramientas MCP (15)
@@ -170,6 +180,8 @@ El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @mencion
 | `platform_rules` | Límites por plataforma |
 | `pull_metrics` · `insights_report` | Métricas y resumen |
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-formas-de-publicar"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Formas de publicar
 
@@ -184,6 +196,8 @@ El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @mencion
 
 Credenciales: [`docs/accounts.md`](docs/accounts.md). Viven en `secrets/` (ignorado por git).
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-estructura"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Estructura
 
@@ -197,6 +211,8 @@ Dockerfile, compose.yaml   imagen opcional (stdio o HTTP con token)
 .agents/              skills y roles portables     scripts/          bootstrap, install-mcp, schedule, sync
 ```
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-bueno-saber"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Bueno saber
 
@@ -208,6 +224,8 @@ Dockerfile, compose.yaml   imagen opcional (stdio o HTTP con token)
 <div align="center"><sub>Hecho para creadores que prefieren grabar que pelearse con programadores de publicaciones.</sub></div>
 
 <br/>
+
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-desarrollo"></a>
 ## <img src="assets/readme-builder/icons/code.svg" width="24" height="24" alt="" /> Desarrollo
@@ -221,7 +239,7 @@ git config core.hooksPath .githooks      # quita los coautores de IA de los mens
 
 Reglas de arquitectura y cómo agregar un backend: [`AGENTS.md`](AGENTS.md).
 
-<p align="center"><a href="#top">Volver al inicio</a></p>
+<p align="center"><a href="#top"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-volver-al-inicio-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-volver-al-inicio-outline-sm-light.svg" alt="Volver al inicio" height="34" /></picture></a></p>
 
 <!-- readme-builder:signature:start -->
 <p align="center"><a href="https://github.com/robgallardof"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/brand/signature-es-dark.svg" /><img src="assets/readme/brand/signature-es-light.svg" alt="Social Forge / Roberto Gallardo" width="100%" /></picture></a></p>

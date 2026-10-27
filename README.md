@@ -21,16 +21,16 @@
 </div>
 
 <p align="center">
-<a href="#-what-it-does"><img src="https://img.shields.io/badge/What%20it%20does-6D28D9?style=for-the-badge" alt="What it does" /></a>
-<a href="#-works-with-every-agent"><img src="https://img.shields.io/badge/Works%20with%20every%20agent-5B21B6?style=for-the-badge" alt="Works with every agent" /></a>
-<a href="#-quick-start"><img src="https://img.shields.io/badge/Quick%20start-4F46E5?style=for-the-badge" alt="Quick start" /></a>
-<a href="#-how-a-video-flows"><img src="https://img.shields.io/badge/How%20a%20video%20flows-4338CA?style=for-the-badge" alt="How a video flows" /></a>
-<a href="#-mcp-tools-15"><img src="https://img.shields.io/badge/MCP%20tools%20%2815%29-2563EB?style=for-the-badge" alt="MCP tools (15)" /></a>
-<a href="#-roles-and-skills"><img src="https://img.shields.io/badge/Roles%20and%20skills-0284C7?style=for-the-badge" alt="Roles and skills" /></a>
-<a href="#-publishing-backends"><img src="https://img.shields.io/badge/Publishing%20backends-0EA5E9?style=for-the-badge" alt="Publishing backends" /></a>
-<a href="#-layout"><img src="https://img.shields.io/badge/Layout-0891B2?style=for-the-badge" alt="Layout" /></a>
-<a href="#-development"><img src="https://img.shields.io/badge/Development-0E7490?style=for-the-badge" alt="Development" /></a>
-<a href="#-good-to-know"><img src="https://img.shields.io/badge/Good%20to%20know-155E75?style=for-the-badge" alt="Good to know" /></a>
+<a href="#-what-it-does"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-what-it-does-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-what-it-does-outline-sm-light.svg" alt="What it does" height="34" /></picture></a>
+<a href="#-works-with-every-agent"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-works-with-every-agent-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-works-with-every-agent-outline-sm-light.svg" alt="Works with every agent" height="34" /></picture></a>
+<a href="#-quick-start"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-quick-start-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-quick-start-outline-sm-light.svg" alt="Quick start" height="34" /></picture></a>
+<a href="#-how-a-video-flows"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-how-a-video-flows-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-how-a-video-flows-outline-sm-light.svg" alt="How a video flows" height="34" /></picture></a>
+<a href="#-mcp-tools-15"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-mcp-tools-15-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-mcp-tools-15-outline-sm-light.svg" alt="MCP tools (15)" height="34" /></picture></a>
+<a href="#-roles-and-skills"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-roles-and-skills-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-roles-and-skills-outline-sm-light.svg" alt="Roles and skills" height="34" /></picture></a>
+<a href="#-publishing-backends"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-publishing-backends-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-publishing-backends-outline-sm-light.svg" alt="Publishing backends" height="34" /></picture></a>
+<a href="#-layout"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-layout-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-layout-outline-sm-light.svg" alt="Layout" height="34" /></picture></a>
+<a href="#-development"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-development-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-development-outline-sm-light.svg" alt="Development" height="34" /></picture></a>
+<a href="#-good-to-know"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-good-to-know-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-good-to-know-outline-sm-light.svg" alt="Good to know" height="34" /></picture></a>
 </p>
 
 <a id="-what-it-does"></a>
@@ -46,6 +46,8 @@
 | <img src="assets/readme-builder/icons/rocket.svg" width="20" height="20" alt="" /> **Publishes any way it can** | Official APIs (Meta, YouTube, TikTok) → Postiz → a Playwright browser profile → handing the task to the agent itself (Claude in Chrome, Playwright MCP, computer use). |
 | ⏰ **05:00 every day** | A Windows scheduled task (cron on macOS/Linux) runs the idempotent publisher with retries, wakes the PC and catches up if it was off. |
 | <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" /> **Learns** | Pulls metrics, finds the best weekdays and top/bottom videos, and writes a weekly report with at most three actions. |
+
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-quick-start"></a>
 ## <img src="assets/readme-builder/icons/rocket.svg" width="24" height="24" alt="" /> Quick start
@@ -98,6 +100,8 @@ Then talk to your agent:
 
 > *"Process the inbox"* · *"Prepare tomorrow"* · *"Spread week 44, two per day"* · *"Add subtitles to the storytime"* · *"What worked this week?"* · *"Find squirrel trends in Mexico"*
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-works-with-every-agent"></a>
 ## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Works with every agent
 
@@ -116,6 +120,8 @@ python scripts/install-mcp.py --with-skills  # register for your user everywhere
 python scripts/install-mcp.py --remove       # undo
 python scripts/install-mcp.py --workspace ../davinci-agents  # any other workspace with config/mcp.servers.json
 ```
+
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-how-a-video-flows"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> How a video flows
@@ -143,6 +149,8 @@ flowchart LR
 
 </details>
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-roles-and-skills"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Roles and skills
 
@@ -151,6 +159,8 @@ flowchart LR
 **Skills** (`.agents/skills/`): `content-queue` · `video-analysis` · `subtitles` · `platform-copywriting` · `social-publishing` (+ per-network playbooks) · `agent-browser-upload` · `content-strategy` · `audience-analytics` · `trend-research` · `community-engagement`
 
 The lead role **asks before writing** for your handles on every network, @mentions, links, fixed hashtags and subtitle preference.
+
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-mcp-tools-15"></a>
 ## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> MCP tools (15)
@@ -170,6 +180,8 @@ The lead role **asks before writing** for your handles on every network, @mentio
 | `platform_rules` | Limits per platform |
 | `pull_metrics` · `insights_report` | Metrics snapshot and summary |
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-publishing-backends"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Publishing backends
 
@@ -184,6 +196,8 @@ The lead role **asks before writing** for your handles on every network, @mentio
 
 Credentials: [`docs/accounts.md`](docs/accounts.md). They live in `secrets/` (git-ignored).
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-layout"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Layout
 
@@ -197,6 +211,8 @@ Dockerfile, compose.yaml   optional image (stdio or HTTP with a token)
 .agents/              portable skills and roles  scripts/          bootstrap, install-mcp, schedule, sync
 ```
 
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
+
 <a id="-good-to-know"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Good to know
 
@@ -208,6 +224,8 @@ Dockerfile, compose.yaml   optional image (stdio or HTTP with a token)
 <div align="center"><sub>Made with care for creators who'd rather film than fiddle with schedulers.</sub></div>
 
 <br/>
+
+<p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-development"></a>
 ## <img src="assets/readme-builder/icons/code.svg" width="24" height="24" alt="" /> Development
@@ -221,7 +239,7 @@ git config core.hooksPath .githooks      # strips AI co-author trailers from com
 
 Architecture rules and how to add a backend: [`AGENTS.md`](AGENTS.md).
 
-<p align="center"><a href="#top">Back to top</a></p>
+<p align="center"><a href="#top"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-back-to-top-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-back-to-top-outline-sm-light.svg" alt="Back to top" height="34" /></picture></a></p>
 
 <!-- readme-builder:signature:start -->
 <p align="center"><a href="https://github.com/robgallardof"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/brand/signature-en-dark.svg" /><img src="assets/readme/brand/signature-en-light.svg" alt="Social Forge / Roberto Gallardo" width="100%" /></picture></a></p>
