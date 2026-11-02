@@ -12,6 +12,20 @@ ahead_days: 2
 catch_up: true              # if the PC was off, publish overdue videos on the next run
 max_attempts: 3
 
+# Standard JavaScript composition. Deno 2 is required; psutil is installed with the core package.
+# Existing tools are unchanged. No flag can bypass approval. See docs/CODE_MODE.md.
+code_mode:
+  deno: deno               # executable name or absolute path, never a command or .cmd wrapper
+  principal: workspace-owner
+  allowed_platforms: []    # empty = configured default_platforms; no arbitrary account identities
+  timeout_ms: 10000
+  cpu_ms: 5000
+  memory_mb: 256
+  max_output_bytes: 65536
+  max_code_bytes: 32768
+  max_calls: 32
+  max_concurrency: 4
+
 default_platforms: [tiktok, instagram, facebook, youtube]
 
 # How each platform is published: youtube_api | meta_api | tiktok_api | postiz | browser | handoff

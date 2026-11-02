@@ -25,7 +25,7 @@
 <a href="#-funciona-con-cualquier-agente"><img src="https://img.shields.io/badge/Funciona%20con%20cualquier%20agente-5B21B6?style=for-the-badge" alt="Funciona con cualquier agente" /></a>
 <a href="#-inicio-rápido"><img src="https://img.shields.io/badge/Inicio%20r%C3%A1pido-4F46E5?style=for-the-badge" alt="Inicio rápido" /></a>
 <a href="#-el-camino-de-un-video"><img src="https://img.shields.io/badge/El%20camino%20de%20un%20video-4338CA?style=for-the-badge" alt="El camino de un video" /></a>
-<a href="#-herramientas-mcp-15"><img src="https://img.shields.io/badge/Herramientas%20MCP%20%2815%29-2563EB?style=for-the-badge" alt="Herramientas MCP (15)" /></a>
+<a href="#-herramientas-mcp-15"><img src="https://img.shields.io/badge/Herramientas%20MCP%20%2817%29-2563EB?style=for-the-badge" alt="Herramientas MCP (17)" /></a>
 <a href="#-roles-y-skills"><img src="https://img.shields.io/badge/Roles%20y%20skills-0284C7?style=for-the-badge" alt="Roles y skills" /></a>
 <a href="#-formas-de-publicar"><img src="https://img.shields.io/badge/Formas%20de%20publicar-0EA5E9?style=for-the-badge" alt="Formas de publicar" /></a>
 <a href="#-estructura"><img src="https://img.shields.io/badge/Estructura-0891B2?style=for-the-badge" alt="Estructura" /></a>
@@ -60,7 +60,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/bootstrap.ps1       
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-schedule.ps1 # tarea diaria de las 05:00
 ```
 
-macOS / Linux: `sh scripts/bootstrap.sh` y la línea de cron que imprime al final. Requiere [uv](https://docs.astral.sh/uv/).
+macOS / Linux: `sh scripts/bootstrap.sh` y la línea de cron que imprime al final. Requiere [uv](https://docs.astral.sh/uv/) y [Deno 2](https://docs.deno.com/runtime/getting_started/installation/).
 
 **¿Prefieres Docker?** Es opcional: la imagen solo lleva el código del MCP y tu carpeta se monta al ejecutarla.
 
@@ -153,10 +153,11 @@ flowchart LR
 El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @menciones, links, hashtags fijos y preferencia de subtítulos.
 
 <a id="-herramientas-mcp-15"></a>
-## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Herramientas MCP (15)
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Herramientas MCP (17)
 
 | Herramienta | |
 |---|---|
+| `code_search` · `code_execute` | Descubrir y combinar operaciones autorizadas en JavaScript restringido |
 | `queue_status` | Qué sale cada día, atrasados, sin texto, videos nuevos en el inbox |
 | `plan_week` | Reparte una carpeta de semana en sus días restantes |
 | `analyze_video` | Fotogramas, transcripción, voz sí/no, `.srt` |
@@ -220,6 +221,17 @@ git config core.hooksPath .githooks      # quita los coautores de IA de los mens
 ```
 
 Reglas de arquitectura y cómo agregar un backend: [`AGENTS.md`](AGENTS.md).
+
+### Code Mode
+
+Combina operaciones autorizadas en JavaScript con `code_search` y `code_execute`, conservando las herramientas
+actuales. Siempre está disponible, se ejecuta en un proceso Deno restringido y exige aprobación del dueño
+para cada propuesta exacta de publicación. Reutiliza la cola y las APIs oficiales. La instalación nativa requiere
+Deno 2; la imagen Docker estándar ya lo incluye. [Configuración, ejemplos, seguridad y recuperación](docs/CODE_MODE.md) ·
+[Decisión de arquitectura](docs/adr/0001-code-mode.md) · [Mediciones](docs/benchmarks/CODE_MODE.md).
+
+Los fallos de publicación con resultado incierto ahora requieren conciliación para evitar duplicados.
+Los destinos exitosos se conservan y solo se reintentan automáticamente los fallos explícitamente seguros.
 
 <p align="center"><a href="#top">Volver al inicio</a></p>
 

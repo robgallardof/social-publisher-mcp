@@ -26,6 +26,7 @@ FROM python:3.12-slim-bookworm
 RUN groupadd --gid 10001 forge && useradd --uid 10001 --gid forge --create-home forge \
     && mkdir /workspace && chown forge:forge /workspace
 COPY --from=build /app/.venv /app/.venv
+COPY --from=denoland/deno:bin-2.9.6 /deno /usr/local/bin/deno
 ENV PATH=/app/.venv/bin:$PATH SOCIAL_FORGE_ROOT=/workspace PYTHONUNBUFFERED=1 PYTHONUTF8=1 \
     HF_HOME=/workspace/.cache/huggingface TZ=America/Mexico_City
 USER forge

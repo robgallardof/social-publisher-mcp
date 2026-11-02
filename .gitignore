@@ -29,6 +29,7 @@ logs/
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+mcp/social-forge/dist/
 # per-video analysis (frames, transcripts of personal videos)
 analytics/videos/
 analytics/audience.md
@@ -39,4 +40,6 @@ analytics/research/*.md
 
 # Local opt-in agent connections
 /opencode.json
+content/.code-mode.sqlite*
+content/.publisher.lock
 /.dsh/

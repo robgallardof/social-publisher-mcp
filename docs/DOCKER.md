@@ -16,6 +16,8 @@ docker build --build-arg EXTRAS=youtube,analysis -t social-forge:local . # + fas
 | `browser` (Playwright profile) | **No.** Its one-time login needs a desktop browser; run it natively |
 
 Video probing uses the ffmpeg bundled with `imageio-ffmpeg`, so no system ffmpeg is needed.
+The standard image includes Deno 2.9.6 and psutil. Code Mode is always available alongside the direct tools,
+without extra build flags or an enable switch. See [Code Mode](CODE_MODE.md) for approval and security details.
 
 ## stdio: launched by your MCP client
 

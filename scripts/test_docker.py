@@ -187,10 +187,17 @@ def main():
             rpc(url + "/mcp", token, INITIALIZED, session)
             tools, _ = rpc(url + "/mcp", token, {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}, session)
             names = {t["name"] for t in tools["result"]["tools"]}
-            assert TOOL[0] in names, names
+            assert {TOOL[0], "code_search", "code_execute"} <= names, names
             called, _ = rpc(url + "/mcp", token, {"jsonrpc": "2.0", "id": 3, "method": "tools/call",
                                                   "params": {"name": TOOL[0], "arguments": TOOL[1]}}, session)
             assert not called["result"].get("isError"), called
+            executed, _ = rpc(url + "/mcp", token, {"jsonrpc": "2.0", "id": 4, "method": "tools/call",
+                "params": {"name": "code_execute", "arguments": {"code": "return await social.accounts.list();"}}}, session)
+            assert not executed["result"].get("isError"), executed
+            execution = json.loads(executed["result"]["content"][0]["text"])
+            assert execution["status"] == "ok", execution
+            assert execution["result"]["accounts"][0]["id"] == "workspace:tiktok", execution
+            print("ok  Docker Code Mode: real restricted Deno execution with default config")
             print(f"ok  compose HTTP on port {port}: token, {len(names)} tools, {TOOL[0]}")
         finally:
             subprocess.run([*compose, "down", "--remove-orphans"], env=env, capture_output=True, timeout=120)

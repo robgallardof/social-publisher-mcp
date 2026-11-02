@@ -29,6 +29,7 @@ class Settings:
     weekly: dict = field(default_factory=dict)              # per_day, skip_weekdays
     accounts: dict[str, dict] = field(default_factory=dict) # per-backend options (ids, versions...)
     brand: dict = field(default_factory=dict)               # handles on each network, footer label
+    code_mode: dict = field(default_factory=dict)           # optional, single-workspace trust boundary
 
     @property
     def queue_dir(self) -> Path:
@@ -66,6 +67,9 @@ class Settings:
         return self.backends.get(platform, "handoff")
 
     def validate(self) -> None:
+        from .domain.code_mode import CodeModeSettings
+
+        CodeModeSettings.from_dict(self.code_mode)
         parse_hhmm(self.post_time)
         if self.mode not in ("at_time", "ahead"):
             raise ValueError("mode must be at_time or ahead")

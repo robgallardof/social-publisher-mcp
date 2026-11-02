@@ -25,7 +25,7 @@
 <a href="#-works-with-every-agent"><img src="https://img.shields.io/badge/Works%20with%20every%20agent-5B21B6?style=for-the-badge" alt="Works with every agent" /></a>
 <a href="#-quick-start"><img src="https://img.shields.io/badge/Quick%20start-4F46E5?style=for-the-badge" alt="Quick start" /></a>
 <a href="#-how-a-video-flows"><img src="https://img.shields.io/badge/How%20a%20video%20flows-4338CA?style=for-the-badge" alt="How a video flows" /></a>
-<a href="#-mcp-tools-15"><img src="https://img.shields.io/badge/MCP%20tools%20%2815%29-2563EB?style=for-the-badge" alt="MCP tools (15)" /></a>
+<a href="#-mcp-tools-15"><img src="https://img.shields.io/badge/MCP%20tools%20%2817%29-2563EB?style=for-the-badge" alt="MCP tools (17)" /></a>
 <a href="#-roles-and-skills"><img src="https://img.shields.io/badge/Roles%20and%20skills-0284C7?style=for-the-badge" alt="Roles and skills" /></a>
 <a href="#-publishing-backends"><img src="https://img.shields.io/badge/Publishing%20backends-0EA5E9?style=for-the-badge" alt="Publishing backends" /></a>
 <a href="#-layout"><img src="https://img.shields.io/badge/Layout-0891B2?style=for-the-badge" alt="Layout" /></a>
@@ -57,7 +57,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/bootstrap.ps1       
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-schedule.ps1 # daily 05:00 task
 ```
 
-macOS / Linux: `sh scripts/bootstrap.sh` and the cron line printed at the end. Requires [uv](https://docs.astral.sh/uv/).
+macOS / Linux: `sh scripts/bootstrap.sh` and the cron line printed at the end. Requires [uv](https://docs.astral.sh/uv/) and [Deno 2](https://docs.deno.com/runtime/getting_started/installation/).
 
 ### Connect your agent
 
@@ -153,10 +153,11 @@ flowchart LR
 The lead role **asks before writing** for your handles on every network, @mentions, links, fixed hashtags and subtitle preference.
 
 <a id="-mcp-tools-15"></a>
-## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> MCP tools (15)
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> MCP tools (17)
 
 | Tool | |
 |---|---|
+| `code_search` · `code_execute` | Discover and compose authorized operations in restricted JavaScript |
 | `queue_status` | What goes out each day, overdue, missing copy, new videos in the inbox |
 | `plan_week` | Spread a week folder over its remaining days |
 | `analyze_video` | Frames, transcript, speech yes/no, `.srt` |
@@ -220,6 +221,17 @@ git config core.hooksPath .githooks      # strips AI co-author trailers from com
 ```
 
 Architecture rules and how to add a backend: [`AGENTS.md`](AGENTS.md).
+
+### Code Mode
+
+Compose authorized operations in JavaScript with `code_search` and `code_execute`, alongside all existing tools.
+It is always available, runs locally in a restricted Deno process, and requires owner approval of exact
+publication proposals. It reuses the dated queue and official provider adapters. Native installation requires
+Deno 2; the standard Docker image includes it. [Setup, examples, security limits and recovery](docs/CODE_MODE.md) ·
+[Architecture decision](docs/adr/0001-code-mode.md) · [Measured benchmarks](docs/benchmarks/CODE_MODE.md).
+
+Ambiguous publication failures now stop for reconciliation instead of automatically risking a duplicate;
+successful targets are preserved, and only explicitly safe failures are retried.
 
 <p align="center"><a href="#top">Back to top</a></p>
 

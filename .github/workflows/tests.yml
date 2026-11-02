@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.9.6
       - run: uv sync --python 3.12
       - run: uv run pytest -q
   docker:

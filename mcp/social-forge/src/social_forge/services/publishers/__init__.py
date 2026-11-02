@@ -20,6 +20,8 @@ class Job:
     video: Path
     copy: Copy
     publish_at: datetime        # aware; in the past or now = publish immediately
+    operation_id: str | None = None
+    approval_id: str | None = None
 
     @property
     def platform(self) -> str:
@@ -38,7 +40,12 @@ class Publisher(Protocol):
 
 
 class PublisherError(RuntimeError):
-    pass
+    retry_safe = False
+
+
+class RetrySafePublisherError(PublisherError):
+    """Adapter verified no remote side effect occurred; safe to attempt again."""
+    retry_safe = True
 
 
 def build(name: str, platform: str, settings: Settings) -> Publisher:

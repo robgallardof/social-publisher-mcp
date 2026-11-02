@@ -27,7 +27,7 @@ def probe(video: Path) -> Probe:
 
     out = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-hide_banner", "-i", str(video)],
                          capture_output=True, text=True, stdin=subprocess.DEVNULL,
-                         encoding="utf-8", errors="replace").stderr
+                         encoding="utf-8", errors="replace", timeout=15).stderr
     dur = re.search(r"Duration: (\d+):(\d+):([\d.]+)", out)
     res = re.search(r"Video:.*?(\d{2,5})x(\d{2,5})", out)
     if not dur or not res:

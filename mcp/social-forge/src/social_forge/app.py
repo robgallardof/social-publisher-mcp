@@ -67,6 +67,14 @@ def write_post(video: str, caption: str, title: str = "", hashtags: list[str] | 
                platforms_: list[str] | None = None, overrides: dict | None = None,
                publish_time: str | None = None, approved: bool = True, footer: bool = True,
                subtitles: str = "none", analysis_notes: dict | None = None) -> dict:
+    from .services.locking import exclusive
+    with exclusive(settings().root):
+        return _write_post(video, caption, title, hashtags, platforms_, overrides, publish_time,
+                           approved, footer, subtitles, analysis_notes)
+
+
+def _write_post(video, caption, title, hashtags, platforms_, overrides, publish_time,
+                approved, footer, subtitles, analysis_notes):
     item = find(video)
     spec = post.PostSpec.from_dict({"caption": caption, "title": title, "hashtags": hashtags or [],
                                     "platforms": platforms_ or [], "overrides": overrides or {},

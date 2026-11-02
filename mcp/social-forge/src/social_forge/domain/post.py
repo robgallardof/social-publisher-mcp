@@ -57,6 +57,7 @@ class PostSpec:
     footer: bool = True                                  # add the brand's other-network handles
     subtitles: str = "none"                              # none | burned | auto | srt
     analysis: dict = field(default_factory=dict)         # what analyze_video found (speech, summary...)
+    code_mode_proposal: str | None = None                # owner-approved immutable Code Mode schedule
 
     @classmethod
     def from_dict(cls, data: dict | None) -> "PostSpec":
@@ -76,7 +77,8 @@ class PostSpec:
         out = {"title": self.title, "caption": self.caption, "hashtags": self.hashtags,
                "platforms": self.platforms, "overrides": self.overrides,
                "publish_time": self.publish_time, "approved": self.approved,
-               "footer": self.footer, "subtitles": self.subtitles, "analysis": self.analysis}
+               "footer": self.footer, "subtitles": self.subtitles, "analysis": self.analysis,
+               "code_mode_proposal": self.code_mode_proposal}
         return {k: v for k, v in out.items()
                 if v not in ("", [], {}, None) and not (k == "footer" and v) and not (k == "subtitles" and v == "none")}
 

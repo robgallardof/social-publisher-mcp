@@ -144,6 +144,31 @@ def _register_agent_files() -> None:
 _register_agent_files()
 
 
+def _register_code_mode() -> None:
+    # Code Mode is a standard interface, alongside the existing direct tools.
+
+    @mcp.tool()
+    def code_search(query: str = "", provider: str | None = None, read_only: bool = False, limit: int = 5) -> dict:
+        """Discover authorized Code Mode operations by name, provider, permissions or description."""
+        from .services.code_registry import Registry
+        return Registry(app.settings()).search(query, provider, read_only, limit)
+
+    @mcp.tool()
+    async def code_execute(code: str, read_only: bool = True) -> dict:
+        """Execute bounded JavaScript using await social.<namespace>.<operation>({arguments}); return a JSON value.
+        Default read-only. read_only=false permits local proposals/scheduling, never grants approval.
+        Owner must approve exact proposals through the CLI before schedule.create can activate them."""
+        from .domain.code_mode import CodeModeError
+        from .services.code_sandbox import execute
+        try:
+            return await execute(app.settings(), code, read_only=read_only)
+        except CodeModeError as error:
+            return {"status": "failed", "error": error.code, **getattr(error, "details", {})}
+
+
+_register_code_mode()
+
+
 TOKEN_ENV = "SOCIAL_FORGE_MCP_TOKEN"
 
 
