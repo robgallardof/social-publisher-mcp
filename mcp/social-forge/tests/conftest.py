@@ -49,8 +49,8 @@ class FakePublisher:
     def publish(self, job, now):
         FakePublisher.calls.append((job.video.name, job.platform, job.publish_at, now))
         if self.fail:
-            from social_forge.services.publishers import PublisherError
-            raise PublisherError("boom")
+            from social_forge.services.publishers import RetrySafePublisherError
+            raise RetrySafePublisherError("boom")
         return {"status": "scheduled" if job.publish_at > now else "published", "id": f"id-{job.video.stem}"}
 
 

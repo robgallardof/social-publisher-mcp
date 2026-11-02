@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
+import tempfile
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
@@ -85,15 +87,29 @@ def due(items: list[Item], start: date, end: date) -> list[Item]:
 
 def save_spec(video: Path, spec: PostSpec) -> Path:
     path = sidecar_path(video)
-    path.write_text(yaml.safe_dump(spec.to_dict(), allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
+    atomic_write(path, yaml.safe_dump(spec.to_dict(), allow_unicode=True, sort_keys=False, width=1000))
     return path
 
 
-def record(item: Item, platform: str, receipt: dict) -> None:
+def atomic_write(path: Path, text: str) -> None:
+    fd, temporary = tempfile.mkstemp(prefix=".social-", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as stream:
+            stream.write(text)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+
+def record(item: Item, platform: str, receipt: dict, *, increment: bool = True) -> None:
     prev = item.receipts.get(platform, {})
-    receipt = {**receipt, "attempts": prev.get("attempts", 0) + 1, "at": datetime.now().astimezone().isoformat()}
+    receipt = {**receipt, "attempts": prev.get("attempts", 0) + int(increment),
+               "at": datetime.now().astimezone().isoformat()}
     item.receipts[platform] = receipt
-    item.receipts_path.write_text(json.dumps(item.receipts, indent=2, ensure_ascii=False), encoding="utf-8")
+    atomic_write(item.receipts_path, json.dumps(item.receipts, indent=2, ensure_ascii=False))
 
 
 def companions(video: Path) -> list[Path]:

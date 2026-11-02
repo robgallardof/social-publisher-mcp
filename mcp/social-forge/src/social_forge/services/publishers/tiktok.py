@@ -14,7 +14,7 @@ import httpx
 
 from ...config import Settings
 from .. import secrets
-from . import Job, PublisherError
+from . import Job, PublisherError, RetrySafePublisherError
 
 API = "https://open.tiktokapis.com/v2"
 MB = 1024 * 1024
@@ -63,6 +63,8 @@ class TikTokApi:
     def publish(self, job: Job, now: datetime) -> dict:
         info = self.post("/post/publish/creator_info/query/", {})
         wanted = self.opts.get("privacy_level", "PUBLIC_TO_EVERYONE")
+        if job.approval_id and wanted not in (info.get("privacy_level_options") or []):
+            raise RetrySafePublisherError("Approved privacy is unavailable; new owner approval required")
         options = info.get("privacy_level_options") or [wanted]
         privacy = wanted if wanted in options else options[0]
         size = job.video.stat().st_size
@@ -91,5 +93,5 @@ class TikTokApi:
             if status.get("status") == "FAILED":
                 raise PublisherError(f"TikTok publish failed: {status.get('fail_reason')}")
             self.sleep(15)
-        return {"status": "published", "id": init["publish_id"], "privacy": privacy,
+        return {"status": "unknown", "id": init["publish_id"], "privacy": privacy,
                 "note": "still processing on TikTok; check the app"}

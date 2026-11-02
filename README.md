@@ -25,7 +25,7 @@
 <a href="#-works-with-every-agent"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-works-with-every-agent-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-works-with-every-agent-outline-sm-light.svg" alt="Works with every agent" height="34" /></picture></a>
 <a href="#-quick-start"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-quick-start-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-quick-start-outline-sm-light.svg" alt="Quick start" height="34" /></picture></a>
 <a href="#-how-a-video-flows"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-how-a-video-flows-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-how-a-video-flows-outline-sm-light.svg" alt="How a video flows" height="34" /></picture></a>
-<a href="#-mcp-tools-15"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-mcp-tools-15-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-mcp-tools-15-outline-sm-light.svg" alt="MCP tools (15)" height="34" /></picture></a>
+<a href="#-mcp-tools-15"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-mcp-tools-15-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-mcp-tools-15-outline-sm-light.svg" alt="MCP tools (17)" height="34" /></picture></a>
 <a href="#-roles-and-skills"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-roles-and-skills-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-roles-and-skills-outline-sm-light.svg" alt="Roles and skills" height="34" /></picture></a>
 <a href="#-publishing-backends"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-publishing-backends-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-publishing-backends-outline-sm-light.svg" alt="Publishing backends" height="34" /></picture></a>
 <a href="#-layout"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-layout-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-layout-outline-sm-light.svg" alt="Layout" height="34" /></picture></a>
@@ -52,7 +52,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/bootstrap.ps1       
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-schedule.ps1 # daily 05:00 task
 ```
 
-macOS / Linux: `sh scripts/bootstrap.sh` and the cron line printed at the end. Requires [uv](https://docs.astral.sh/uv/).
+macOS / Linux: `sh scripts/bootstrap.sh` and the cron line printed at the end. Requires [uv](https://docs.astral.sh/uv/) and [Deno 2](https://docs.deno.com/runtime/getting_started/installation/).
 
 ### Connect your agent
 
@@ -174,10 +174,11 @@ The lead role **asks before writing** for your handles on every network, @mentio
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-mcp-tools-15"></a>
-## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> MCP tools (15)
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> MCP tools (17)
 
 | Tool | |
 |---|---|
+| `code_search` · `code_execute` | Discover and compose authorized operations in restricted JavaScript |
 | `queue_status` | What goes out each day, overdue, missing copy, new videos in the inbox |
 | `plan_week` | Spread a week folder over its remaining days |
 | `analyze_video` | Frames, transcript, speech yes/no, `.srt` |
@@ -249,6 +250,17 @@ git config core.hooksPath .githooks      # strips AI co-author trailers from com
 ```
 
 Architecture rules and how to add a backend: [`AGENTS.md`](AGENTS.md).
+
+### Code Mode
+
+Compose authorized operations in JavaScript with `code_search` and `code_execute`, alongside all existing tools.
+It is always available, runs locally in a restricted Deno process, and requires owner approval of exact
+publication proposals. It reuses the dated queue and official provider adapters. Native installation requires
+Deno 2; the standard Docker image includes it. [Setup, examples, security limits and recovery](docs/CODE_MODE.md) ·
+[Architecture decision](docs/adr/0001-code-mode.md) · [Measured benchmarks](docs/benchmarks/CODE_MODE.md).
+
+Ambiguous publication failures now stop for reconciliation instead of automatically risking a duplicate;
+successful targets are preserved, and only explicitly safe failures are retried.
 
 <p align="center"><a href="#top"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-back-to-top-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-back-to-top-outline-sm-light.svg" alt="Back to top" height="34" /></picture></a></p>
 

@@ -1,5 +1,8 @@
 # One-time setup on Windows: Python env with every backend, Playwright browser, agent configs.
 $ErrorActionPreference = "Stop"
+if (-not (Get-Command deno -ErrorAction SilentlyContinue)) {
+    throw "Deno 2 es obligatorio para Code Mode. Instala Deno desde https://docs.deno.com/runtime/getting_started/installation/ y vuelve a ejecutar este script."
+}
 $root = Split-Path -Parent $PSScriptRoot
 Push-Location (Join-Path $root "mcp\social-forge")
 try {

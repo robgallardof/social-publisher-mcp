@@ -60,6 +60,26 @@ def main(argv: list[str] | None = None) -> int:
         dump(app.pull_metrics())
     elif cmd == "report":
         dump(app.insights_report())
+    elif cmd in ("code-review", "code-approve", "code-cancel", "code-reconcile"):
+        from .services.code_approvals import Approvals
+        from .domain.code_mode import CodeModeError
+        approvals = Approvals(app.settings())
+        try:
+            if cmd == "code-review" and len(args) == 1:
+                dump(approvals.get(args[0]))
+            elif cmd == "code-approve" and len(args) in (2, 3):
+                dump(approvals.approve(args[0], args[1], int(args[2]) if len(args) == 3 else 604800))
+            elif cmd == "code-cancel" and len(args) == 1:
+                dump(approvals.cancel(args[0]))
+            elif cmd == "code-reconcile" and len(args) in (3, 4):
+                dump(approvals.reconcile(args[0], args[1], args[2], args[3] if len(args) == 4 else None))
+            else:
+                print("Usage: code-review ID | code-approve ID EXACT_DIGEST [TTL_SECONDS] | code-cancel ID | "
+                      "code-reconcile ID PLATFORM published REMOTE_ID | code-reconcile ID PLATFORM not_published")
+                return 2
+        except CodeModeError as error:
+            dump({"error": error.code})
+            return 1
     else:
         print(__doc__)
         return 2

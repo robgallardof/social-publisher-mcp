@@ -25,7 +25,7 @@
 <a href="#-funciona-con-cualquier-agente"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-funciona-con-cualquier-agente-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-funciona-con-cualquier-agente-outline-sm-light.svg" alt="Funciona con cualquier agente" height="34" /></picture></a>
 <a href="#-inicio-rápido"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-inicio-rapido-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-inicio-rapido-outline-sm-light.svg" alt="Inicio rápido" height="34" /></picture></a>
 <a href="#-el-camino-de-un-video"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-el-camino-de-un-video-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-el-camino-de-un-video-outline-sm-light.svg" alt="El camino de un video" height="34" /></picture></a>
-<a href="#-herramientas-mcp-15"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-herramientas-mcp-15-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-herramientas-mcp-15-outline-sm-light.svg" alt="Herramientas MCP (15)" height="34" /></picture></a>
+<a href="#-herramientas-mcp-15"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-herramientas-mcp-15-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-herramientas-mcp-15-outline-sm-light.svg" alt="Herramientas MCP (17)" height="34" /></picture></a>
 <a href="#-roles-y-skills"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-roles-y-skills-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-roles-y-skills-outline-sm-light.svg" alt="Roles y skills" height="34" /></picture></a>
 <a href="#-formas-de-publicar"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-formas-de-publicar-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-formas-de-publicar-outline-sm-light.svg" alt="Formas de publicar" height="34" /></picture></a>
 <a href="#-estructura"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-estructura-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-estructura-outline-sm-light.svg" alt="Estructura" height="34" /></picture></a>
@@ -55,7 +55,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/bootstrap.ps1       
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-schedule.ps1 # tarea diaria de las 05:00
 ```
 
-macOS / Linux: `sh scripts/bootstrap.sh` y la línea de cron que imprime al final. Requiere [uv](https://docs.astral.sh/uv/).
+macOS / Linux: `sh scripts/bootstrap.sh` y la línea de cron que imprime al final. Requiere [uv](https://docs.astral.sh/uv/) y [Deno 2](https://docs.deno.com/runtime/getting_started/installation/).
 
 **¿Prefieres Docker?** Es opcional: la imagen solo lleva el código del MCP y tu carpeta se monta al ejecutarla.
 
@@ -174,10 +174,11 @@ El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @mencion
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-herramientas-mcp-15"></a>
-## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Herramientas MCP (15)
+## <img src="assets/readme-builder/icons/bot.svg" width="24" height="24" alt="" /> Herramientas MCP (17)
 
 | Herramienta | |
 |---|---|
+| `code_search` · `code_execute` | Descubrir y combinar operaciones autorizadas en JavaScript restringido |
 | `queue_status` | Qué sale cada día, atrasados, sin texto, videos nuevos en el inbox |
 | `plan_week` | Reparte una carpeta de semana en sus días restantes |
 | `analyze_video` | Fotogramas, transcripción, voz sí/no, `.srt` |
@@ -249,6 +250,17 @@ git config core.hooksPath .githooks      # quita los coautores de IA de los mens
 ```
 
 Reglas de arquitectura y cómo agregar un backend: [`AGENTS.md`](AGENTS.md).
+
+### Code Mode
+
+Combina operaciones autorizadas en JavaScript con `code_search` y `code_execute`, conservando las herramientas
+actuales. Siempre está disponible, se ejecuta en un proceso Deno restringido y exige aprobación del dueño
+para cada propuesta exacta de publicación. Reutiliza la cola y las APIs oficiales. La instalación nativa requiere
+Deno 2; la imagen Docker estándar ya lo incluye. [Configuración, ejemplos, seguridad y recuperación](docs/CODE_MODE.md) ·
+[Decisión de arquitectura](docs/adr/0001-code-mode.md) · [Mediciones](docs/benchmarks/CODE_MODE.md).
+
+Los fallos de publicación con resultado incierto ahora requieren conciliación para evitar duplicados.
+Los destinos exitosos se conservan y solo se reintentan automáticamente los fallos explícitamente seguros.
 
 <p align="center"><a href="#top"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/btn-volver-al-inicio-outline-sm-dark.svg" /><img src="assets/readme-builder/kit/btn-volver-al-inicio-outline-sm-light.svg" alt="Volver al inicio" height="34" /></picture></a></p>
 

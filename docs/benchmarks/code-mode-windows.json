@@ -1,0 +1,130 @@
+{
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15",
+    "deno": "deno 2.9.6 (stable, release, x86_64-pc-windows-msvc)"
+  },
+  "methodology": {
+    "repeats": 5,
+    "tokenizer": "cl100k_base",
+    "transport": "in-process FastMCP call_tool",
+    "provider_latency": "offline; zero provider requests, real ffmpeg fixture",
+    "baseline": "private direct MCP harness over identical authorized capability adapters",
+    "legacy_limits": "Legacy tools have no equivalent account/proposal/approval operations; timings reported separately.",
+    "visible_tokens": "serialized schema + arguments + result; code includes discovery, no actual LLM conversation",
+    "not_measured": [
+      "real provider latency",
+      "network MCP transport",
+      "model reasoning tokens",
+      "host Python CPU/RSS",
+      "cross-platform runtime comparison",
+      "paid infrastructure"
+    ]
+  },
+  "schema_tokens": {
+    "existing_legacy_catalog": 1460,
+    "equivalent_direct_harness": 844,
+    "code_tools_only": 210,
+    "actual_additive_catalog": 1667
+  },
+  "sandbox_null_median_ms": 53.5,
+  "existing_direct_median_ms": {
+    "brand_info": 0.044,
+    "platform_rules": 0.021,
+    "check_video": 25.884,
+    "preview_post": 1.416,
+    "insights_report": 0.075
+  },
+  "scenarios": [
+    {
+      "scenario": "configured_accounts",
+      "correct_results": true,
+      "direct_median_ms": 8.462,
+      "code_median_ms": 81.318,
+      "direct_model_visible_tokens": 928,
+      "code_selected_tools_visible_tokens": 492,
+      "code_actual_additive_visible_tokens": 1949,
+      "direct_round_trips": 1,
+      "code_round_trips_including_search": 2,
+      "code_cpu_ms_last": 46.875,
+      "code_sampled_peak_rss_bytes_last": 30121984,
+      "provider_api_requests": 0,
+      "errors": 0
+    },
+    {
+      "scenario": "three_provider_requirements",
+      "correct_results": true,
+      "direct_median_ms": 25.557,
+      "code_median_ms": 97.064,
+      "direct_model_visible_tokens": 1388,
+      "code_selected_tools_visible_tokens": 1011,
+      "code_actual_additive_visible_tokens": 2468,
+      "direct_round_trips": 3,
+      "code_round_trips_including_search": 2,
+      "code_cpu_ms_last": 31.25,
+      "code_sampled_peak_rss_bytes_last": 30101504,
+      "provider_api_requests": 0,
+      "errors": 0
+    },
+    {
+      "scenario": "three_provider_media_validation",
+      "correct_results": true,
+      "direct_median_ms": 36.403,
+      "code_median_ms": 105.768,
+      "direct_model_visible_tokens": 949,
+      "code_selected_tools_visible_tokens": 564,
+      "code_actual_additive_visible_tokens": 2021,
+      "direct_round_trips": 1,
+      "code_round_trips_including_search": 2,
+      "code_cpu_ms_last": 15.625,
+      "code_sampled_peak_rss_bytes_last": 30216192,
+      "provider_api_requests": 0,
+      "errors": 0
+    },
+    {
+      "scenario": "multi_platform_proposal",
+      "correct_results": true,
+      "direct_median_ms": 92.172,
+      "code_median_ms": 163.249,
+      "direct_model_visible_tokens": 1601,
+      "code_selected_tools_visible_tokens": 1705,
+      "code_actual_additive_visible_tokens": 3162,
+      "direct_round_trips": 2,
+      "code_round_trips_including_search": 2,
+      "code_cpu_ms_last": 62.5,
+      "code_sampled_peak_rss_bytes_last": 30154752,
+      "provider_api_requests": 0,
+      "errors": 0
+    },
+    {
+      "scenario": "approved_schedule",
+      "correct_results": true,
+      "direct_median_ms": 23.993,
+      "code_median_ms": 94.961,
+      "direct_model_visible_tokens": 917,
+      "code_selected_tools_visible_tokens": 504,
+      "code_actual_additive_visible_tokens": 1961,
+      "direct_round_trips": 1,
+      "code_round_trips_including_search": 2,
+      "code_cpu_ms_last": 31.25,
+      "code_sampled_peak_rss_bytes_last": 30187520,
+      "provider_api_requests": 0,
+      "errors": 0
+    },
+    {
+      "scenario": "cached_analytics",
+      "correct_results": true,
+      "direct_median_ms": 8.654,
+      "code_median_ms": 80.039,
+      "direct_model_visible_tokens": 919,
+      "code_selected_tools_visible_tokens": 483,
+      "code_actual_additive_visible_tokens": 1940,
+      "direct_round_trips": 1,
+      "code_round_trips_including_search": 2,
+      "code_cpu_ms_last": 62.5,
+      "code_sampled_peak_rss_bytes_last": 30154752,
+      "provider_api_requests": 0,
+      "errors": 0
+    }
+  ]
+}
