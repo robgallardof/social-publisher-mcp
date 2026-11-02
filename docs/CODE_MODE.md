@@ -242,6 +242,7 @@ For uncaught JS failures the bootstrap uses `javascript_error` rather than echoi
   owners. The sandbox cannot select another root, principal, provider account ID or credential store.
 * Deno runs with explicit deny-all read/write/network/environment/run/FFI/system/import permissions,
   no config/npm/remote loading, no prompts and a minimal environment. Tokens remain in existing Python services.
+  A fresh temporary `DENO_DIR` lets container UIDs without a home start safely; inherited cache settings are discarded.
   The only permitted communication is bounded stdio with a Python allowlist that revalidates every request.
 * Deno is a separate process, not an embedded privileged Python engine or `node:vm`. It is a runtime permission
   sandbox, not a VM or kernel container. A native Deno/V8 vulnerability is outside this boundary. Keep Deno
@@ -254,7 +255,9 @@ For uncaught JS failures the bootstrap uses `javascript_error` rather than echoi
   calls, code size, cumulative bridge-response bytes and sandbox-output bytes. No unrestricted debug output.
   Other MCP/runner processes have their own execution quotas; there is no host-global admission service.
 * Timeout includes startup plus JS/bridge waiting. Cancellation kills the child and waits for admitted trusted
-  host calls to finish; already committed local proposals/schedules remain committed. FFmpeg probing has a
+  host calls to finish. Shutdown drains and discards buffered child output before waiting for exit, including
+  after output-limit errors, so Unix pipe backpressure cannot block cleanup.
+  Already committed local proposals/schedules remain committed. FFmpeg probing has a
   separate 15-second bound. Host hashing/SQLite/media work can extend cleanup beyond the JS timeout. Media is
   streamed for hashing, not loaded into JS. Local filesystem mutations by the trusted owner are not prevented.
 * No insecure fallback: missing Deno/psutil, unsupported flags or sandbox startup failure prevent execution.

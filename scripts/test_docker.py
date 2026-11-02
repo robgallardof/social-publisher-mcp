@@ -140,6 +140,22 @@ def main():
         assert not hits, f"image contains {name}: {hits}"
     print("ok  image holds no personal data")
 
+    # GitHub's mounted-workspace UID has no /etc/passwd entry in the image. Exercise
+    # that deployment even on hosts where the normal smoke user is the named forge user.
+    sandbox_probe = """
+import asyncio, tempfile
+from pathlib import Path
+from social_forge.config import Settings
+from social_forge.services.code_sandbox import execute
+with tempfile.TemporaryDirectory() as directory:
+    result = asyncio.run(execute(Settings(Path(directory)), 'return await social.accounts.list();'))
+    assert result['status'] == 'ok', result
+    assert result['result']['accounts'], result
+"""
+    run("docker", "run", "--rm", "--user", "19421:19421", "--entrypoint", "python", IMAGE,
+        "-c", sandbox_probe)
+    print("ok  Code Mode runs as an unnamed UID without a home directory")
+
     with tempfile.TemporaryDirectory(prefix="mcp-docker-") as tmp:
         work = Path(tmp)
         for name in WORKSPACE_COPY:

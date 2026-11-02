@@ -40,6 +40,21 @@ def clean_env():
             **{key: os.environ[key] for key in ("SYSTEMROOT", "WINDIR") if key in os.environ}}
 
 
+async def terminate(process):
+    if process.returncode is None:
+        try:
+            process.kill()
+        except ProcessLookupError:
+            pass
+    # A Unix pipe reader can pause above its buffer limit. wait() then waits for
+    # EOF delivery forever, even after kill. Discard buffered output before reaping;
+    # the terminated child cannot produce more, and reads stay bounded in memory.
+    if process.stdout is not None:
+        while await process.stdout.read(65536):
+            pass
+    await process.wait()
+
+
 async def execute(settings, code: str, *, read_only: bool = True) -> dict:
     limits = CodeModeSettings.from_dict(settings.code_mode)
     if not isinstance(code, str) or len(code.encode()) > limits.max_code_bytes:
@@ -59,6 +74,9 @@ async def execute(settings, code: str, *, read_only: bool = True) -> dict:
     try:
         path, psutil = await asyncio.to_thread(runtime, limits)
         with tempfile.TemporaryDirectory(prefix="social-code-") as directory:
+            # Arbitrary container UIDs may have no passwd entry/home. Deno still resolves a
+            # cache at startup with code caching disabled; isolate it from every user's cache.
+            child_env = {**clean_env(), "DENO_DIR": str(Path(directory) / "deno-cache")}
             args = [path, "run", "--quiet", "--no-prompt", "--no-config", "--no-npm", "--no-remote",
                     "--no-code-cache", "--deny-read", "--deny-write", "--deny-net", "--deny-env",
                     "--deny-run", "--deny-ffi", "--deny-sys", "--deny-import",
@@ -66,7 +84,7 @@ async def execute(settings, code: str, *, read_only: bool = True) -> dict:
                     str(Path(__file__).with_name("code_worker.js"))]
             process = await asyncio.create_subprocess_exec(
                 *args, stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.DEVNULL, env=clean_env(), cwd=directory,
+                stderr=asyncio.subprocess.DEVNULL, env=child_env, cwd=directory,
                 limit=limits.max_output_bytes + 1)
             observed = psutil.Process(process.pid)
             writer_lock = asyncio.Lock()
@@ -176,12 +194,7 @@ async def execute(settings, code: str, *, read_only: bool = True) -> dict:
                 protocol_task.cancel()
                 await asyncio.gather(watcher, protocol_task, return_exceptions=True)
                 # Windows holds the child's working directory open until process termination.
-                if process.returncode is None:
-                    try:
-                        process.kill()
-                    except ProcessLookupError:
-                        pass
-                await process.wait()
+                await terminate(process)
             status = "ok"
             return {"execution_id": execution_id, "status": status, "result": value, "calls": calls,
                     "metrics": {"duration_ms": round((time.perf_counter() - started) * 1000, 2),
@@ -205,12 +218,8 @@ async def execute(settings, code: str, *, read_only: bool = True) -> dict:
         status = "sandbox_failed"
         raise CodeModeError("sandbox_failed") from None
     finally:
-        if process is not None and process.returncode is None:
-            try:
-                process.kill()
-            except ProcessLookupError:
-                pass
-            await process.wait()
+        if process is not None:
+            await terminate(process)
         # Host writes already admitted by the bridge finish under their workspace lock. They never publish.
         # Await them even on cancellation, rather than orphaning state-changing background threads.
         if tasks:
