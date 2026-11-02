@@ -5,6 +5,9 @@ There is no enable/disable switch or optional Code Mode extra.
 Python remains the trusted application; JavaScript runs in a fresh restricted Deno process. No Cloudflare,
 hosted sandbox, paid service, internal LLM or replacement scheduler is required.
 
+The [Archify publishing workflows](diagrams/README.md) show the owner approval gate, durable queue,
+official provider path and uncertain-outcome recovery, with Spanish/English interactive HTML and themed SVGs.
+
 ```mermaid
 flowchart LR
   Client[MCP client] --> Direct[Existing tools]

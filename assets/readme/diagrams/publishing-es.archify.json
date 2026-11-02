@@ -2,100 +2,228 @@
   "schema_version": 2,
   "diagram_type": "workflow",
   "meta": {
-    "title": "Del video a una publicacion revisada",
+    "title": "Del video a la publicación autorizada",
     "locale": "es",
     "quality_profile": "showcase",
     "repository": {
       "url": "https://github.com/robgallardof/social-publisher-mcp.git",
-      "revision": "de370e487ac69afde914fd72c5405f2e18f3dce7"
+      "revision": "bb64dff085ec514d289be75fa5feeddf2d20494c"
     },
-    "output": ".archify/publishing-es-20261026-194000/diagram.html"
+    "output": "docs/diagrams/publishing-es.html"
   },
   "lanes": [
     {
-      "id": "author",
-      "label": "Tus decisiones"
+      "id": "owner",
+      "label": "Dueño de la cuenta"
     },
     {
       "id": "agent",
-      "label": "Ayuda del agente"
+      "label": "Agente con Code Mode"
+    },
+    {
+      "id": "host",
+      "label": "Servicios de confianza"
+    },
+    {
+      "id": "results",
+      "label": "Resultados y recuperación"
     }
   ],
   "mainPath": [
-    "step0",
-    "step1",
-    "step2",
-    "step3"
+    "inbox",
+    "compose",
+    "propose",
+    "approve",
+    "schedule",
+    "publish",
+    "receipts"
   ],
   "nodes": [
     {
-      "id": "step0",
-      "lane": "author",
+      "id": "inbox",
+      "lane": "owner",
       "col": 0,
       "type": "external",
       "label": "Agregar un video",
       "sublabel": "content/inbox",
       "sources": [
         {
-          "path": "README.es.md"
+          "path": "content/inbox/README.md",
+          "line": 1,
+          "end_line": 4
         }
       ]
     },
     {
-      "id": "step1",
+      "id": "compose",
       "lane": "agent",
       "col": 1,
       "type": "backend",
-      "label": "Preparar la publicacion",
-      "sublabel": "Texto por plataforma",
+      "label": "Preparar y validar",
+      "sublabel": "Deno restringido",
       "sources": [
         {
-          "path": "mcp/social-forge/src/social_forge/server.py"
+          "path": "mcp/social-forge/src/social_forge/server.py",
+          "line": 147,
+          "end_line": 169
+        },
+        {
+          "path": "mcp/social-forge/src/social_forge/services/code_sandbox.py",
+          "line": 61,
+          "end_line": 70
         }
       ]
     },
     {
-      "id": "step2",
-      "lane": "author",
+      "id": "propose",
+      "lane": "agent",
       "col": 2,
-      "type": "security",
-      "label": "Revisar la vista previa",
-      "sublabel": "preview_post / dry run",
+      "type": "database",
+      "label": "Guardar la propuesta",
+      "sublabel": "Sin publicar",
       "sources": [
         {
-          "path": "mcp/social-forge/src/social_forge/server.py"
+          "path": "mcp/social-forge/src/social_forge/services/code_approvals.py",
+          "line": 143,
+          "end_line": 176
         }
       ]
     },
     {
-      "id": "step3",
-      "lane": "author",
+      "id": "approve",
+      "lane": "owner",
       "col": 3,
-      "type": "cloud",
-      "label": "Aprobar y publicar",
-      "sublabel": "El usuario decide",
+      "type": "security",
+      "label": "Aprobar el contenido",
+      "sublabel": "Dueño · CLI · hash",
       "sources": [
         {
-          "path": "AGENTS.md"
+          "path": "mcp/social-forge/src/social_forge/services/code_approvals.py",
+          "line": 188,
+          "end_line": 219
+        }
+      ]
+    },
+    {
+      "id": "schedule",
+      "lane": "host",
+      "col": 4,
+      "type": "database",
+      "label": "Activar la cola",
+      "sublabel": "Solo con aprobación",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/services/code_approvals.py",
+          "line": 222,
+          "end_line": 240
+        }
+      ]
+    },
+    {
+      "id": "publish",
+      "lane": "host",
+      "col": 5,
+      "type": "cloud",
+      "label": "Publicar a las 05:00",
+      "sublabel": "APIs oficiales",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/services/runner.py",
+          "line": 43,
+          "end_line": 73
+        }
+      ]
+    },
+    {
+      "id": "receipts",
+      "lane": "results",
+      "col": 5,
+      "type": "database",
+      "label": "Guardar cada resultado",
+      "sublabel": "Sin duplicar éxitos",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/services/runner.py",
+          "line": 149,
+          "end_line": 169
+        }
+      ]
+    },
+    {
+      "id": "uncertain",
+      "lane": "results",
+      "col": 4,
+      "type": "security",
+      "label": "Conciliar lo incierto",
+      "sublabel": "Sin reintento automático",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/services/runner.py",
+          "line": 51,
+          "end_line": 60
         }
       ]
     }
   ],
   "edges": [
     {
-      "id": "edge0",
-      "from": "step0",
-      "to": "step1"
+      "id": "inbox-compose",
+      "from": "inbox",
+      "to": "compose"
     },
     {
-      "id": "edge1",
-      "from": "step1",
-      "to": "step2"
+      "id": "compose-propose",
+      "from": "compose",
+      "to": "propose"
     },
     {
-      "id": "edge2",
-      "from": "step2",
-      "to": "step3"
+      "id": "propose-approve",
+      "from": "propose",
+      "to": "approve"
+    },
+    {
+      "id": "approve-schedule",
+      "from": "approve",
+      "to": "schedule",
+      "label": "Vigente",
+      "variant": "security"
+    },
+    {
+      "id": "schedule-publish",
+      "from": "schedule",
+      "to": "publish"
+    },
+    {
+      "id": "publish-receipts",
+      "from": "publish",
+      "to": "receipts"
+    },
+    {
+      "id": "publish-uncertain",
+      "from": "publish",
+      "to": "uncertain",
+      "label": "Incierto",
+      "variant": "security",
+      "role": "error"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "Code Mode integrado",
+      "items": [
+        "code_search descubre; code_execute combina capacidades.",
+        "La función empieza en solo lectura. Python autoriza cada operación."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Aprobación y límites",
+      "items": [
+        "Vinculada al video, texto, cuentas, privacidad, hora y vencimiento.",
+        "05:00 America/Mexico_City; adelanto solo si el backend lo admite.",
+        "Esta ruta usa APIs oficiales. Las herramientas directas conservan sus contratos."
+      ]
     }
   ]
 }

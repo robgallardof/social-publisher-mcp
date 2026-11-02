@@ -37,15 +37,18 @@
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> Qué hace
 
 <!-- kit:features -->
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/features-es-dark.svg" /><img src="assets/readme-builder/kit/features-es-light.svg" alt="Cola por fecha: Una carpeta de día sale ese día: tres videos, tres publicaciones a las 05:00. Las semanas se reparten solas. · Ve cada video: 8 fotogramas y transcripción: qué pasa, si hay voz, si trae texto. · Texto por red: Gancho, cuerpo, CTA y hashtags validados con los límites reales de cada red. · Pie de redes: Cada descripción termina con tus usuarios en las otras redes. · Subtítulos: Ninguno, automáticos, .srt o quemados, con estilo para vertical. · Como sea: APIs oficiales, Postiz, un perfil de navegador o el propio agente. · Todos los días: Tarea programada con reintentos; se pone al día si la PC estuvo apagada. · Aprende: Mejores días, videos top y bottom, y un reporte semanal con máximo tres acciones." width="100%" /></picture></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/features-es-dark.svg" /><img src="assets/readme-builder/kit/features-es-light.svg" alt="Cola por fecha: Una carpeta de día sale ese día: tres videos, tres publicaciónes a las 05:00. Las semanas se reparten solas. · Ve cada video: 8 fotogramas y transcripción: qué pasa, si hay voz, si trae texto. · Texto por red: Gancho, cuerpo, CTA y hashtags validados con los límites reales de cada red. · Pie de redes: Cada descripción termina con tus usuarios en las otras redes. · Subtítulos: Ninguno, automáticos, .srt o quemados, con estilo para vertical. · Como sea: APIs oficiales, Postiz, un perfil de navegador o el propio agente. · Todos los días: Tarea programada con reintentos; se pone al día si la PC estuvo apagada. · Aprende: Mejores días, videos top y bottom, y un reporte semanal con máximo tres acciones." width="100%" /></picture></p>
 <!-- /kit:features -->
+
+Code Mode forma parte de la instalación estándar: 17 herramientas MCP, JavaScript en solo lectura por
+defecto y aprobación del dueño antes de activar propuestas de publicación. [Cómo funciona](docs/CODE_MODE.md).
 
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-inicio-rápido"></a>
 ## <img src="assets/readme-builder/icons/rocket.svg" width="24" height="24" alt="" /> Inicio rápido
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/diagrams/publishing-es-dark.svg" /><img src="assets/readme/diagrams/publishing-es-light.svg" alt="Recorrido de uso, generado con Archify" width="100%" /></picture></p>
+La instalación nativa requiere [uv](https://docs.astral.sh/uv/) y [Deno 2](https://docs.deno.com/runtime/getting_started/installation/) antes de ejecutar bootstrap.
 
 
 ```powershell
@@ -55,7 +58,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/bootstrap.ps1       
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-schedule.ps1 # tarea diaria de las 05:00
 ```
 
-macOS / Linux: `sh scripts/bootstrap.sh` y la línea de cron que imprime al final. Requiere [uv](https://docs.astral.sh/uv/) y [Deno 2](https://docs.deno.com/runtime/getting_started/installation/).
+macOS / Linux: `sh scripts/bootstrap.sh` y la línea de cron que imprime al final.
 
 **¿Prefieres Docker?** Es opcional: la imagen solo lleva el código del MCP y tu carpeta se monta al ejecutarla.
 
@@ -72,6 +75,20 @@ Puertos, extras (`analysis`), el servicio de CLI y cómo programar `run-due` des
 Luego háblale a tu agente:
 
 > *"Procesa el inbox"* · *"Prepara lo de mañana"* · *"Reparte la semana 44, dos por día"* · *"Ponle subtítulos al storytime"* · *"¿Qué funcionó esta semana?"* · *"Investiga tendencias de ardillas en México"*
+
+### Actualizar o reinstalar
+
+En Windows, cierra primero los clientes MCP para liberar el ejecutable del servidor. Desde la raíz del proyecto:
+
+```sh
+uv --directory mcp/social-forge sync --reinstall-package social-forge --extra youtube --extra browser --extra analysis
+python scripts/sync.py
+python scripts/install-mcp.py --dry-run
+python scripts/install-mcp.py
+```
+
+Vuelve a abrir el cliente para reconectar y renovar el catálogo: **17 herramientas**, incluidas `code_search` y
+`code_execute`. Deno 2 debe estar en PATH. El instalador respalda las configuraciones y conserva otros servidores.
 
 ### Conecta tu agente
 
@@ -140,22 +157,38 @@ La inferencia del modelo dentro de cada host necesita su propio login y no forma
 <a id="-el-camino-de-un-video"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> El camino de un video
 
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/diagrams/publishing-es-dark.svg" /><img src="assets/readme/diagrams/publishing-es-light.svg" alt="Code Mode: ejecución restringida, aprobación del dueño y recuperación por red" width="100%" /></picture></p>
+
+El agente analiza el video y lo coloca en la cola fechada antes de preparar la propuesta con Code Mode.
+Esta ruta usa adaptadores oficiales; las herramientas directas conservan los otros backends.
+[HTML interactivo y fuentes Archify](docs/diagrams/README.md).
+
 <details>
 <summary>Diagrama técnico</summary>
 
 ```mermaid
-flowchart LR
-    A[content/inbox] -->|analyze_video| B(fotogramas + transcripción)
-    B --> C{video-analyst}
-    C -->|carpeta del día| D[content/queue/AAAA-MM-DD]
-    D -->|write_post| E[.post.yaml<br/>texto · pie · subtítulos]
-    E -->|05:00 run-due| F{backend}
-    F --> G[API Meta / YouTube / TikTok]
-    F --> H[Postiz]
-    F --> I[Perfil de navegador]
-    F --> J[Agente]
-    G & H & I & J --> K[content/published + recibos]
-    K -->|pull_metrics| L[analítica · reporte semanal]
+flowchart TD
+    Agent[Agente / cliente MCP] --> Direct[15 herramientas directas]
+    Agent --> Search[code_search]
+    Agent --> Execute[code_execute - solo lectura por defecto]
+    Execute --> Deno[Proceso Deno restringido]
+    Deno --> Bridge[Capacidades Python autorizadas]
+    Bridge --> Preview[Validar video y previsualizar texto]
+    Preview --> Proposal[(Propuesta exacta en SQLite)]
+    Owner[Aprobación del dueño por CLI] --> Proposal
+    Proposal --> Grant{Aprobación exacta vigente?}
+    Grant -->|No| Wait[Esperar o preparar otra propuesta]
+    Grant -->|schedule.create| Queue[Cola fechada y sidecar aprobado]
+    Direct --> Legacy[Flujos existentes de preparación y publicación]
+    Legacy --> Queue
+    Queue --> Runner[Proceso de las 05:00 - bloqueo de cola]
+    Runner --> Recheck[Revalidar aprobación de trabajos Code Mode]
+    Recheck --> Official[APIs de Meta / YouTube / TikTok]
+    Recheck -->|Solo herramientas directas| Other[Postiz / navegador / handoff]
+    Official --> Receipts[(Recibos por red e IDs de operación)]
+    Other --> Receipts
+    Receipts -->|Resultado incierto| Reconcile[Conciliación antes de reintentar]
+    Receipts --> Metrics[Métricas guardadas y reporte semanal]
 ```
 
 </details>
@@ -178,7 +211,7 @@ El rol líder **pregunta antes de escribir**: tus usuarios en cada red, @mencion
 
 | Herramienta | |
 |---|---|
-| `code_search` · `code_execute` | Descubrir y combinar operaciones autorizadas en JavaScript restringido |
+| `code_search` · `code_execute` | Descubrir y combinar operaciónes autorizadas en JavaScript restringido |
 | `queue_status` | Qué sale cada día, atrasados, sin texto, videos nuevos en el inbox |
 | `plan_week` | Reparte una carpeta de semana en sus días restantes |
 | `analyze_video` | Fotogramas, transcripción, voz sí/no, `.srt` |
@@ -233,7 +266,7 @@ Dockerfile, compose.yaml   imagen opcional (stdio o HTTP con token)
 - Nunca publica dos veces: cada subida deja un recibo y los reintentos solo tocan lo que falló.
 - Configurado ahora para **Chomi la ardilla** <img src="assets/readme-builder/icons/spark.svg" width="20" height="20" alt="" />; una marca nueva solo necesita `brand/` y `config/social.yaml`.
 
-<div align="center"><sub>Hecho para creadores que prefieren grabar que pelearse con programadores de publicaciones.</sub></div>
+<div align="center"><sub>Hecho para creadores que prefieren grabar que pelearse con programadores de publicaciónes.</sub></div>
 
 <br/>
 
@@ -243,7 +276,7 @@ Dockerfile, compose.yaml   imagen opcional (stdio o HTTP con token)
 ## <img src="assets/readme-builder/icons/code.svg" width="24" height="24" alt="" /> Desarrollo
 
 ```bash
-cd mcp/social-forge && uv run pytest     # 53 pruebas: sin red, ffmpeg real, MCP real por HTTP
+cd mcp/social-forge && uv run --no-sync pytest  # proveedores simulados, FFmpeg y transportes MCP reales
 python scripts/test_docker.py            # imagen real: stdio, CLI, HTTP con token, sin datos personales
 python scripts/sync.py                   # después de editar .agents/ o config/
 git config core.hooksPath .githooks      # quita los coautores de IA de los mensajes de commit
@@ -253,7 +286,7 @@ Reglas de arquitectura y cómo agregar un backend: [`AGENTS.md`](AGENTS.md).
 
 ### Code Mode
 
-Combina operaciones autorizadas en JavaScript con `code_search` y `code_execute`, conservando las herramientas
+Combina operaciónes autorizadas en JavaScript con `code_search` y `code_execute`, conservando las herramientas
 actuales. Siempre está disponible, se ejecuta en un proceso Deno restringido y exige aprobación del dueño
 para cada propuesta exacta de publicación. Reutiliza la cola y las APIs oficiales. La instalación nativa requiere
 Deno 2; la imagen Docker estándar ya lo incluye. [Configuración, ejemplos, seguridad y recuperación](docs/CODE_MODE.md) ·

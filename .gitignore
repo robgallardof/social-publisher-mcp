@@ -42,4 +42,5 @@ analytics/research/*.md
 /opencode.json
 content/.code-mode.sqlite*
 content/.publisher.lock
+docs/diagrams/*.delivery.json
 /.dsh/

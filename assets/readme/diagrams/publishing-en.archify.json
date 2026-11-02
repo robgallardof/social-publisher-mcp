@@ -2,100 +2,228 @@
   "schema_version": 2,
   "diagram_type": "workflow",
   "meta": {
-    "title": "From video to a reviewed post",
+    "title": "From video to authorized publication",
     "locale": "en",
     "quality_profile": "showcase",
     "repository": {
       "url": "https://github.com/robgallardof/social-publisher-mcp.git",
-      "revision": "de370e487ac69afde914fd72c5405f2e18f3dce7"
+      "revision": "bb64dff085ec514d289be75fa5feeddf2d20494c"
     },
-    "output": ".archify/publishing-en-20261026-194000/diagram.html"
+    "output": "docs/diagrams/publishing-en.html"
   },
   "lanes": [
     {
-      "id": "author",
-      "label": "Your decisions"
+      "id": "owner",
+      "label": "Account owner"
     },
     {
       "id": "agent",
-      "label": "Agent assistance"
+      "label": "Agent with Code Mode"
+    },
+    {
+      "id": "host",
+      "label": "Trusted host services"
+    },
+    {
+      "id": "results",
+      "label": "Results and recovery"
     }
   ],
   "mainPath": [
-    "step0",
-    "step1",
-    "step2",
-    "step3"
+    "inbox",
+    "compose",
+    "propose",
+    "approve",
+    "schedule",
+    "publish",
+    "receipts"
   ],
   "nodes": [
     {
-      "id": "step0",
-      "lane": "author",
+      "id": "inbox",
+      "lane": "owner",
       "col": 0,
       "type": "external",
-      "label": "Add a finished video",
+      "label": "Add a video",
       "sublabel": "content/inbox",
       "sources": [
         {
-          "path": "README.md"
+          "path": "content/inbox/README.md",
+          "line": 1,
+          "end_line": 4
         }
       ]
     },
     {
-      "id": "step1",
+      "id": "compose",
       "lane": "agent",
       "col": 1,
       "type": "backend",
-      "label": "Prepare the post",
-      "sublabel": "Copy for each platform",
+      "label": "Prepare and validate",
+      "sublabel": "Restricted Deno",
       "sources": [
         {
-          "path": "mcp/social-forge/src/social_forge/server.py"
+          "path": "mcp/social-forge/src/social_forge/server.py",
+          "line": 147,
+          "end_line": 169
+        },
+        {
+          "path": "mcp/social-forge/src/social_forge/services/code_sandbox.py",
+          "line": 61,
+          "end_line": 70
         }
       ]
     },
     {
-      "id": "step2",
-      "lane": "author",
+      "id": "propose",
+      "lane": "agent",
       "col": 2,
-      "type": "security",
-      "label": "Review the preview",
-      "sublabel": "preview_post / dry run",
+      "type": "database",
+      "label": "Persist proposal",
+      "sublabel": "No publication",
       "sources": [
         {
-          "path": "mcp/social-forge/src/social_forge/server.py"
+          "path": "mcp/social-forge/src/social_forge/services/code_approvals.py",
+          "line": 143,
+          "end_line": 176
         }
       ]
     },
     {
-      "id": "step3",
-      "lane": "author",
+      "id": "approve",
+      "lane": "owner",
       "col": 3,
-      "type": "cloud",
-      "label": "Approve and publish",
-      "sublabel": "The user decides",
+      "type": "security",
+      "label": "Approve exact content",
+      "sublabel": "Owner · CLI · hash",
       "sources": [
         {
-          "path": "AGENTS.md"
+          "path": "mcp/social-forge/src/social_forge/services/code_approvals.py",
+          "line": 188,
+          "end_line": 219
+        }
+      ]
+    },
+    {
+      "id": "schedule",
+      "lane": "host",
+      "col": 4,
+      "type": "database",
+      "label": "Activate the queue",
+      "sublabel": "Valid approval only",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/services/code_approvals.py",
+          "line": 222,
+          "end_line": 240
+        }
+      ]
+    },
+    {
+      "id": "publish",
+      "lane": "host",
+      "col": 5,
+      "type": "cloud",
+      "label": "Publish at 05:00",
+      "sublabel": "Official APIs",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/services/runner.py",
+          "line": 43,
+          "end_line": 73
+        }
+      ]
+    },
+    {
+      "id": "receipts",
+      "lane": "results",
+      "col": 5,
+      "type": "database",
+      "label": "Record every result",
+      "sublabel": "Skip successful targets",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/services/runner.py",
+          "line": 149,
+          "end_line": 169
+        }
+      ]
+    },
+    {
+      "id": "uncertain",
+      "lane": "results",
+      "col": 4,
+      "type": "security",
+      "label": "Reconcile uncertainty",
+      "sublabel": "No automatic retry",
+      "sources": [
+        {
+          "path": "mcp/social-forge/src/social_forge/services/runner.py",
+          "line": 51,
+          "end_line": 60
         }
       ]
     }
   ],
   "edges": [
     {
-      "id": "edge0",
-      "from": "step0",
-      "to": "step1"
+      "id": "inbox-compose",
+      "from": "inbox",
+      "to": "compose"
     },
     {
-      "id": "edge1",
-      "from": "step1",
-      "to": "step2"
+      "id": "compose-propose",
+      "from": "compose",
+      "to": "propose"
     },
     {
-      "id": "edge2",
-      "from": "step2",
-      "to": "step3"
+      "id": "propose-approve",
+      "from": "propose",
+      "to": "approve"
+    },
+    {
+      "id": "approve-schedule",
+      "from": "approve",
+      "to": "schedule",
+      "label": "Valid",
+      "variant": "security"
+    },
+    {
+      "id": "schedule-publish",
+      "from": "schedule",
+      "to": "publish"
+    },
+    {
+      "id": "publish-receipts",
+      "from": "publish",
+      "to": "receipts"
+    },
+    {
+      "id": "publish-uncertain",
+      "from": "publish",
+      "to": "uncertain",
+      "label": "Unknown",
+      "variant": "security",
+      "role": "error"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "Standard Code Mode",
+      "items": [
+        "code_search discovers; code_execute composes capabilities.",
+        "Execution starts read-only. Python authorizes each operation."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Approval and limits",
+      "items": [
+        "Bound to media, copy, accounts, privacy, slot and expiration.",
+        "05:00 America/Mexico_City; ahead mode only when supported.",
+        "This path uses official APIs. Direct tools retain their contracts."
+      ]
     }
   ]
 }

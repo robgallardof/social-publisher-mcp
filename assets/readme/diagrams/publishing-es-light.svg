@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 822 404" data-layout-contract="readable-v2" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="" style="--flow-cycle: 3.922s; width: 822px; height: 404px; min-width: 0px;" width="822" height="404" xmlns="http://www.w3.org/2000/svg" data-theme="light"><style>
+<svg viewBox="0 0 888 652" data-reader-fit="width-first" data-layout-contract="readable-v2" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="" style="--flow-cycle: 6.500s; width: 888px; height: 652px; min-width: 0px;" width="888" height="652" xmlns="http://www.w3.org/2000/svg" data-theme="light"><style>
 /*
 JetBrains Mono variable WOFF2 subsets from Google Fonts service revision v24.
 These fixed bytes are shared by the viewer and its SVG/raster exports.
@@ -399,64 +399,132 @@ svg[data-preset="editorial"] { --flow-halo-peak: 0.07; --flow-glow-peak: 0.28; -
 }
 @keyframes archify-relay-ripple { 
   0% { r: 2px; opacity: var(--flow-peak, 0.6); }
-  19.122%, 100% { r: 20px; opacity: 0; }
+  11.538%, 100% { r: 20px; opacity: 0; }
 }
 @keyframes archify-relay-comet-0 { 
   0% { stroke-dashoffset: calc(var(--flow-len, 0px) + var(--flow-shift, 0px)); opacity: 0; animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
-  2.968% { opacity: var(--flow-peak, 0.9); }
-  14.841% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
-  18.921%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
+  1.846% { opacity: var(--flow-peak, 0.9); }
+  14.998% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
+  17.46%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
 }
 @keyframes archify-relay-wake-0 { 
-  0% { stroke-dashoffset: var(--flow-len, 0px); opacity: var(--flow-peak, 0.3); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
-  14.841% { stroke-dashoffset: 0px; opacity: var(--flow-peak, 0.3); }
-  37.788%, 100% { stroke-dashoffset: 0px; opacity: 0; }
+  0%, 4.499% { opacity: 0; }
+  14.998% { opacity: var(--flow-peak, 0.3); }
+  28.843%, 100% { stroke-dashoffset: 0px; opacity: 0; }
 }
 @keyframes archify-relay-comet-1 { 
   0% { stroke-dashoffset: calc(var(--flow-len, 0px) + var(--flow-shift, 0px)); opacity: 0; animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
-  2.142% { opacity: var(--flow-peak, 0.9); }
-  10.709% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
-  14.788%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
+  1.292% { opacity: var(--flow-peak, 0.9); }
+  6.461% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
+  8.922%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
 }
 @keyframes archify-relay-wake-1 { 
   0% { stroke-dashoffset: var(--flow-len, 0px); opacity: var(--flow-peak, 0.3); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
-  10.709% { stroke-dashoffset: 0px; opacity: var(--flow-peak, 0.3); }
-  33.656%, 100% { stroke-dashoffset: 0px; opacity: 0; }
+  6.461% { stroke-dashoffset: 0px; opacity: var(--flow-peak, 0.3); }
+  20.306%, 100% { stroke-dashoffset: 0px; opacity: 0; }
 }
 @keyframes archify-relay-comet-2 { 
   0% { stroke-dashoffset: calc(var(--flow-len, 0px) + var(--flow-shift, 0px)); opacity: 0; animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
-  2.142% { opacity: var(--flow-peak, 0.9); }
-  10.709% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
-  14.788%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
+  1.791% { opacity: var(--flow-peak, 0.9); }
+  8.955% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
+  11.416%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
 }
 @keyframes archify-relay-wake-2 { 
   0% { stroke-dashoffset: var(--flow-len, 0px); opacity: var(--flow-peak, 0.3); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
-  10.709% { stroke-dashoffset: 0px; opacity: var(--flow-peak, 0.3); }
-  33.656%, 100% { stroke-dashoffset: 0px; opacity: 0; }
+  8.955% { stroke-dashoffset: 0px; opacity: var(--flow-peak, 0.3); }
+  22.8%, 100% { stroke-dashoffset: 0px; opacity: 0; }
+}
+@keyframes archify-relay-comet-3 { 
+  0% { stroke-dashoffset: calc(var(--flow-len, 0px) + var(--flow-shift, 0px)); opacity: 0; animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  1.637% { opacity: var(--flow-peak, 0.9); }
+  8.185% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
+  10.647%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
+}
+@keyframes archify-relay-wake-3 { 
+  0% { stroke-dashoffset: var(--flow-len, 0px); opacity: var(--flow-peak, 0.3); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  8.185% { stroke-dashoffset: 0px; opacity: var(--flow-peak, 0.3); }
+  22.031%, 100% { stroke-dashoffset: 0px; opacity: 0; }
+}
+@keyframes archify-relay-comet-4 { 
+  0% { stroke-dashoffset: calc(var(--flow-len, 0px) + var(--flow-shift, 0px)); opacity: 0; animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  1.292% { opacity: var(--flow-peak, 0.9); }
+  6.461% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
+  8.922%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
+}
+@keyframes archify-relay-wake-4 { 
+  0% { stroke-dashoffset: var(--flow-len, 0px); opacity: var(--flow-peak, 0.3); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  6.461% { stroke-dashoffset: 0px; opacity: var(--flow-peak, 0.3); }
+  20.306%, 100% { stroke-dashoffset: 0px; opacity: 0; }
+}
+@keyframes archify-relay-comet-5 { 
+  0% { stroke-dashoffset: calc(var(--flow-len, 0px) + var(--flow-shift, 0px)); opacity: 0; animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  1.846% { opacity: var(--flow-peak, 0.9); }
+  11.866% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
+  14.327%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
+}
+@keyframes archify-relay-wake-5 { 
+  0%, 3.56% { opacity: 0; }
+  11.866% { opacity: var(--flow-peak, 0.3); }
+  25.711%, 100% { stroke-dashoffset: 0px; opacity: 0; }
+}
+@keyframes archify-relay-comet-6 { 
+  0% { stroke-dashoffset: calc(var(--flow-len, 0px) + var(--flow-shift, 0px)); opacity: 0; animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  1.292% { opacity: var(--flow-peak, 0.9); }
+  6.461% { stroke-dashoffset: var(--flow-shift, 0px); opacity: var(--flow-peak, 0.9); }
+  8.922%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
+}
+@keyframes archify-relay-wake-6 { 
+  0% { stroke-dashoffset: var(--flow-len, 0px); opacity: var(--flow-peak, 0.3); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  6.461% { stroke-dashoffset: 0px; opacity: var(--flow-peak, 0.3); }
+  20.306%, 100% { stroke-dashoffset: 0px; opacity: 0; }
 }
 @keyframes archify-relay-node-0 { 
   0%, 100% { filter: var(--ambient-node-base-filter, none); }
   0% { filter: var(--ambient-node-base-filter, none); }
-  3.06%, 10.709% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
-  30.596% { filter: var(--ambient-node-base-filter, none); }
+  1.846%, 6.461% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
+  18.46% { filter: var(--ambient-node-base-filter, none); }
 }
 @keyframes archify-relay-node-1 { 
   0%, 100% { filter: var(--ambient-node-base-filter, none); }
-  14.841% { filter: var(--ambient-node-base-filter, none); }
-  17.901%, 25.55% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
-  45.437% { filter: var(--ambient-node-base-filter, none); }
+  8.955% { filter: var(--ambient-node-base-filter, none); }
+  10.801%, 15.416% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
+  27.415% { filter: var(--ambient-node-base-filter, none); }
 }
 @keyframes archify-relay-node-2 { 
   0%, 100% { filter: var(--ambient-node-base-filter, none); }
-  28.1% { filter: var(--ambient-node-base-filter, none); }
-  31.159%, 38.808% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
-  58.696% { filter: var(--ambient-node-base-filter, none); }
+  16.954% { filter: var(--ambient-node-base-filter, none); }
+  18.8%, 23.415% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
+  35.414% { filter: var(--ambient-node-base-filter, none); }
 }
 @keyframes archify-relay-node-3 { 
   0%, 100% { filter: var(--ambient-node-base-filter, none); }
-  41.358% { filter: var(--ambient-node-base-filter, none); }
-  44.417%, 52.066% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
-  71.954% { filter: var(--ambient-node-base-filter, none); }
+  26.678% { filter: var(--ambient-node-base-filter, none); }
+  28.524%, 33.139% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
+  45.138% { filter: var(--ambient-node-base-filter, none); }
+}
+@keyframes archify-relay-node-4 { 
+  0%, 100% { filter: var(--ambient-node-base-filter, none); }
+  43.214% { filter: var(--ambient-node-base-filter, none); }
+  45.06%, 49.675% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
+  61.675% { filter: var(--ambient-node-base-filter, none); }
+}
+@keyframes archify-relay-node-5 { 
+  0%, 100% { filter: var(--ambient-node-base-filter, none); }
+  51.214% { filter: var(--ambient-node-base-filter, none); }
+  53.06%, 57.675% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
+  69.674% { filter: var(--ambient-node-base-filter, none); }
+}
+@keyframes archify-relay-node-6 { 
+  0%, 100% { filter: var(--ambient-node-base-filter, none); }
+  59.213% { filter: var(--ambient-node-base-filter, none); }
+  61.059%, 65.674% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
+  77.673% { filter: var(--ambient-node-base-filter, none); }
+}
+@keyframes archify-relay-node-7 { 
+  0%, 100% { filter: var(--ambient-node-base-filter, none); }
+  64.618% { filter: var(--ambient-node-base-filter, none); }
+  66.464%, 71.079% { filter: var(--ambient-node-base-filter,) drop-shadow(0 0 10px var(--arrow-emphasis)); }
+  83.078% { filter: var(--ambient-node-base-filter, none); }
 }
 svg[data-node-ui] [data-node-id] &gt; rect:not(.c-mask) { stroke-width: 1.25px; }
 :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] &gt; rect:not(.c-mask).c-frontend { fill: color-mix(in srgb, var(--frontend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--frontend-stroke) 72%, var(--mask)); }
@@ -478,7 +546,7 @@ svg[data-node-ui] g[data-edge-from] &gt; rect.c-mask { rx: 7px; stroke: var(--la
 svg[data-node-ui][data-preset="blueprint"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] &gt; rect.c-mask, .phase-chip) { rx: 2px; }
 svg[data-node-ui][data-preset="editorial"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] &gt; rect.c-mask, .phase-chip) { rx: 3px; }
 :root, svg { --bg: #f4f5f7; --grid: #e9edf2; --canvas-dot: #e2e7ec; --text: #111827; --text-muted: #5b6474; --text-dim: #9aa3b2; --text-faint: #6b7280; --panel: #ffffff; --panel-border: #e5e7eb; --lane-fill: rgba(248, 250, 252, 0.65); --lane-stroke: #cbd5e1; --arrow: #64748b; --arrow-emphasis: #059669; --mask: #ffffff; --frontend-fill: rgba(34, 211, 238, 0.15); --frontend-stroke: #0891b2; --backend-fill: rgba(52, 211, 153, 0.18); --backend-stroke: #059669; --database-fill: rgba(167, 139, 250, 0.2); --database-stroke: #7c3aed; --cloud-fill: rgba(251, 191, 36, 0.18); --cloud-stroke: #d97706; --security-fill: rgba(251, 113, 133, 0.15); --security-stroke: #e11d48; --messagebus-fill: rgba(251, 146, 60, 0.15); --messagebus-stroke: #ea580c; --external-fill: rgba(148, 163, 184, 0.18); --external-stroke: #64748b; --toolbar-bg: rgba(255, 255, 255, 0.92); --toolbar-border: #cbd5e1; --toolbar-text: #334155; --toolbar-hover: #ffffff; --toolbar-menu-bg: #ffffff; --flow-cycle: ; --flow-halo-peak: ; --flow-glow-peak: ; --flow-tail-peak: ; --flow-head-peak: ; --flow-wake-peak: ; --flow-ripple-peak: ; --flow-peak: ; }
-</style><rect x="0" y="0" width="822" height="404" fill="#f4f5f7"/><metadata id="archify-software-notices">NOTICE
+</style><rect x="0" y="0" width="888" height="652" fill="#f4f5f7"/><metadata id="archify-software-notices">NOTICE
 Archify
 Copyright (c) 2026 tt-a1i (Archify)
 Copyright (c) 2025 Cocoon AI
@@ -813,7 +881,7 @@ Brand names, logos, and trademarks remain the property of their respective
 owners. This notice records provenance and known terms; it does not grant rights
 that Archify does not hold, and it does not state that every packaged mark has
 been cleared for every commercial, promotional, or redistributive use.</metadata>
-        <title id="archify-diagram-title">Del video a una publicacion revisada</title>
+        <title id="archify-diagram-title">Del video a la publicación autorizada</title>
         <desc id="archify-diagram-description">Un diagrama de flujo de trabajo generado por Archify.</desc>
         <!-- Definitions -->
         <defs>
@@ -859,11 +927,17 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <rect width="100%" height="100%" fill="url(#grid)"/>
 
         <!-- Swimlanes -->
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="766" height="104" rx="10" class="c-lane" stroke-width="1"/>
-        <text x="54" y="74" class="t-muted" font-size="10" font-weight="600">01 / Tus decisiones</text>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="832" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="74" class="t-muted" font-size="10" font-weight="600">01 / Dueño de la cuenta</text>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-1" x="40" y="176" width="766" height="104" rx="10" class="c-lane" stroke-width="1"/>
-        <text x="54" y="198" class="t-muted" font-size="10" font-weight="600">02 / Ayuda del agente</text>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-1" x="40" y="176" width="832" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="198" class="t-muted" font-size="10" font-weight="600">02 / Agente con Code Mode</text>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-2" x="40" y="300" width="832" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="322" class="t-muted" font-size="10" font-weight="600">03 / Servicios de confianza</text>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-3" x="40" y="424" width="832" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="446" class="t-muted" font-size="10" font-weight="600">04 / Resultados y recuperación</text>
 
         <!-- Phase headers -->
 
@@ -872,13 +946,17 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
 
 
         <!-- Edge paths -->
-        <path data-edge-from="step0" data-edge-to="step1" data-edge-key="0" data-edge-id="edge0" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="152,119;220,119;220,217" d="M 152 119 L 212 119 Q 220 119 220 127 L 220 217" class="a-default" data-animate="edge" style="--step: 0;" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="step1" data-edge-to="step2" data-edge-key="1" data-edge-id="edge1" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="244,217;244,119;264,119" d="M 244 217 L 244 127 Q 244 119 252 119 L 264 119" class="a-default" data-animate="edge" style="--step: 1;" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="step2" data-edge-to="step3" data-edge-key="2" data-edge-id="edge2" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="416,119;448,119" d="M 416 119 L 448 119" class="a-default" data-animate="edge" style="--step: 2;" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="approve" data-edge-to="schedule" data-edge-label="Vigente" data-edge-key="0" data-edge-id="approve-schedule" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="564,119;618,119;618,341" d="M 564 119 L 610 119 Q 618 119 618 127 L 618 341" class="a-security" data-animate="edge" style="--step: 3;" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="compose" data-edge-to="propose" data-edge-key="1" data-edge-id="compose-propose" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="280,243;312,243" d="M 280 243 L 312 243" class="a-default" data-animate="edge" style="--step: 1;" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="inbox" data-edge-to="compose" data-edge-key="2" data-edge-id="inbox-compose" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="152,119;220,119;220,217" d="M 152 119 L 212 119 Q 220 119 220 127 L 220 217" class="a-default" data-animate="edge" style="--step: 0;" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="propose" data-edge-to="approve" data-edge-key="3" data-edge-id="propose-approve" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="378,217;378,119;432,119" d="M 378 217 L 378 127 Q 378 119 386 119 L 432 119" class="a-default" data-animate="edge" style="--step: 2;" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="publish" data-edge-to="receipts" data-edge-key="4" data-edge-id="publish-receipts" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="792,393;792,465" d="M 792 393 L 792 465" class="a-default" data-animate="edge" style="--step: 5;" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="publish" data-edge-to="uncertain" data-edge-label="Incierto" data-edge-key="5" data-edge-id="publish-uncertain" data-composition-routing="workflow-v2-auto" data-edge-role="error" data-composition-points="768,393;768,414;618,414;618,465" d="M 768 393 L 768 406 Q 768 414 760 414 L 626 414 Q 618 414 618 422 L 618 465" class="a-security" data-animate="edge" style="--step: 12;" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="schedule" data-edge-to="publish" data-edge-key="6" data-edge-id="schedule-publish" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="666,367;726,367" d="M 666 367 L 726 367" class="a-default" data-animate="edge" style="--step: 4;" stroke-width="1.4" marker-end="url(#arrowhead)"/>
 
         <!-- Nodes -->
-        <g id="node-step0" data-node-id="step0" data-node-label="Agregar un video" tabindex="0" role="button" aria-label="Enfocar Agregar un video, content/inbox, Tus decisiones" aria-pressed="false" data-node-kind="external" data-node-sublabel="content/inbox" data-node-context="Tus decisiones">
-          <title>Agregar un video · content/inbox · Tus decisiones</title>
+        <g id="node-inbox" data-node-id="inbox" data-node-label="Agregar un video" tabindex="0" role="button" aria-label="Enfocar Agregar un video, content/inbox, Dueño de la cuenta" aria-pressed="false" data-node-kind="external" data-node-sublabel="content/inbox" data-node-context="Dueño de la cuenta">
+          <title>Agregar un video · content/inbox · Dueño de la cuenta</title>
           <rect x="48" y="93" width="104" height="52" rx="8" class="c-mask"/>
           <rect x="48" y="93" width="104" height="52" rx="8" class="c-external" data-animate="node" style="--step: 0; --flow-node-name: archify-relay-node-0;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(54 99) scale(0.6875)">
@@ -889,63 +967,125 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
           <text x="100" y="140.6" class="t-muted" font-size="8" text-anchor="middle">content/inbox</text>
         </g>
 
-        <g id="node-step2" data-node-id="step2" data-node-label="Revisar la vista previa" tabindex="0" role="button" aria-label="Enfocar Revisar la vista previa, preview_post / dry run, Tus decisiones" aria-pressed="false" data-node-kind="security" data-node-sublabel="preview_post / dry run" data-node-context="Tus decisiones">
-          <title>Revisar la vista previa · preview_post / dry run · Tus decisiones</title>
-          <rect x="264" y="93" width="152" height="52" rx="8" class="c-mask"/>
-          <rect x="264" y="93" width="152" height="52" rx="8" class="c-security" data-animate="node" style="--step: 2; --flow-node-name: archify-relay-node-2;" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(270 99) scale(0.6875)">
+        <g id="node-approve" data-node-id="approve" data-node-label="Aprobar el contenido" tabindex="0" role="button" aria-label="Enfocar Aprobar el contenido, Dueño · CLI · hash, Dueño de la cuenta" aria-pressed="false" data-node-kind="security" data-node-sublabel="Dueño · CLI · hash" data-node-context="Dueño de la cuenta">
+          <title>Aprobar el contenido · Dueño · CLI · hash · Dueño de la cuenta</title>
+          <rect x="432" y="93" width="132" height="52" rx="8" class="c-mask"/>
+          <rect x="432" y="93" width="132" height="52" rx="8" class="c-security" data-animate="node" style="--step: 3; --flow-node-name: archify-relay-node-3;" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(438 99) scale(0.6875)">
             <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
             <path d="m5.8 8 1.5 1.5 3-3"/>
           </g>
-          <text data-node-label="" x="340" y="124.4" class="t-primary" font-size="10.4" font-weight="600" text-anchor="middle">Revisar la vista previa</text>
-          <text x="340" y="136.6" class="t-muted" font-size="8" text-anchor="middle">preview_post / dry run</text>
+          <text data-node-label="" x="498" y="124.3" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">Aprobar el contenido</text>
+          <text x="498" y="136.4" class="t-muted" font-size="8" text-anchor="middle">Dueño · CLI · hash</text>
         </g>
 
-        <g id="node-step3" data-node-id="step3" data-node-label="Aprobar y publicar" tabindex="0" role="button" aria-label="Enfocar Aprobar y publicar, El usuario decide, Tus decisiones" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="El usuario decide" data-node-context="Tus decisiones">
-          <title>Aprobar y publicar · El usuario decide · Tus decisiones</title>
-          <rect x="448" y="93" width="120" height="52" rx="8" class="c-mask"/>
-          <rect x="448" y="93" width="120" height="52" rx="8" class="c-cloud" data-animate="node" style="--step: 3; --flow-node-name: archify-relay-node-3;" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(454 99) scale(0.6875)">
-            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
-          </g>
-          <text data-node-label="" x="508" y="124.3" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">Aprobar y publicar</text>
-          <text x="508" y="136.4" class="t-muted" font-size="8" text-anchor="middle">El usuario decide</text>
-        </g>
-
-        <g id="node-step1" data-node-id="step1" data-node-label="Preparar la publicacion" tabindex="0" role="button" aria-label="Enfocar Preparar la publicacion, Texto por plataforma, Ayuda del agente" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Texto por plataforma" data-node-context="Ayuda del agente">
-          <title>Preparar la publicacion · Texto por plataforma · Ayuda del agente</title>
-          <rect x="144" y="217" width="152" height="52" rx="8" class="c-mask"/>
-          <rect x="144" y="217" width="152" height="52" rx="8" class="c-backend" data-animate="node" style="--step: 1; --flow-node-name: archify-relay-node-1;" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(150 223) scale(0.6875)">
+        <g id="node-compose" data-node-id="compose" data-node-label="Preparar y validar" tabindex="0" role="button" aria-label="Enfocar Preparar y validar, Deno restringido, Agente con Code Mode" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Deno restringido" data-node-context="Agente con Code Mode">
+          <title>Preparar y validar · Deno restringido · Agente con Code Mode</title>
+          <rect x="160" y="217" width="120" height="52" rx="8" class="c-mask"/>
+          <rect x="160" y="217" width="120" height="52" rx="8" class="c-backend" data-animate="node" style="--step: 1; --flow-node-name: archify-relay-node-1;" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(166 223) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" x="220" y="248.4" class="t-primary" font-size="10.4" font-weight="600" text-anchor="middle">Preparar la publicacion</text>
-          <text x="220" y="260.6" class="t-muted" font-size="8" text-anchor="middle">Texto por plataforma</text>
+          <text data-node-label="" x="220" y="248.3" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">Preparar y validar</text>
+          <text x="220" y="260.4" class="t-muted" font-size="8" text-anchor="middle">Deno restringido</text>
+        </g>
+
+        <g id="node-propose" data-node-id="propose" data-node-label="Guardar la propuesta" tabindex="0" role="button" aria-label="Enfocar Guardar la propuesta, Sin publicar, Agente con Code Mode" aria-pressed="false" data-node-kind="database" data-node-sublabel="Sin publicar" data-node-context="Agente con Code Mode">
+          <title>Guardar la propuesta · Sin publicar · Agente con Code Mode</title>
+          <rect x="312" y="217" width="132" height="52" rx="8" class="c-mask"/>
+          <rect x="312" y="217" width="132" height="52" rx="8" class="c-database" data-animate="node" style="--step: 2; --flow-node-name: archify-relay-node-2;" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(318 223) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" x="378" y="248.3" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">Guardar la propuesta</text>
+          <text x="378" y="260.4" class="t-muted" font-size="8" text-anchor="middle">Sin publicar</text>
+        </g>
+
+        <g id="node-schedule" data-node-id="schedule" data-node-label="Activar la cola" tabindex="0" role="button" aria-label="Enfocar Activar la cola, Solo con aprobación, Servicios de confianza" aria-pressed="false" data-node-kind="database" data-node-sublabel="Solo con aprobación" data-node-context="Servicios de confianza">
+          <title>Activar la cola · Solo con aprobación · Servicios de confianza</title>
+          <rect x="570" y="341" width="96" height="52" rx="8" class="c-mask"/>
+          <rect x="570" y="341" width="96" height="52" rx="8" class="c-database" data-animate="node" style="--step: 4; --flow-node-name: archify-relay-node-4;" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(576 347) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" x="618" y="373.7" class="t-primary" font-size="9.7" font-weight="600" text-anchor="middle">Activar la cola</text>
+          <text x="618" y="387.9" class="t-muted" font-size="7.7" text-anchor="middle">Solo con aprobación</text>
+        </g>
+
+        <g id="node-publish" data-node-id="publish" data-node-label="Publicar a las 05:00" tabindex="0" role="button" aria-label="Enfocar Publicar a las 05:00, APIs oficiales, Servicios de confianza" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="APIs oficiales" data-node-context="Servicios de confianza">
+          <title>Publicar a las 05:00 · APIs oficiales · Servicios de confianza</title>
+          <rect x="726" y="341" width="132" height="52" rx="8" class="c-mask"/>
+          <rect x="726" y="341" width="132" height="52" rx="8" class="c-cloud" data-animate="node" style="--step: 5; --flow-node-name: archify-relay-node-5;" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(732 347) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" x="792" y="372.3" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">Publicar a las 05:00</text>
+          <text x="792" y="384.4" class="t-muted" font-size="8" text-anchor="middle">APIs oficiales</text>
+        </g>
+
+        <g id="node-uncertain" data-node-id="uncertain" data-node-label="Conciliar lo incierto" tabindex="0" role="button" aria-label="Enfocar Conciliar lo incierto, Sin reintento automático, Resultados y recuperación" aria-pressed="false" data-node-kind="security" data-node-sublabel="Sin reintento automático" data-node-context="Resultados y recuperación">
+          <title>Conciliar lo incierto · Sin reintento automático · Resultados y recuperación</title>
+          <rect x="548" y="465" width="140" height="52" rx="8" class="c-mask"/>
+          <rect x="548" y="465" width="140" height="52" rx="8" class="c-security" data-animate="node" style="--step: 12; --flow-node-name: archify-relay-node-7;" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(554 471) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" x="618" y="496.4" class="t-primary" font-size="10.4" font-weight="600" text-anchor="middle">Conciliar lo incierto</text>
+          <text x="618" y="508.6" class="t-muted" font-size="8" text-anchor="middle">Sin reintento automático</text>
+        </g>
+
+        <g id="node-receipts" data-node-id="receipts" data-node-label="Guardar cada resultado" tabindex="0" role="button" aria-label="Enfocar Guardar cada resultado, Sin duplicar éxitos, Resultados y recuperación" aria-pressed="false" data-node-kind="database" data-node-sublabel="Sin duplicar éxitos" data-node-context="Resultados y recuperación">
+          <title>Guardar cada resultado · Sin duplicar éxitos · Resultados y recuperación</title>
+          <rect x="720" y="465" width="144" height="52" rx="8" class="c-mask"/>
+          <rect x="720" y="465" width="144" height="52" rx="8" class="c-database" data-animate="node" style="--step: 6; --flow-node-name: archify-relay-node-6;" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(726 471) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" x="792" y="496.3" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">Guardar cada resultado</text>
+          <text x="792" y="508.4" class="t-muted" font-size="8" text-anchor="middle">Sin duplicar éxitos</text>
         </g>
 
         <!-- Edge labels -->
+        <g data-edge-from="approve" data-edge-to="schedule" data-edge-label="Vigente" data-edge-key="0" data-edge-id="approve-schedule">
+          <rect x="569.2" y="99" width="43.6" height="14" rx="3" class="c-mask"/>
+          <text x="591" y="109" class="t-edge-security" font-size="8" text-anchor="middle">Vigente</text>
+        </g>
 
 
+
+
+        <g data-edge-from="publish" data-edge-to="uncertain" data-edge-label="Incierto" data-edge-key="5" data-edge-id="publish-uncertain">
+          <rect x="668.8" y="394" width="48.4" height="14" rx="3" class="c-mask"/>
+          <text x="693" y="404" class="t-edge-security" font-size="8" text-anchor="middle">Incierto</text>
+        </g>
 
 
         <!-- Legend -->
-        <g data-legend="">
-          <text x="20" y="304" class="t-primary" font-size="12" font-weight="650">Leyenda</text>
-          <g data-legend-semantic-kind="backend" data-legend-x="20" data-legend-baseline="324" data-legend-width="123">
-            <rect x="20" y="316" width="14" height="9" rx="2" class="c-backend" stroke-width="1"/>
-            <text x="42" y="324" class="t-muted" font-size="7.5" font-weight="500">Lógica del agente</text>
+        <g data-legend="" style="">
+          <text x="20" y="552" class="t-primary" font-size="12" font-weight="650">Leyenda</text>
+          <g data-legend-semantic-kind="backend" data-legend-x="20" data-legend-baseline="572" data-legend-width="123">
+            <rect x="20" y="564" width="14" height="9" rx="2" class="c-backend" stroke-width="1"/>
+            <text x="42" y="572" class="t-muted" font-size="7.5" font-weight="500">Lógica del agente</text>
           </g>
-          <g data-legend-semantic-kind="security" data-legend-x="150" data-legend-baseline="324" data-legend-width="81">
-            <rect x="150" y="316" width="14" height="9" rx="2" class="c-security" stroke-width="1"/>
-            <text x="172" y="324" class="t-muted" font-size="7.5" font-weight="500">Política</text>
+          <g data-legend-semantic-kind="security" data-legend-x="150" data-legend-baseline="572" data-legend-width="81">
+            <rect x="150" y="564" width="14" height="9" rx="2" class="c-security" stroke-width="1"/>
+            <text x="172" y="572" class="t-muted" font-size="7.5" font-weight="500">Política</text>
           </g>
-          <g data-legend-semantic-kind="cloud" data-legend-x="238" data-legend-baseline="324" data-legend-width="132">
-            <rect x="238" y="316" width="14" height="9" rx="2" class="c-cloud" stroke-width="1"/>
-            <text x="260" y="324" class="t-muted" font-size="7.5" font-weight="500">Servicio en la nube</text>
+          <g data-legend-semantic-kind="database" data-legend-x="238" data-legend-baseline="572" data-legend-width="118">
+            <rect x="238" y="564" width="14" height="9" rx="2" class="c-database" stroke-width="1"/>
+            <text x="260" y="572" class="t-muted" font-size="7.5" font-weight="500">Contexto / traza</text>
           </g>
-          <g data-legend-semantic-kind="external" data-legend-x="377" data-legend-baseline="324" data-legend-width="113">
-            <rect x="377" y="316" width="14" height="9" rx="2" class="c-external" stroke-width="1"/>
-            <text x="399" y="324" class="t-muted" font-size="7.5" font-weight="500">Sistema externo</text>
+          <g data-legend-semantic-kind="cloud" data-legend-x="363" data-legend-baseline="572" data-legend-width="132">
+            <rect x="363" y="564" width="14" height="9" rx="2" class="c-cloud" stroke-width="1"/>
+            <text x="385" y="572" class="t-muted" font-size="7.5" font-weight="500">Servicio en la nube</text>
+          </g>
+          <g data-legend-semantic-kind="external" data-legend-x="502" data-legend-baseline="572" data-legend-width="113">
+            <rect x="502" y="564" width="14" height="9" rx="2" class="c-external" stroke-width="1"/>
+            <text x="524" y="572" class="t-muted" font-size="7.5" font-weight="500">Sistema externo</text>
           </g>
         </g>
       </svg>

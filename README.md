@@ -40,10 +40,15 @@
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme-builder/kit/features-en-dark.svg" /><img src="assets/readme-builder/kit/features-en-light.svg" alt="Dated queue: A day folder goes out that day: three videos, three posts at 05:00. Week folders spread on their own. · Watches every video: 8 frames and a transcript: what happens, speech, burned-in text. · Per-platform copy: Hook, body, CTA and hashtags checked against each platform&#x27;s real limits. · Cross-promotion: Every caption ends with your handles on the other networks. · Subtitles: None, platform auto, .srt or burned in, styled for vertical video. · Any way it can: Official APIs, Postiz, a browser profile, or the agent itself. · Every day: A scheduled task with retries; it catches up if the PC was off. · Learns: Best days, top and bottom videos, a weekly report with three actions at most." width="100%" /></picture></p>
 <!-- /kit:features -->
 
+Code Mode is part of the standard installation: 17 MCP tools, read-only JavaScript execution by default,
+and owner approval before activating publication proposals. [How Code Mode works](docs/CODE_MODE.md).
+
 <p align="center"><img src="assets/readme-builder/kit/wave.svg" alt="" width="100%" /></p>
 
 <a id="-quick-start"></a>
 ## <img src="assets/readme-builder/icons/rocket.svg" width="24" height="24" alt="" /> Quick start
+
+Native setup requires [uv](https://docs.astral.sh/uv/) and [Deno 2](https://docs.deno.com/runtime/getting_started/installation/) before running bootstrap.
 
 ```powershell
 git clone https://github.com/robgallardof/social-publisher-mcp.git
@@ -52,7 +57,21 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/bootstrap.ps1       
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-schedule.ps1 # daily 05:00 task
 ```
 
-macOS / Linux: `sh scripts/bootstrap.sh` and the cron line printed at the end. Requires [uv](https://docs.astral.sh/uv/) and [Deno 2](https://docs.deno.com/runtime/getting_started/installation/).
+macOS / Linux: `sh scripts/bootstrap.sh` and the cron line printed at the end.
+
+### Update or reinstall
+
+Close MCP clients first on Windows to release the running server executable. From the repository root:
+
+```sh
+uv --directory mcp/social-forge sync --reinstall-package social-forge --extra youtube --extra browser --extra analysis
+python scripts/sync.py
+python scripts/install-mcp.py --dry-run
+python scripts/install-mcp.py
+```
+
+Reopen your client to reconnect and refresh the tool catalog: **17 tools**, including `code_search` and
+`code_execute`. Deno 2 must be on PATH. The installer backs up client files and keeps other servers.
 
 ### Connect your agent
 
@@ -137,25 +156,40 @@ Model inference inside each host needs its own login and is not part of these te
 <a id="-how-a-video-flows"></a>
 ## <img src="assets/readme-builder/icons/layers.svg" width="24" height="24" alt="" /> How a video flows
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/diagrams/publishing-en-dark.svg" /><img src="assets/readme/diagrams/publishing-en-light.svg" alt="A practical usage path, generated with Archify" width="100%" /></picture></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/diagrams/publishing-en-dark.svg" /><img src="assets/readme/diagrams/publishing-en-light.svg" alt="Code Mode: restricted execution, owner approval, scheduled queue and per-platform recovery" width="100%" /></picture></p>
+
+The agent analyzes the video and moves it into the dated queue before Code Mode prepares a proposal.
+This workflow uses official adapters; direct tools retain their other backends.
+[Interactive HTML and Archify sources](docs/diagrams/README.md).
+
 
 
 <details>
 <summary>Implementation diagram</summary>
 
 ```mermaid
-flowchart LR
-    A[content/inbox] -->|analyze_video| B(frames + transcript)
-    B --> C{video-analyst}
-    C -->|day folder| D[content/queue/YYYY-MM-DD]
-    D -->|write_post| E[.post.yaml<br/>copy · footer · subtitles]
-    E -->|05:00 run-due| F{backend}
-    F --> G[Meta / YouTube / TikTok API]
-    F --> H[Postiz]
-    F --> I[Browser profile]
-    F --> J[Agent handoff]
-    G & H & I & J --> K[content/published + receipts]
-    K -->|pull_metrics| L[analytics · weekly report]
+flowchart TD
+    Agent[Agent / MCP client] --> Direct[15 direct tools]
+    Agent --> Search[code_search]
+    Agent --> Execute[code_execute - read-only by default]
+    Execute --> Deno[Restricted Deno process]
+    Deno --> Bridge[Authorized Python capabilities]
+    Bridge --> Preview[Validate media and preview copy]
+    Preview --> Proposal[(Exact proposal in SQLite)]
+    Owner[Owner CLI approval] --> Proposal
+    Proposal --> Grant{Valid exact approval?}
+    Grant -->|No| Wait[Wait or prepare a new proposal]
+    Grant -->|schedule.create| Queue[Dated queue and approved sidecar]
+    Direct --> Legacy[Existing preparation / publishing workflows]
+    Legacy --> Queue
+    Queue --> Runner[05:00 runner - workspace lock]
+    Runner --> Recheck[Revalidate approval for Code Mode jobs]
+    Recheck --> Official[Meta / YouTube / TikTok APIs]
+    Recheck -->|Direct workflows only| Other[Postiz / browser / handoff]
+    Official --> Receipts[(Per-platform receipts and operation IDs)]
+    Other --> Receipts
+    Receipts -->|Uncertain result| Reconcile[Owner reconciliation before retry]
+    Receipts --> Metrics[Cached analytics and weekly reports]
 ```
 
 </details>
@@ -243,7 +277,7 @@ Dockerfile, compose.yaml   optional image (stdio or HTTP with a token)
 ## <img src="assets/readme-builder/icons/code.svg" width="24" height="24" alt="" /> Development
 
 ```bash
-cd mcp/social-forge && uv run pytest     # 53 tests: no network, real ffmpeg, real MCP over HTTP
+cd mcp/social-forge && uv run --no-sync pytest  # fake providers, real FFmpeg and MCP transports
 python scripts/test_docker.py            # real image: stdio, CLI, HTTP with token, no personal data
 python scripts/sync.py                   # after editing .agents/ or config/
 git config core.hooksPath .githooks      # strips AI co-author trailers from commit messages
